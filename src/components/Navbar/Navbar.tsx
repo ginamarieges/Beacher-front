@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
+import NavbarStyled from "./NavbarStyled";
 
 const Navbar = (): React.ReactElement => {
   return (
-    <nav>
-      <ul>
+    <NavbarStyled>
+      <ul className="navbar-list">
         <li>
-          <NavLink to={"/home"}>
+          <NavLink to={"/home"} className="navbar-list__icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="48"
@@ -21,23 +22,23 @@ const Navbar = (): React.ReactElement => {
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/add-beach"}>
+          <NavLink to={"/add-beach"} className="navbar-list__icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
+              width="48"
+              height="48"
+              viewBox="0 0 48 48"
               fill="none"
             >
               <path
-                d="M19.1667 20.8333V35.8333H20.8334V20.8333H35.8334V19.1667H20.8334V4.16666H19.1667V19.1667H4.16675V20.8333H19.1667Z"
+                d="M23 25V43H25V25H43V23H25V5H23V23H5V25H23Z"
                 fill="#564137"
               />
             </svg>
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/login"}>
+          <NavLink to={"/login"} className="navbar-list__icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="48"
@@ -73,7 +74,7 @@ const Navbar = (): React.ReactElement => {
           </NavLink>
         </li>
       </ul>
-    </nav>
+    </NavbarStyled>
   );
 };
 
