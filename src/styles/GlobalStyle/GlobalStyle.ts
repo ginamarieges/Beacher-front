@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 html {
-  font-family: "Montserrat"
+  font-family: ${(props) => props.theme.fonts.fontFamily};
 }
 
 body,
