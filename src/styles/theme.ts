@@ -12,11 +12,13 @@ const theme: DefaultTheme = {
   },
 
   fonts: {
-    fontFamily: "Montserrat",
+    fontFamily: "Montserrat, sans-serif",
   },
 
   fontSizes: {
     weight: "400",
+    smallSize: "1rem",
+    titleSize: "1,25rem",
   },
 };
 
