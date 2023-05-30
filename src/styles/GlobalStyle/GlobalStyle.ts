@@ -1,4 +1,3 @@
-import "@fontsource/montserrat";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
