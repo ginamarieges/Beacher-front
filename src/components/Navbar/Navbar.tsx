@@ -42,11 +42,7 @@ const Navbar = (): React.ReactElement => {
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to={"/login"}
-            className="navbar-list__icon"
-            aria-label="logout"
-          >
+          <button className="navbar-list__icon" aria-label="logout">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="48"
@@ -79,7 +75,7 @@ const Navbar = (): React.ReactElement => {
                 strokeLinejoin="round"
               />
             </svg>
-          </NavLink>
+          </button>
         </li>
       </ul>
     </NavbarStyled>
