@@ -1,20 +1,11 @@
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
-import Header from "./Header.js";
-import renderWithProviders from "../../utils/testUtils.js";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils.js";
 import { screen } from "@testing-library/react";
+import Header from "./Header.js";
+
 describe("Given a Header component", () => {
   describe("When it is rendered", () => {
     test("Then it should show the Beacher logo", () => {
-      const routes = [
-        {
-          path: "/",
-          element: <Header />,
-        },
-      ];
-
-      const router = createMemoryRouter(routes);
-
-      renderWithProviders(<RouterProvider router={router} />);
+      renderWithProviders(wrapWithRouter(<Header />));
 
       const expectedAlternativeText = "beacher logo";
 
