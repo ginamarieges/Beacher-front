@@ -14,6 +14,8 @@ declare module "styled-components" {
     };
     fontSizes: {
       weight: string;
+      smallSize: string;
+      titleSize: string;
     };
   }
 }
