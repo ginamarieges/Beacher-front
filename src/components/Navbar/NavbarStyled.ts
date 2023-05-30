@@ -24,5 +24,9 @@ const NavbarStyled = styled.nav`
       background-color: ${(props) => props.theme.color.secondary};
     }
   }
+
+  .active {
+    border: 1px solid ${(props) => props.theme.color.primary};
+  }
 `;
 export default NavbarStyled;
