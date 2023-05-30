@@ -6,7 +6,7 @@ const Navbar = (): React.ReactElement => {
     <NavbarStyled>
       <ul className="navbar-list">
         <li>
-          <NavLink to={"/home"} className="navbar-list__icon">
+          <NavLink to={"/home"} className="navbar-list__icon" aria-label="home">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="48"
@@ -22,7 +22,11 @@ const Navbar = (): React.ReactElement => {
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/add-beach"} className="navbar-list__icon">
+          <NavLink
+            to={"/add-beach"}
+            className="navbar-list__icon"
+            aria-label="add-beach"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="48"
@@ -38,7 +42,11 @@ const Navbar = (): React.ReactElement => {
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/login"} className="navbar-list__icon">
+          <NavLink
+            to={"/login"}
+            className="navbar-list__icon"
+            aria-label="logout"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="48"
