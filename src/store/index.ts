@@ -2,7 +2,7 @@ import { PreloadedState } from "@reduxjs/toolkit";
 import { combineReducers } from "@reduxjs/toolkit";
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { userReducer } from "./users/user";
+import { userReducer } from "./user/userSlice";
 
 const rootReducer = combineReducers({
   userStore: userReducer,
