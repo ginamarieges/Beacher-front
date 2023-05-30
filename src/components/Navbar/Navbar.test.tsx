@@ -1,8 +1,7 @@
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
-import { render, screen } from "@testing-library/react";
-import { ThemeProvider } from "styled-components";
+import { screen } from "@testing-library/react";
 import Navbar from "./Navbar.js";
-import theme from "../../styles/theme.js";
+import renderWithProviders from "../../utils/testUtils.js";
 
 describe("Given a Navbar component", () => {
   describe("When it is rendered", () => {
@@ -16,11 +15,7 @@ describe("Given a Navbar component", () => {
 
       const router = createMemoryRouter(routes);
 
-      render(
-        <ThemeProvider theme={theme}>
-          <RouterProvider router={router} />
-        </ThemeProvider>
-      );
+      renderWithProviders(<RouterProvider router={router} />);
 
       const homeLink = screen.getByRole("link", { name: "home" });
       const addBeachLink = screen.getByRole("link", { name: "add-beach" });

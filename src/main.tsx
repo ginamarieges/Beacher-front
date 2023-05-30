@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
-import "./index.css";
 import GlobalStyle from "./styles/GlobalStyle/GlobalStyle";
 import { Provider } from "react-redux";
 import { store } from "./store";
