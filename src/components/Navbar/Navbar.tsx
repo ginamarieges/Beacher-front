@@ -1,18 +1,23 @@
 import { NavLink } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
+import { paths } from "../../routers/paths/paths";
 
 const Navbar = (): React.ReactElement => {
   return (
     <NavbarStyled>
       <ul className="navbar-list">
         <li>
-          <NavLink to={"/home"} className="navbar-list__icon" aria-label="home">
+          <NavLink
+            to={paths.home}
+            className="navbar-list__icon"
+            aria-label="home"
+          >
             <img src="./img/home.svg" alt="home icon" width={48} height={48} />
           </NavLink>
         </li>
         <li>
           <NavLink
-            to={"/add-beach"}
+            to={paths.addBeach}
             className="navbar-list__icon"
             aria-label="add-beach"
           >
