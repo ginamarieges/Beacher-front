@@ -4,7 +4,7 @@ import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils.js";
 
 describe("Given a Navbar component", () => {
   describe("When it is rendered", () => {
-    test("Then it should show three links", () => {
+    test("Then it should show the home, add beach and logout link", () => {
       renderWithProviders(wrapWithRouter(<Navbar />));
 
       const homeLink = screen.getByRole("link", { name: "home" });

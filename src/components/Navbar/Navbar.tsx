@@ -12,7 +12,7 @@ const Navbar = (): React.ReactElement => {
             className="navbar-list__icon"
             aria-label="home"
           >
-            <img src="./img/home.svg" alt="home icon" width={48} height={48} />
+            <img src="/img/home.svg" alt="home icon" width={48} height={48} />
           </NavLink>
         </li>
         <li>
@@ -22,7 +22,7 @@ const Navbar = (): React.ReactElement => {
             aria-label="add-beach"
           >
             <img
-              src="./img/add.svg"
+              src="/img/add.svg"
               alt="add beach icon"
               width={48}
               height={48}
@@ -32,7 +32,7 @@ const Navbar = (): React.ReactElement => {
         <li>
           <button className="navbar-list__icon" aria-label="logout">
             <img
-              src="./img/logout.svg"
+              src="/img/logout.svg"
               alt="logout icon"
               width={48}
               height={48}

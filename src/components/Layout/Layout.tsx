@@ -8,10 +8,10 @@ const Layout = (): React.ReactElement => {
   return (
     <>
       <ContainerStyled>
-        {location.pathname !== paths.login && <Header />}
+        {location.pathname === paths.login || <Header />}
         <Outlet />
       </ContainerStyled>
-      {location.pathname !== paths.login && <Navbar />}
+      {location.pathname === paths.login || <Navbar />}
     </>
   );
 };
