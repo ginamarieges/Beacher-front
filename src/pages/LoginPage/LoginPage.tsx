@@ -1,6 +1,21 @@
+import { useNavigate } from "react-router-dom";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import useUser from "../../hooks/useUser/useUser";
+import { UserCredentials } from "../../store/user/types";
 import LoginPageStyled from "./LoginPageStyled";
+import { paths } from "../../routers/paths/paths";
 
 const LoginPage = (): React.ReactElement => {
+  const { getUserToken } = useUser();
+  const Navigate = useNavigate();
+
+  const onSubmit = async (userCredentials: UserCredentials) => {
+    const token = await getUserToken(userCredentials);
+    Navigate(paths.home, { replace: true });
+
+    return token;
+  };
+
   return (
     <LoginPageStyled>
       <img
@@ -11,6 +26,7 @@ const LoginPage = (): React.ReactElement => {
         className="app-logo"
       />
       <h1 className="app-title">Beacher</h1>
+      <LoginForm handleOnSubmit={onSubmit} />
     </LoginPageStyled>
   );
 };

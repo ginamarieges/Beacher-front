@@ -4,7 +4,7 @@ import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
-import theme from "../styles/theme";
+import theme from "../styles/theme/theme";
 import GlobalStyle from "../styles/GlobalStyle/GlobalStyle";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
