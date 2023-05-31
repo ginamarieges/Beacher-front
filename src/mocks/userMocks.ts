@@ -6,6 +6,7 @@ import {
 
 export const userMock: UserTokenStructure = getUserTokenData();
 
-export const tokenMock = "wiey8rf9e7iosurndfpsw48eimtufpjc8o4ethxawr";
+export const tokenMock =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwZGU1NzRkYTA5Mjk0Mzk1YTZlYWEiLCJuYW1lIjoiZ2luYSIsImlhdCI6MTY4NTU1NjkxNywiZXhwIjoxNjkyNDY4OTE3fQ.tytG1dDxJVic6GfylREE0wpI-aLgfVcY5b8KDUkAFOc";
 
 export const userCredentialsMock: UserCredentials = getUserCredentialsMock();
