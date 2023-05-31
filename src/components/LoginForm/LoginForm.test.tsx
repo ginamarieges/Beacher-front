@@ -1,15 +1,24 @@
 import { screen } from "@testing-library/react";
+import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import LoginForm from "./LoginForm";
+
+beforeEach(() => {
+  vi.clearAllMocks();
+});
 
 describe("Given a LoginForm component", () => {
   const usernamePlaceholder = /username/i;
   const passwordPlaceholder = /password/i;
   const buttonText = /login/i;
+  const actionOnClick = vi.fn();
+
   describe("When it is rendered", () => {
     test("Then it should show a input with username text and an input with the password text", () => {
-      renderWithProviders(wrapWithRouter(<LoginForm />));
+      renderWithProviders(
+        wrapWithRouter(<LoginForm handleOnSubmit={actionOnClick} />)
+      );
 
       const usernameInput = screen.getByPlaceholderText(usernamePlaceholder);
       const passwordInput = screen.getByPlaceholderText(passwordPlaceholder);
@@ -19,7 +28,9 @@ describe("Given a LoginForm component", () => {
     });
 
     test("Then it should show a button with the text 'LOGIN'", () => {
-      renderWithProviders(wrapWithRouter(<LoginForm />));
+      renderWithProviders(
+        wrapWithRouter(<LoginForm handleOnSubmit={actionOnClick} />)
+      );
 
       const loginButton = screen.getByRole("button", { name: buttonText });
 
@@ -32,7 +43,9 @@ describe("Given a LoginForm component", () => {
       const usenrameText = "hello";
       const passwordText = "alo";
 
-      renderWithProviders(wrapWithRouter(<LoginForm />));
+      renderWithProviders(
+        wrapWithRouter(<LoginForm handleOnSubmit={actionOnClick} />)
+      );
 
       const usernameInput = screen.getByPlaceholderText(usernamePlaceholder);
       const passwordInput = screen.getByPlaceholderText(passwordPlaceholder);
