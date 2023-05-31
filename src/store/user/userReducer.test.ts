@@ -7,10 +7,11 @@ describe("Given a loginUser reducer", () => {
     test("Then it should returen the user data logged in", () => {
       const user: UserTokenStructure = userMock;
 
-      const currentUserData: UserTokenStructure = {
+      const currentUserData: UserTokenData = {
         id: "",
         name: "",
         token: "",
+        isLogged: false,
       };
 
       const expectedNewState: UserTokenData = {
