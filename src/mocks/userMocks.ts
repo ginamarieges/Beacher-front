@@ -1,4 +1,4 @@
-import { UserTokenStructure } from "../store/user/types";
+import { UserCredentials, UserTokenStructure } from "../store/user/types";
 
 export const userMock: UserTokenStructure = {
   id: "23",
@@ -7,3 +7,8 @@ export const userMock: UserTokenStructure = {
 };
 
 export const tokenMock = "wiey8rf9e7iosurndfpsw48eimtufpjc8o4ethxawr";
+
+export const userCredentialsMock: UserCredentials = {
+  username: "Gina",
+  password: "hello",
+};
