@@ -1,15 +1,44 @@
+import { useState } from "react";
 import LoginFormStyled from "./LoginFormStyled";
+import { UserCredentials } from "../../store/user/types";
 
 const LoginForm = (): React.ReactElement => {
+  const initialCredentials: UserCredentials = {
+    username: "",
+    password: "",
+  };
+
+  const [userCredentials, setUserCredentials] = useState(initialCredentials);
+
+  const onChangeData = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserCredentials({
+      ...userCredentials,
+      [event.target.id]: event.target.value,
+    });
+  };
+
+  const isReady =
+    userCredentials.username !== "" && userCredentials.password !== "";
+
   return (
-    <LoginFormStyled className="form">
-      <input type="text" placeholder="USERNAME" className="form__controls" />
+    <LoginFormStyled className="form" autoComplete="off" noValidate>
+      <input
+        type="text"
+        placeholder="USERNAME"
+        className="form__controls"
+        id="username"
+        value={userCredentials.username}
+        onChange={onChangeData}
+      />
       <input
         type="password"
+        id="password"
         placeholder="PASSWORD"
         className="form__controls"
+        value={userCredentials.password}
+        onChange={onChangeData}
       />
-      <button type="submit" className="form__button">
+      <button type="submit" className="form__button" disabled={!isReady}>
         login
       </button>
     </LoginFormStyled>
