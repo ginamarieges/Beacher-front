@@ -4,13 +4,16 @@ import useUser from "../../hooks/useUser/useUser";
 import { UserCredentials } from "../../store/user/types";
 import LoginPageStyled from "./LoginPageStyled";
 import { paths } from "../../routers/paths/paths";
+import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 
 const LoginPage = (): React.ReactElement => {
+  const { setToken } = useLocalStorage();
   const { getUserToken } = useUser();
   const Navigate = useNavigate();
 
   const onSubmit = async (userCredentials: UserCredentials) => {
     const token = await getUserToken(userCredentials);
+    setToken("token", token);
     Navigate(paths.home, { replace: true });
 
     return token;
