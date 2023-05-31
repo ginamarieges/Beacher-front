@@ -6,6 +6,7 @@ const LoginFormStyled = styled.form`
   gap: 31px;
   padding-top: 65px;
   width: 224px;
+
   .form {
     &__controls {
       padding: 13px 10px;
