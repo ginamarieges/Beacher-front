@@ -57,7 +57,7 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
         type="submit"
         className="form__button"
         disabled={!isReady}
-        onClick={handleOnSubmit}
+        onClick={handleOnClick}
       >
         login
       </button>

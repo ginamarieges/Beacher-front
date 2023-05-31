@@ -59,4 +59,27 @@ describe("Given a LoginForm component", () => {
       expect(loginButton).toBeEnabled();
     });
   });
+
+  describe("When it is rendered and the button is clicked", () => {
+    test("Then it should call the function actionOnClick", async () => {
+      const usenrameText = "hello";
+      const passwordText = "alo";
+
+      renderWithProviders(
+        wrapWithRouter(<LoginForm handleOnSubmit={actionOnClick} />)
+      );
+      const usernameInput = screen.getByPlaceholderText(usernamePlaceholder);
+      const passwordInput = screen.getByPlaceholderText(passwordPlaceholder);
+      const loginButton = screen.getByRole("button", {
+        name: buttonText,
+      });
+
+      await userEvent.type(usernameInput, usenrameText);
+      await userEvent.type(passwordInput, passwordText);
+
+      await userEvent.click(loginButton);
+
+      expect(actionOnClick).toHaveBeenCalled();
+    });
+  });
 });
