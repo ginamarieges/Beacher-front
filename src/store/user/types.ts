@@ -7,3 +7,8 @@ export interface UserTokenStructure {
 export interface UserTokenData extends UserTokenStructure {
   isLogged: boolean;
 }
+
+export interface UserCredentials {
+  username: string;
+  password: string;
+}

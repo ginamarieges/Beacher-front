@@ -23,11 +23,12 @@ const LoginFormStyled = styled.form`
       padding: 15px;
       font-size: ${(props) => props.theme.fontSizes.smallSize};
       text-transform: uppercase;
-    }
 
-    .disabled {
-      background-color: ${(props) => props.theme.color.secondary};
-      color: ${(props) => props.theme.color.primary};
+      :disabled {
+        background-color: ${(props) => props.theme.color.secondary};
+        color: ${(props) => props.theme.color.primary};
+        border: 1px solid ${(props) => props.theme.color.primary};
+      }
     }
   }
 `;
