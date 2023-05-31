@@ -3,7 +3,7 @@ import LoginFormStyled from "./LoginFormStyled";
 import { UserCredentials } from "../../store/user/types";
 
 interface LoginFormProps {
-  handleOnSubmit: () => void;
+  handleOnSubmit: (userCredentials: UserCredentials) => void;
 }
 
 const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
@@ -26,7 +26,7 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
 
   const handleOnClick = () => {
     event?.preventDefault();
-    handleOnSubmit();
+    handleOnSubmit(userCredentials);
     setUserCredentials(initialCredentials);
   };
 
