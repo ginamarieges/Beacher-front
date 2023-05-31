@@ -1,3 +1,4 @@
+import LoginForm from "../../components/LoginForm/LoginForm";
 import LoginPageStyled from "./LoginPageStyled";
 
 const LoginPage = (): React.ReactElement => {
@@ -11,6 +12,7 @@ const LoginPage = (): React.ReactElement => {
         className="app-logo"
       />
       <h1 className="app-title">Beacher</h1>
+      <LoginForm />
     </LoginPageStyled>
   );
 };
