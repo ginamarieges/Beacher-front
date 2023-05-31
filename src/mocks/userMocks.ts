@@ -5,3 +5,5 @@ export const userMock: UserTokenStructure = {
   name: "Mambo",
   token: "284ydo3i7q4uwhertofq837id4uhwerjpdo",
 };
+
+export const tokenMock = "wiey8rf9e7iosurndfpsw48eimtufpjc8o4ethxawr";
