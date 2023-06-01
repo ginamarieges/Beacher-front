@@ -19,6 +19,14 @@ const userSlice = createSlice({
       ...action.payload,
       isLogged: true,
     }),
+
+    logoutUser: (
+      _currentState: UserTokenData,
+      action: PayloadAction<UserTokenStructure>
+    ) => ({
+      ...action.payload,
+      isLogged: false,
+    }),
   },
 });
 
