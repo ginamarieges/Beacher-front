@@ -24,8 +24,8 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
   const isReady =
     userCredentials.username !== "" && userCredentials.password !== "";
 
-  const handleOnClick = () => {
-    event?.preventDefault();
+  const handleOnClick = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     handleOnSubmit(userCredentials);
     setUserCredentials(initialCredentials);
   };
@@ -57,7 +57,7 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
         type="submit"
         className="form__button"
         disabled={!isReady}
-        onClick={handleOnClick}
+        onClick={() => handleOnClick}
       >
         login
       </button>
