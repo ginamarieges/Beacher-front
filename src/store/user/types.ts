@@ -1,6 +1,9 @@
-export interface UserTokenStructure {
+export interface UserDataStructure {
   id: string;
   name: string;
+}
+
+export interface UserTokenStructure extends UserDataStructure {
   token: string;
 }
 

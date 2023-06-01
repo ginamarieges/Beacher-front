@@ -1,5 +1,4 @@
 import { getUserMock } from "../../mocks/factories/user/userfactory";
-import { userMock } from "../../mocks/userMocks";
 import { UserTokenData, UserTokenStructure } from "./types";
 import {
   loginUserActionCreator,
@@ -10,7 +9,11 @@ import {
 describe("Given a loginUser reducer", () => {
   describe("When it receives a user data", () => {
     test("Then it should returen the user data logged in", () => {
-      const user: UserTokenStructure = userMock;
+      const user: UserTokenStructure = {
+        id: "33",
+        name: "gina",
+        token: "refuw9a83jredfaowc3peirjfdcm",
+      };
 
       const currentUserData: UserTokenData = {
         id: "",

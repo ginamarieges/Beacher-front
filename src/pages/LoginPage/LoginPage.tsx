@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import useUser from "../../hooks/useUser/useUser";
-import { UserCredentials } from "../../store/user/types";
+import { UserCredentials, UserTokenStructure } from "../../store/user/types";
 import LoginPageStyled from "./LoginPageStyled";
 import { paths } from "../../routers/paths/paths";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
@@ -19,12 +19,18 @@ const LoginPage = (): React.ReactElement => {
   const onSubmit = async (userCredentials: UserCredentials) => {
     const token = await getUserToken(userCredentials);
 
-    if (token) {
-      setToken("token", token);
-      const userData = getTokenData(token);
-      dispatch(loginUserActionCreator(userData));
-      Navigate(paths.home, { replace: true });
+    if (!token) {
+      return;
     }
+
+    const userData = getTokenData(token);
+    const tokenData: UserTokenStructure = {
+      ...userData,
+      token,
+    };
+    setToken("token", token);
+    dispatch(loginUserActionCreator(tokenData));
+    Navigate(paths.home);
   };
 
   return (
