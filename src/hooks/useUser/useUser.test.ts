@@ -34,11 +34,7 @@ describe("Given a useUser function", () => {
         },
       } = renderHook(() => useUser());
 
-      const getToken = async () => {
-        await getUserToken(userCredentials);
-      };
-
-      expect(getToken).rejects.toThrowError();
+      expect(getUserToken(userCredentials)).rejects.toThrowError();
     });
   });
 });
