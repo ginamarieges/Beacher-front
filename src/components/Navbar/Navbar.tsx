@@ -9,13 +9,13 @@ import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 const Navbar = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { removeToken } = useLocalStorage();
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const userCredentials = useAppSelector((state) => state.userStore);
 
   const logout = (userCredentials: UserTokenData) => {
     dispatch(logoutUserActionCreator(userCredentials));
     removeToken("token");
-    Navigate(paths.login, { replace: true });
+    navigate(paths.login);
   };
 
   return (

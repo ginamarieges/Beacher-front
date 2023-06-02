@@ -14,7 +14,7 @@ const LoginPage = (): React.ReactElement => {
   const { getUserToken } = useUser();
   const { getTokenData } = useToken();
   const dispatch = useAppDispatch();
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const onSubmit = async (userCredentials: UserCredentials) => {
     try {
@@ -27,9 +27,9 @@ const LoginPage = (): React.ReactElement => {
       };
       setToken("token", token);
       dispatch(loginUserActionCreator(tokenData));
-      Navigate(paths.home);
+      navigate(paths.home);
     } catch {
-      Navigate(paths.login);
+      navigate(paths.login);
       return;
     }
   };
