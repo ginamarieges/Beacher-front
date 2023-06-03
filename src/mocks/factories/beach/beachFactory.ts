@@ -21,3 +21,6 @@ export const beachFactory = Factory.define<BeachStructure>(() => ({
   addServices: faker.word.adjective(),
   id: faker.string.alphanumeric(),
 }));
+
+export const getBeachesMock = (number: number) =>
+  beachFactory.buildList(number);
