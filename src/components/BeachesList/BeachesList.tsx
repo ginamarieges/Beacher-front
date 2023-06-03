@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../store";
+import BeachCard from "../BeachCard/BeachCard";
 
 const BeachesList = (): React.ReactElement => {
   const { beaches } = useAppSelector((state) => state.beachesStore);
@@ -6,7 +7,7 @@ const BeachesList = (): React.ReactElement => {
     <ul>
       {beaches.map((beach) => (
         <li key={beach.id}>
-          <h3>{beach.name}</h3>
+          <BeachCard beach={beach} />
         </li>
       ))}
     </ul>
