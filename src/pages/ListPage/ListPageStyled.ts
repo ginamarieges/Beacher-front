@@ -6,7 +6,6 @@ const ListPageStyled = styled.div`
     font-size: ${(props) => props.theme.fontSizes.titleSize};
     padding-top: 16px;
     min-width: 255px;
-    margin: 0;
     line-height: 40px;
   }
 `;

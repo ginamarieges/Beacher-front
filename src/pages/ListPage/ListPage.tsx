@@ -3,9 +3,7 @@ import ListPageStyled from "./ListPageStyled";
 const ListPage = (): React.ReactElement => {
   return (
     <ListPageStyled>
-      <p className="home-title">
-        Welcome Berta! Find your perfect beach for today
-      </p>
+      <h3 className="home-title">Welcome! Find your perfect beach for today</h3>
     </ListPageStyled>
   );
 };
