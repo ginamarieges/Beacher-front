@@ -22,5 +22,7 @@ export const beachFactory = Factory.define<BeachStructure>(() => ({
   id: faker.string.alphanumeric(),
 }));
 
-export const getBeachesMock = (number: number) =>
-  beachFactory.buildList(number);
+export const getBeachesMock = (
+  number: number,
+  data?: Partial<BeachStructure>
+) => beachFactory.buildList(number, data);
