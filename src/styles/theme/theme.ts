@@ -18,7 +18,7 @@ const theme: DefaultTheme = {
   fontSizes: {
     weight: "400",
     smallSize: "1rem",
-    titleSize: "1,25rem",
+    titleSize: "1.25rem",
   },
 };
 
