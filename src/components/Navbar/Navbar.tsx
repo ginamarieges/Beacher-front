@@ -26,6 +26,7 @@ const Navbar = (): React.ReactElement => {
             to={paths.home}
             className="navbar-list__icon"
             aria-label="home"
+            title="home"
           >
             <img src="/img/home.svg" alt="home icon" width={48} height={48} />
           </NavLink>
@@ -35,6 +36,7 @@ const Navbar = (): React.ReactElement => {
             to={paths.addBeach}
             className="navbar-list__icon"
             aria-label="add-beach"
+            title="add beach"
           >
             <img
               src="/img/add.svg"
@@ -49,6 +51,7 @@ const Navbar = (): React.ReactElement => {
             onClick={() => logout(userCredentials)}
             className="navbar-list__icon"
             aria-label="logout"
+            title="logout"
           >
             <img
               src="/img/logout.svg"
