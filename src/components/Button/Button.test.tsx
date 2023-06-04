@@ -10,7 +10,7 @@ describe("Given a Button component", () => {
       const actionOnClick = vi.fn();
 
       renderWithProviders(
-        <Button actionOnClick={actionOnClick} classname="" text={buttonText} />
+        <Button actionOnClick={actionOnClick} className="" text={buttonText} />
       );
 
       const button = screen.getByRole("button", { name: buttonText });

@@ -6,6 +6,7 @@ const BeachCardStyled = styled.article`
   min-width: 280px;
   min-height: 170px;
   border: 0.5px solid #000;
+
   .card {
     &__image {
       min-width: 100%;
@@ -22,6 +23,16 @@ const BeachCardStyled = styled.article`
       font-size: ${(props) => props.theme.fontSizes.smallSize};
       line-height: 40px;
     }
+  }
+
+  .light-button {
+    background-color: ${(props) => props.theme.color.secondary};
+    color: ${(props) => props.theme.color.primary};
+  }
+
+  .dark-button {
+    background-color: ${(props) => props.theme.color.primary};
+    color: ${(props) => props.theme.color.secondary};
   }
 `;
 
