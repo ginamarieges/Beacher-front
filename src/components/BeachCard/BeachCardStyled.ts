@@ -5,7 +5,7 @@ const BeachCardStyled = styled.article`
   padding: 11px 11px 0 11px;
   min-width: 280px;
   min-height: 170px;
-
+  border: 0.5px solid #000;
   .card {
     &__image {
       min-width: 100%;
