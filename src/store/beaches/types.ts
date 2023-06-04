@@ -1,4 +1,4 @@
-export interface BeachStructure {
+export interface BeachDataStructure {
   name: string;
   image: string;
   description: string;
@@ -15,9 +15,16 @@ export interface BeachStructure {
   };
   addServices?: string;
   users: string;
+}
+
+export interface BeachStructure extends BeachDataStructure {
   id: string;
 }
 
 export interface BeachStateStructure {
   beaches: BeachStructure[];
+}
+
+export interface BeachStateDataStructure {
+  beaches: BeachDataStructure[];
 }
