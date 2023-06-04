@@ -2,16 +2,20 @@ import { useEffect } from "react";
 import ListPageStyled from "./ListPageStyled";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { loadBeachesActionCreator } from "../../store/beaches/beachesSlice";
-import { mockBeaches } from "../../mocks/beachesMocks";
 import BeachesList from "../../components/BeachesList/BeachesList";
+import useBeaches from "../../hooks/useBeaches/useBeaches";
 
 const ListPage = (): React.ReactElement => {
+  const { getBeaches } = useBeaches();
   const dispatch = useAppDispatch();
   const { name } = useAppSelector((state) => state.userStore);
 
   useEffect(() => {
-    dispatch(loadBeachesActionCreator(mockBeaches));
-  }, [dispatch]);
+    (async () => {
+      const beaches = await getBeaches();
+      dispatch(loadBeachesActionCreator(beaches.beaches));
+    })();
+  }, [dispatch, getBeaches]);
 
   return (
     <ListPageStyled>

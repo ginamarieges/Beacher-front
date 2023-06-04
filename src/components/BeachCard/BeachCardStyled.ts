@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
 const BeachCardStyled = styled.article`
-  background-color: #bca38a;
+  background: rgb(105, 78, 67);
+  background: linear-gradient(
+    0deg,
+    rgba(105, 78, 67, 0) 0%,
+    rgba(153, 130, 114, 1) 0%,
+    rgba(180, 139, 108, 1) 10%,
+    rgba(204, 187, 165, 1) 65%
+  );
   padding: 11px 11px 0 11px;
   min-width: 280px;
   min-height: 170px;
