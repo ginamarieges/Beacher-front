@@ -26,3 +26,6 @@ export const getBeachesMock = (
   number: number,
   data?: Partial<BeachStructure>
 ) => beachFactory.buildList(number, data);
+
+export const getBeachMock = (data?: Partial<BeachStructure>) =>
+  beachFactory.build(data);
