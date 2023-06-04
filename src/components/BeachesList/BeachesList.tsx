@@ -1,15 +1,20 @@
 import { useAppSelector } from "../../store";
+import BeachCard from "../BeachCard/BeachCard";
+import BeachesListStyled from "./BeachesListStyled";
 
 const BeachesList = (): React.ReactElement => {
   const { beaches } = useAppSelector((state) => state.beachesStore);
   return (
-    <ul>
-      {beaches.map((beach) => (
-        <li key={beach.id}>
-          <h3>{beach.name}</h3>
-        </li>
-      ))}
-    </ul>
+    <BeachesListStyled>
+      <h2 className="list-title">Beaches</h2>
+      <ul className="list">
+        {beaches.map((beach) => (
+          <li key={beach.id}>
+            <BeachCard beach={beach} />
+          </li>
+        ))}
+      </ul>
+    </BeachesListStyled>
   );
 };
 
