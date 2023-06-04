@@ -1,12 +1,13 @@
 import axios from "axios";
 import { BeachStateStructure } from "../../store/beaches/types";
 import { useAppSelector } from "../../store";
+import { useCallback } from "react";
 
 const useBeaches = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
-  const token = useAppSelector((state) => state.userStore);
+  const { token } = useAppSelector((state) => state.userStore);
 
-  const getBeaches = async (): Promise<BeachStateStructure> => {
+  const getBeaches = useCallback(async (): Promise<BeachStateStructure> => {
     try {
       const request = {
         headers: { Authorization: `Bearer ${token}` },
@@ -20,7 +21,7 @@ const useBeaches = () => {
     } catch {
       throw new Error("Can't get the list of beaches");
     }
-  };
+  }, [apiUrl, token]);
 
   return { getBeaches };
 };

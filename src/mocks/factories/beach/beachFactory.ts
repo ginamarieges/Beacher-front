@@ -8,7 +8,7 @@ import {
 export const beachFactory = Factory.define<BeachStructure>(() => ({
   name: faker.commerce.productName(),
   description: faker.commerce.productDescription(),
-  image: faker.image.dataUri(),
+  image: faker.image.url(),
   region: faker.location.county(),
   town: faker.location.city(),
   services: {

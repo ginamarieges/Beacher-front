@@ -5,7 +5,6 @@ declare module "styled-components" {
     color: {
       primary: string;
       secondary: string;
-      gradient: string;
       goodFeedback: string;
       badFeedback: string;
     };
