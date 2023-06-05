@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 import useToken from "../../hooks/useToken/useToken";
-import { useAppDispatch } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 import { loginUserActionCreator } from "../../store/user/userSlice";
 import Layout from "../Layout/Layout";
 import { UserTokenStructure } from "../../store/user/types";
+import Loader from "../Loader/Loader";
 
 const App = (): React.ReactElement => {
+  const { isLoading } = useAppSelector((state) => state.uiStore);
   const { getToken } = useLocalStorage();
   const { getTokenData } = useToken();
   const dispatch = useAppDispatch();
@@ -25,7 +27,12 @@ const App = (): React.ReactElement => {
     dispatch(loginUserActionCreator(tokenData));
   }, [dispatch, getToken, getTokenData]);
 
-  return <Layout />;
+  return (
+    <>
+      {isLoading && <Loader />}
+      <Layout />
+    </>
+  );
 };
 
 export default App;

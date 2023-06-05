@@ -46,7 +46,7 @@ const Navbar = (): React.ReactElement => {
         </li>
         <li>
           <button
-            onClick={() => logout()}
+            onClick={logout}
             className="navbar-list__icon"
             aria-label="logout"
             title="logout"
