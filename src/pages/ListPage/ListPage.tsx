@@ -14,11 +14,9 @@ const ListPage = (): React.ReactElement => {
     (async () => {
       const beaches = await getBeaches();
 
-      if (!beaches) {
-        return;
+      if (beaches) {
+        dispatch(loadBeachesActionCreator(beaches.beaches));
       }
-
-      dispatch(loadBeachesActionCreator(beaches.beaches));
     })();
   }, [dispatch, getBeaches]);
 
