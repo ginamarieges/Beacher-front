@@ -6,9 +6,10 @@ import { loginUserActionCreator } from "../../store/user/userSlice";
 import Layout from "../Layout/Layout";
 import { UserTokenStructure } from "../../store/user/types";
 import Loader from "../Loader/Loader";
+import Modal from "../Modal/Modal";
 
 const App = (): React.ReactElement => {
-  const { isLoading } = useAppSelector((state) => state.uiStore);
+  const { isLoading, message } = useAppSelector((state) => state.uiStore);
   const { getToken } = useLocalStorage();
   const { getTokenData } = useToken();
   const dispatch = useAppDispatch();
@@ -29,7 +30,9 @@ const App = (): React.ReactElement => {
 
   return (
     <>
+      {message && <Modal />}
       {isLoading && <Loader />}
+
       <Layout />
     </>
   );
