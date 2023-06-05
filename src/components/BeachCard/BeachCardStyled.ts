@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const BeachCardStyled = styled.article`
+  position: relative;
   background: rgb(105, 78, 67);
   background: linear-gradient(
     0deg,
@@ -9,7 +10,7 @@ const BeachCardStyled = styled.article`
     rgba(180, 139, 108, 1) 10%,
     rgba(204, 187, 165, 1) 65%
   );
-  padding: 11px 11px 0 11px;
+  padding: 11px;
   min-width: 280px;
   min-height: 170px;
   border: 0.5px solid #000;
@@ -30,16 +31,31 @@ const BeachCardStyled = styled.article`
       font-size: ${(props) => props.theme.fontSizes.smallSize};
       line-height: 40px;
     }
+
+    &__button {
+      background-color: transparent;
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+    }
   }
 
   .light-button {
     background-color: ${(props) => props.theme.color.secondary};
     color: ${(props) => props.theme.color.primary};
+    border: 1px solid ${(props) => props.theme.color.primary};
+    font-size: ${(props) => props.theme.fontSizes.smallSize};
+    padding: 15px;
+    text-transform: uppercase;
   }
 
   .dark-button {
     background-color: ${(props) => props.theme.color.primary};
     color: ${(props) => props.theme.color.secondary};
+    border: 1px solid ${(props) => props.theme.color.primary};
+    font-size: ${(props) => props.theme.fontSizes.smallSize};
+    padding: 15px;
+    text-transform: uppercase;
   }
 `;
 
