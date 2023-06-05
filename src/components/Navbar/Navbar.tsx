@@ -1,8 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
 import { paths } from "../../routers/paths/paths";
-import { useAppDispatch, useAppSelector } from "../../store";
-import { UserTokenData } from "../../store/user/types";
+import { useAppDispatch } from "../../store";
 import { logoutUserActionCreator } from "../../store/user/userSlice";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 
@@ -10,10 +9,9 @@ const Navbar = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { removeToken } = useLocalStorage();
   const navigate = useNavigate();
-  const userCredentials = useAppSelector((state) => state.userStore);
 
-  const logout = (userCredentials: UserTokenData) => {
-    dispatch(logoutUserActionCreator(userCredentials));
+  const logout = () => {
+    dispatch(logoutUserActionCreator());
     removeToken("token");
     navigate(paths.login);
   };
@@ -48,7 +46,7 @@ const Navbar = (): React.ReactElement => {
         </li>
         <li>
           <button
-            onClick={() => logout(userCredentials)}
+            onClick={() => logout()}
             className="navbar-list__icon"
             aria-label="logout"
             title="logout"
