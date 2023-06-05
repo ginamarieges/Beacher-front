@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import Modal from "./Modal";
+import { UiStructure } from "../../store/ui/types";
 
 describe("Given a Modal component", () => {
   describe("When it is rendered", () => {
@@ -12,6 +13,23 @@ describe("Given a Modal component", () => {
       const button = screen.getByRole("button", { name: buttonText });
 
       expect(button).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered and the property isError is true", () => {
+    test("Then it should show an error feedback", () => {
+      const uiState: UiStructure = {
+        isLoading: false,
+        isError: true,
+        message: "Something went wrong",
+      };
+      const expectedText = uiState.message;
+
+      renderWithProviders(<Modal />, { uiStore: uiState });
+
+      const text = screen.getByText(expectedText);
+
+      expect(text).toBeInTheDocument();
     });
   });
 });
