@@ -36,18 +36,20 @@ describe("Given a loginUser reducer", () => {
 });
 
 describe("Given a logoutUser reducer", () => {
-  describe("When it receives a user data", () => {
-    test("Then it should return the same user data with the property isLogged false", () => {
-      const userLogged = getUserMock({ isLogged: true, name: "Berta" });
-      const expectedNewState: UserTokenData = {
-        ...userLogged,
+  describe("When it is called", () => {
+    test("Then it should return the state to initialState", () => {
+      const initialState: UserTokenData = {
+        id: "",
+        name: "",
+        token: "",
         isLogged: false,
       };
+      const userLogged = getUserMock({ isLogged: true });
+      const expectedNewState: UserTokenData = {
+        ...initialState,
+      };
 
-      const userLogedOut = userReducer(
-        userLogged,
-        logoutUserActionCreator(userLogged)
-      );
+      const userLogedOut = userReducer(userLogged, logoutUserActionCreator());
 
       expect(userLogedOut).toStrictEqual(expectedNewState);
     });

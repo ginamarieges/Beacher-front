@@ -20,12 +20,8 @@ const userSlice = createSlice({
       isLogged: true,
     }),
 
-    logoutUser: (
-      _currentState: UserTokenData,
-      action: PayloadAction<UserTokenData>
-    ) => ({
-      ...action.payload,
-      isLogged: false,
+    logoutUser: () => ({
+      ...initialState,
     }),
   },
 });
