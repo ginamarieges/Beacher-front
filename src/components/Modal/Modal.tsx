@@ -7,7 +7,10 @@ const Modal = (): React.ReactElement => {
     <ModalStyled>
       <div className={`feedback ${isError && `error`}`}>
         <span className="feedback__message">Oops! Wrong credentials</span>
-        <Button className={`feedback__close-button`}>
+        <Button
+          accessibility="close button"
+          className={`feedback__close-button`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
