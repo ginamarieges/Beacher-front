@@ -13,6 +13,11 @@ const ListPage = (): React.ReactElement => {
   useEffect(() => {
     (async () => {
       const beaches = await getBeaches();
+
+      if (!beaches) {
+        return;
+      }
+
       dispatch(loadBeachesActionCreator(beaches.beaches));
     })();
   }, [dispatch, getBeaches]);
