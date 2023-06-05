@@ -1,12 +1,14 @@
+import { useAppSelector } from "../../store";
 import Button from "../Button/Button";
 import ModalStyled from "./ModalStyled";
 
 const Modal = (): React.ReactElement => {
-  const isError = true;
+  const { isError, message } = useAppSelector((state) => state.uiStore);
+
   return (
     <ModalStyled>
       <div className={`feedback ${isError && `error`}`}>
-        <span className="feedback__message">Oops! Wrong credentials</span>
+        <span className="feedback__message">{message}</span>
         <Button
           accessibility="close button"
           className={`feedback__close-button`}
