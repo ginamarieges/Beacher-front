@@ -1,5 +1,6 @@
 import { UiFeedback, UiStructure } from "./types";
 import {
+  hideFeedbackActionCreator,
   hideLoaderActionCreator,
   showFeedbackActionCreator,
   showLoaderActionCreator,
@@ -69,6 +70,26 @@ describe("Given a showFeedback reducer", () => {
       const action = showFeedbackActionCreator(error);
 
       const newState = uiReducer(currentState, action);
+
+      expect(newState).toStrictEqual(expectedNewState);
+    });
+  });
+});
+
+describe("Given a hideFeedback reducer", () => {
+  describe("When it is called", () => {
+    test("Then it should return the state to initialState", () => {
+      const currentState: UiStructure = {
+        isError: true,
+        isLoading: false,
+        message: "Wrong",
+      };
+      const expectedNewState: UiStructure = {
+        isError: false,
+        isLoading: false,
+        message: "",
+      };
+      const newState = uiReducer(currentState, hideFeedbackActionCreator());
 
       expect(newState).toStrictEqual(expectedNewState);
     });
