@@ -1,9 +1,15 @@
-import { useAppSelector } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { hideFeedbackActionCreator } from "../../store/ui/uiSlice";
 import Button from "../Button/Button";
 import ModalStyled from "./ModalStyled";
 
 const Modal = (): React.ReactElement => {
   const { isError, message } = useAppSelector((state) => state.uiStore);
+  const dispatch = useAppDispatch();
+
+  const closeFeedback = () => {
+    dispatch(hideFeedbackActionCreator());
+  };
 
   return (
     <ModalStyled>
@@ -12,6 +18,7 @@ const Modal = (): React.ReactElement => {
         <Button
           accessibility="close button"
           className={`feedback__close-button`}
+          actionOnClick={closeFeedback}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

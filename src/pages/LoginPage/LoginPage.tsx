@@ -8,6 +8,7 @@ import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 import { useAppDispatch } from "../../store";
 import useToken from "../../hooks/useToken/useToken";
 import { loginUserActionCreator } from "../../store/user/userSlice";
+import { showFeedbackActionCreator } from "../../store/ui/uiSlice";
 
 const LoginPage = (): React.ReactElement => {
   const { setToken } = useLocalStorage();
@@ -29,6 +30,12 @@ const LoginPage = (): React.ReactElement => {
       dispatch(loginUserActionCreator(tokenData));
       navigate(paths.home);
     } catch {
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          message: "Oops! Wrong credentials",
+        })
+      );
       navigate(paths.login);
       return;
     }

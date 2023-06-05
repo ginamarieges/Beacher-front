@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { useCallback } from "react";
 import {
   hideLoaderActionCreator,
+  showFeedbackActionCreator,
   showLoaderActionCreator,
 } from "../../store/ui/uiSlice";
 
@@ -12,7 +13,9 @@ const useBeaches = () => {
   const { token } = useAppSelector((state) => state.userStore);
   const dispatch = useAppDispatch();
 
-  const getBeaches = useCallback(async (): Promise<BeachStateStructure> => {
+  const getBeaches = useCallback(async (): Promise<
+    BeachStateStructure | undefined
+  > => {
     try {
       dispatch(showLoaderActionCreator());
       const request = {
@@ -25,7 +28,13 @@ const useBeaches = () => {
       dispatch(hideLoaderActionCreator());
       return beaches;
     } catch {
-      throw new Error("Can't get the list of beaches");
+      const error = new Error("Can't get the list of beaches");
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          message: error.message,
+        })
+      );
     }
   }, [apiUrl, dispatch, token]);
 
