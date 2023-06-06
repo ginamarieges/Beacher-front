@@ -4,13 +4,17 @@ import BeachCardStyled from "./BeachCardStyled";
 
 interface BeachCardProps {
   beach: BeachStructure;
+  isLazy: "eager" | "lazy";
 }
-const BeachCard = ({ beach: { image, name, town } }: BeachCardProps) => {
+const BeachCard = ({
+  isLazy,
+  beach: { image, name, town },
+}: BeachCardProps) => {
   return (
     <BeachCardStyled className="card">
       <img
         className="card__image"
-        loading="lazy"
+        loading={isLazy}
         src={image}
         alt={name}
         width={258}

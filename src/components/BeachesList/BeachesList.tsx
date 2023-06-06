@@ -8,9 +8,9 @@ const BeachesList = (): React.ReactElement => {
     <BeachesListStyled>
       <h2 className="list-title">Beaches</h2>
       <ul className="list">
-        {beaches.map((beach) => (
+        {beaches.map((beach, index) => (
           <li key={beach.id}>
-            <BeachCard beach={beach} />
+            <BeachCard isLazy={index < 3 ? "eager" : "lazy"} beach={beach} />
           </li>
         ))}
       </ul>

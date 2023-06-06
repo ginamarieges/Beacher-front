@@ -1,5 +1,8 @@
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
-import { getBeachesMock } from "../../mocks/factories/beach/beachFactory";
+import {
+  getBeachMock,
+  getBeachesMock,
+} from "../../mocks/factories/beach/beachFactory";
 import { renderWithProviders } from "../../utils/testUtils";
 import BeachesList from "./BeachesList";
 import { screen } from "@testing-library/react";
@@ -7,9 +10,14 @@ import { screen } from "@testing-library/react";
 describe("Given a BeachList component", () => {
   describe("When it is rendered", () => {
     test("Then it should show 'Cala Pedrosa' heading", () => {
+      const beaches = getBeachesMock(6);
+      const pedrosaBeach = getBeachMock({ name: "Cala Pedrosa" });
+      beaches.push(pedrosaBeach);
+
       const beachMock = {
-        beaches: getBeachesMock(1, { name: "Cala Pedrosa" }),
+        beaches: beaches,
       };
+
       const expectedHeading = "Cala Pedrosa";
       const routes = [
         {
