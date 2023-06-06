@@ -22,9 +22,9 @@ const ListPage = (): React.ReactElement => {
 
   return (
     <ListPageStyled>
-      <h3 className="home-title">
+      <span className="home-title">
         Welcome {name}! Find your perfect beach for today
-      </h3>
+      </span>
       <BeachesList />
     </ListPageStyled>
   );

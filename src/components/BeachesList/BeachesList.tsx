@@ -6,7 +6,7 @@ const BeachesList = (): React.ReactElement => {
   const { beaches } = useAppSelector((state) => state.beachesStore);
   return (
     <BeachesListStyled>
-      <h2 className="list-title">Beaches</h2>
+      <h1 className="list-title">Beaches</h1>
       <ul className="list">
         {beaches.map((beach, index) => (
           <li key={beach.id}>
