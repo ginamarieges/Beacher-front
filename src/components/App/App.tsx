@@ -32,7 +32,6 @@ const App = (): React.ReactElement => {
     <>
       {message && <Modal />}
       {isLoading && <Loader />}
-
       <Layout />
     </>
   );
