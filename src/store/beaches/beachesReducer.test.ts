@@ -1,5 +1,9 @@
 import { getBeachesMock } from "../../mocks/factories/beach/beachFactory";
-import { beachesReducer, loadBeachesActionCreator } from "./beachesSlice";
+import {
+  beachesReducer,
+  deleteBeachActionCreator,
+  loadBeachesActionCreator,
+} from "./beachesSlice";
 import { BeachStateStructure } from "./types";
 
 describe("Given a loadBeaches reducer", () => {
@@ -18,6 +22,25 @@ describe("Given a loadBeaches reducer", () => {
       const newBeachesState = beachesReducer(currentBeachesState, action);
 
       expect(newBeachesState).toStrictEqual(expectedNewState);
+    });
+  });
+});
+
+describe("Given a deleteBeach reducer", () => {
+  describe("When it receives a beach id and a list of two beaches", () => {
+    test("Then it should return only one beach", () => {
+      const beachList = getBeachesMock(2);
+      const currentBeachesState: BeachStateStructure = {
+        beaches: beachList,
+      };
+      const expectedNewState: BeachStateStructure = {
+        beaches: [beachList[1]],
+      };
+
+      const action = deleteBeachActionCreator(beachList[0].id);
+      const newState = beachesReducer(currentBeachesState, action);
+
+      expect(newState).toStrictEqual(expectedNewState);
     });
   });
 });
