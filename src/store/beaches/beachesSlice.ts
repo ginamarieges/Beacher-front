@@ -15,6 +15,16 @@ const beachesSlice = createSlice({
       ...currentState,
       beaches: [...action.payload],
     }),
+
+    deleteBeach: (
+      currentState: BeachStateStructure,
+      action: PayloadAction<string>
+    ): BeachStateStructure => ({
+      ...currentState,
+      beaches: currentState.beaches.filter(
+        (beach) => beach.id !== action.payload
+      ),
+    }),
   },
 });
 
