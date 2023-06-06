@@ -7,7 +7,7 @@ const NotFoundPage = (): React.ReactElement => {
     <NotFoundPageStyled>
       <Header />
       <div className="notFound-container">
-        <h2 className="title">404 not found</h2>
+        <h1 className="title">404 not found</h1>
         <span className="subtitle">this are uncharted waters....</span>
         <span className="text">Sorry, that page can not be found</span>
       </div>

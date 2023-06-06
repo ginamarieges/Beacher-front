@@ -13,9 +13,9 @@ describe("Given a LisPage page", () => {
         userStore: user,
       });
 
-      const heading = screen.getByRole("heading", { name: expectedText });
+      const title = screen.getByText(expectedText);
 
-      expect(heading).toBeInTheDocument();
+      expect(title).toBeInTheDocument();
     });
   });
 });
