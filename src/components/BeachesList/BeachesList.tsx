@@ -10,7 +10,7 @@ const BeachesList = (): React.ReactElement => {
       <ul className="list">
         {beaches.map((beach, index) => (
           <li key={beach.id}>
-            <BeachCard isLazy={index === 0 ? "eager" : "lazy"} beach={beach} />
+            <BeachCard isLazy={index < 3 ? "eager" : "lazy"} beach={beach} />
           </li>
         ))}
       </ul>
