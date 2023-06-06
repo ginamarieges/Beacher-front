@@ -28,7 +28,10 @@ const beachesSlice = createSlice({
   },
 });
 
-export const { loadBeaches: loadBeachesActionCreator } = beachesSlice.actions;
+export const {
+  loadBeaches: loadBeachesActionCreator,
+  deleteBeach: deleteBeachActionCreator,
+} = beachesSlice.actions;
 export const beachesReducer = beachesSlice.reducer;
 
 export default beachesSlice;
