@@ -4,7 +4,7 @@ export interface UserDataStructure {
 }
 
 export interface UserTokenStructure extends UserDataStructure {
-  token: string;
+  token: string | undefined;
 }
 
 export interface UserTokenData extends UserTokenStructure {
