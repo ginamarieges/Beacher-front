@@ -1,3 +1,4 @@
+import useBeaches from "../../hooks/useBeaches/useBeaches";
 import { useAppDispatch } from "../../store";
 import { deleteBeachActionCreator } from "../../store/beaches/beachesSlice";
 import { BeachStructure } from "../../store/beaches/types";
@@ -12,9 +13,11 @@ const BeachCard = ({
   isLazy,
   beach: { image, name, town, id },
 }: BeachCardProps) => {
+  const { deleteBeach } = useBeaches();
   const dispatch = useAppDispatch();
 
-  const handleOnClick = () => {
+  const handleOnClick = async () => {
+    await deleteBeach(id);
     dispatch(deleteBeachActionCreator(id));
   };
 
