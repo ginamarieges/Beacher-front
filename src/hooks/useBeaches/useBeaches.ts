@@ -38,7 +38,11 @@ const useBeaches = () => {
     }
   }, [apiUrl, dispatch, token]);
 
-  return { getBeaches };
+  const deleteBeach = async (id: string): Promise<void> => {
+    await axios.delete<void>(`${apiUrl}/beaches/delete/${id}`);
+  };
+
+  return { getBeaches, deleteBeach };
 };
 
 export default useBeaches;
