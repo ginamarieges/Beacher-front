@@ -5,6 +5,9 @@ import { userCredentialsMock } from "../../mocks/userMocks";
 import { tokenMock } from "../../mocks/userMocks";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
+import { wrapper } from "../../utils/testUtils";
+import { store } from "../../store";
+import { responseData } from "../../utils/responseData";
 
 describe("Given a useUser function", () => {
   const userCredentials: UserCredentials = userCredentialsMock;
@@ -16,7 +19,7 @@ describe("Given a useUser function", () => {
         result: {
           current: { getUserToken },
         },
-      } = renderHook(() => useUser());
+      } = renderHook(() => useUser(), { wrapper: wrapper });
 
       const token = await getUserToken(userCredentials);
 
@@ -25,16 +28,20 @@ describe("Given a useUser function", () => {
   });
 
   describe("When the getUserToken function is called with a valid username and an invalid password", () => {
-    test("Then it should return the response method status with a 401", () => {
+    test("Then it should return the response method status with a 401", async () => {
       server.resetHandlers(...errorHandlers);
 
       const {
         result: {
           current: { getUserToken },
         },
-      } = renderHook(() => useUser());
+      } = renderHook(() => useUser(), { wrapper: wrapper });
 
-      expect(getUserToken(userCredentials)).rejects.toThrowError();
+      await getUserToken(userCredentials);
+
+      const message = store.getState().uiStore.message;
+
+      expect(message).toBe(responseData.wrongCredentials);
     });
   });
 });

@@ -19,6 +19,7 @@ const LoginPage = (): React.ReactElement => {
   const onSubmit = async (userCredentials: UserCredentials) => {
     const token = await getUserToken(userCredentials);
     if (!token) {
+      navigate(paths.login);
       return;
     }
     const userData = getTokenData(token);
