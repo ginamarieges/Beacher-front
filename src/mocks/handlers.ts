@@ -12,6 +12,10 @@ export const handlers = [
   rest.get(`${apiUrl}/beaches`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ beaches: mockBeaches }));
   }),
+
+  rest.delete(`${apiUrl}/beaches/delete/:id`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ message: "Beach deleted" }));
+  }),
 ];
 
 export const errorHandlers = [
