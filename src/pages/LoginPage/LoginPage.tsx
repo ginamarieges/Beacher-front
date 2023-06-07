@@ -9,7 +9,7 @@ import { useAppDispatch } from "../../store";
 import useToken from "../../hooks/useToken/useToken";
 import { loginUserActionCreator } from "../../store/user/userSlice";
 import { showFeedbackActionCreator } from "../../store/ui/uiSlice";
-import { responseData } from "../../utils/ResponseData";
+import { responseData } from "../../utils/responseData.js";
 
 const LoginPage = (): React.ReactElement => {
   const { setToken } = useLocalStorage();

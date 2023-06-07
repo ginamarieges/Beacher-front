@@ -7,7 +7,7 @@ import {
   showFeedbackActionCreator,
   showLoaderActionCreator,
 } from "../../store/ui/uiSlice";
-import { responseData } from "../../utils/ResponseData";
+import { responseData } from "../../utils/responseData.js";
 
 const useBeaches = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
