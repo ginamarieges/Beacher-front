@@ -7,6 +7,7 @@ import {
   showFeedbackActionCreator,
   showLoaderActionCreator,
 } from "../../store/ui/uiSlice";
+import { responseData } from "../../utils/responseData.js";
 
 const useBeaches = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -28,7 +29,7 @@ const useBeaches = () => {
       dispatch(hideLoaderActionCreator());
       return beaches;
     } catch {
-      const error = new Error("Can't get the list of beaches");
+      const error = new Error(responseData.errorList);
       dispatch(
         showFeedbackActionCreator({
           isError: true,
@@ -38,7 +39,33 @@ const useBeaches = () => {
     }
   }, [apiUrl, dispatch, token]);
 
-  return { getBeaches };
+  const deleteBeach = async (id: string): Promise<void> => {
+    try {
+      dispatch(showLoaderActionCreator());
+      const request = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      await axios.delete<void>(`${apiUrl}/beaches/delete/${id}`, request);
+
+      dispatch(hideLoaderActionCreator());
+
+      dispatch(
+        showFeedbackActionCreator({
+          isError: false,
+          message: responseData.beachDeleted,
+        })
+      );
+    } catch {
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          message: responseData.errorBeachDeleted,
+        })
+      );
+    }
+  };
+
+  return { getBeaches, deleteBeach };
 };
 
 export default useBeaches;

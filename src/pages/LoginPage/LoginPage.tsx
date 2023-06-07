@@ -9,6 +9,7 @@ import { useAppDispatch } from "../../store";
 import useToken from "../../hooks/useToken/useToken";
 import { loginUserActionCreator } from "../../store/user/userSlice";
 import { showFeedbackActionCreator } from "../../store/ui/uiSlice";
+import { responseData } from "../../utils/responseData.js";
 
 const LoginPage = (): React.ReactElement => {
   const { setToken } = useLocalStorage();
@@ -33,7 +34,7 @@ const LoginPage = (): React.ReactElement => {
       dispatch(
         showFeedbackActionCreator({
           isError: true,
-          message: "Oops! Wrong credentials",
+          message: responseData.wrongCredentials,
         })
       );
       navigate(paths.login);
