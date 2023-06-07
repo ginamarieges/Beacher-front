@@ -8,8 +8,6 @@ import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 import { useAppDispatch } from "../../store";
 import useToken from "../../hooks/useToken/useToken";
 import { loginUserActionCreator } from "../../store/user/userSlice";
-import { showFeedbackActionCreator } from "../../store/ui/uiSlice";
-import { responseData } from "../../utils/responseData.js";
 
 const LoginPage = (): React.ReactElement => {
   const { setToken } = useLocalStorage();
@@ -19,27 +17,19 @@ const LoginPage = (): React.ReactElement => {
   const navigate = useNavigate();
 
   const onSubmit = async (userCredentials: UserCredentials) => {
-    try {
-      const token = await getUserToken(userCredentials);
-
-      const userData = getTokenData(token);
-      const tokenData: UserTokenStructure = {
-        ...userData,
-        token,
-      };
-      setToken("token", token);
-      dispatch(loginUserActionCreator(tokenData));
-      navigate(paths.home);
-    } catch {
-      dispatch(
-        showFeedbackActionCreator({
-          isError: true,
-          message: responseData.wrongCredentials,
-        })
-      );
+    const token = await getUserToken(userCredentials);
+    if (!token) {
       navigate(paths.login);
       return;
     }
+    const userData = getTokenData(token);
+    const tokenData: UserTokenStructure = {
+      ...userData,
+      token,
+    };
+    setToken("token", token);
+    dispatch(loginUserActionCreator(tokenData));
+    navigate(paths.home);
   };
 
   return (
