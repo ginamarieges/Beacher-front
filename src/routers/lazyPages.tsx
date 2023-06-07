@@ -5,3 +5,7 @@ export const LoginPageLazy = lazy(
 );
 
 export const ListPageLazy = lazy(() => import("../pages/ListPage/ListPage.js"));
+
+export const AddBeachPageLazy = lazy(
+  () => import("../pages/AddBeachPage/AddBeachPage.js")
+);
