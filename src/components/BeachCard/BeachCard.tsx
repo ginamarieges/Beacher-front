@@ -32,7 +32,7 @@ const BeachCard = ({
         height={85}
       />
       <h2 className="card__name">{name}</h2>
-      <h3 className="card__town">{town}</h3>
+      <span className="card__town">{town}</span>
       <Button className="card__button" actionOnClick={handleOnClick}>
         <img src="/img/delete.svg" alt="delete" width={24} height={24} />
       </Button>
