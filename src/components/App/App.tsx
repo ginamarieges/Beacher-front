@@ -30,9 +30,9 @@ const App = (): React.ReactElement => {
 
   return (
     <>
+      <Layout />
       {message && <Modal />}
       {isLoading && <Loader />}
-      <Layout />
     </>
   );
 };
