@@ -27,7 +27,8 @@ ul {
 }
 
 button,
-input {
+input,
+textarea {
   font-family: inherit;
 }
 
