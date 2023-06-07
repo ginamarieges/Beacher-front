@@ -1,5 +1,11 @@
+import AddBeachPageStyled from "./AddBeachPageStyled";
+
 const AddBeachPage = (): React.ReactElement => {
-  return <h1 className="title">Add beach</h1>;
+  return (
+    <AddBeachPageStyled>
+      <h1 className="add-title">Add beach</h1>
+    </AddBeachPageStyled>
+  );
 };
 
 export default AddBeachPage;
