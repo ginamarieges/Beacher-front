@@ -12,13 +12,19 @@ describe("Given a showLoader reducer", () => {
     test("Then it should return a new state with isLoading true", () => {
       const currentState: UiStructure = {
         isLoading: false,
-        isError: false,
-        message: "",
+        modal: {
+          isVisible: false,
+          isError: false,
+          message: "",
+        },
       };
       const expectedNewState: UiStructure = {
         isLoading: true,
-        isError: false,
-        message: "",
+        modal: {
+          isVisible: false,
+          isError: false,
+          message: "",
+        },
       };
       const action = showLoaderActionCreator();
 
@@ -34,13 +40,19 @@ describe("Given a hideLoader reducer", () => {
     test("Then it should return a new state with isLoading false", () => {
       const currentState: UiStructure = {
         isLoading: true,
-        isError: false,
-        message: "",
+        modal: {
+          isVisible: false,
+          isError: false,
+          message: "",
+        },
       };
       const expectedNewState: UiStructure = {
         isLoading: false,
-        isError: false,
-        message: "",
+        modal: {
+          isVisible: false,
+          isError: false,
+          message: "",
+        },
       };
       const action = hideLoaderActionCreator();
 
@@ -56,15 +68,25 @@ describe("Given a showFeedback reducer", () => {
     test("Then it should return a new state with the message 'Wrong' and isError true", () => {
       const currentState: UiStructure = {
         isLoading: true,
-        isError: false,
-        message: "",
+        modal: {
+          isVisible: false,
+          isError: false,
+          message: "",
+        },
       };
       const errorMessage = "Wrong";
-      const error: UiFeedback = { isError: true, message: errorMessage };
-      const expectedNewState: UiFeedback = {
+      const error: UiFeedback = {
+        isError: true,
+        message: errorMessage,
+        isVisible: true,
+      };
+      const expectedNewState: UiStructure = {
         ...currentState,
-        isError: error.isError,
-        message: error.message,
+        modal: {
+          isVisible: error.isVisible,
+          isError: error.isError,
+          message: error.message,
+        },
       };
 
       const action = showFeedbackActionCreator(error);
@@ -80,14 +102,20 @@ describe("Given a hideFeedback reducer", () => {
   describe("When it is called", () => {
     test("Then it should return the state to initialState", () => {
       const currentState: UiStructure = {
-        isError: true,
         isLoading: false,
-        message: "Wrong",
+        modal: {
+          isError: true,
+          message: "Wrong",
+          isVisible: true,
+        },
       };
       const expectedNewState: UiStructure = {
-        isError: false,
+        modal: {
+          isError: false,
+          message: "",
+          isVisible: false,
+        },
         isLoading: false,
-        message: "",
       };
       const newState = uiReducer(currentState, hideFeedbackActionCreator());
 
