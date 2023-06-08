@@ -9,7 +9,6 @@ const routes: RouteObject[] = [
   {
     path: "/",
     element: <App />,
-    errorElement: <NotFoundPage />,
     children: [
       {
         index: true,
@@ -39,6 +38,7 @@ const routes: RouteObject[] = [
           </Suspense>
         ),
       },
+      { path: "/*", element: <NotFoundPage /> },
     ],
   },
 ];
