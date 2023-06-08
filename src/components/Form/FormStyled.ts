@@ -35,11 +35,9 @@ const FormStyled = styled.form`
     padding-right: 10px;
   }
 
-  .css-13cymwt-control {
-    height: 41.5px;
-    border-radius: 0;
-    background-color: ${(props) => props.theme.color.secondary};
-    border: 1px solid ${(props) => props.theme.color.primary};
+  .select-container {
+    display: flex;
+    flex-direction: column;
   }
 
   .dark-button {

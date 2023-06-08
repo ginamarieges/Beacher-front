@@ -6,7 +6,7 @@ const ModalStyled = styled.div`
   align-items: center;
   height: 100vh;
   width: 100vw;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
