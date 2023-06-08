@@ -24,12 +24,12 @@ const NotFoundPageStyled = styled.div`
   }
 
   .subtitle {
-    width: 200px;
+    width: 250px;
     font-size: ${(props) => props.theme.fontSizes.titleSize};
   }
 
   .text {
-    width: 200px;
+    width: 250px;
     font-size: ${(props) => props.theme.fontSizes.smallSize};
   }
 `;

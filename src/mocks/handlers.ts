@@ -24,10 +24,10 @@ export const errorHandlers = [
   }),
 
   rest.get(`${apiUrl}/beaches`, (_req, res, ctx) => {
-    return res(ctx.status(401));
+    return res(ctx.status(404));
   }),
 
   rest.delete(`${apiUrl}/beaches/delete/:id`, (_req, res, ctx) => {
-    return res(ctx.status(401));
+    return res(ctx.status(404));
   }),
 ];
