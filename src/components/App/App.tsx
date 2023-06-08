@@ -1,15 +1,12 @@
 import { useEffect } from "react";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 import useToken from "../../hooks/useToken/useToken";
-import { useAppDispatch, useAppSelector } from "../../store";
+import { useAppDispatch } from "../../store";
 import { loginUserActionCreator } from "../../store/user/userSlice";
 import Layout from "../Layout/Layout";
 import { UserTokenStructure } from "../../store/user/types";
-import Loader from "../Loader/Loader";
-import Modal from "../Modal/Modal";
 
 const App = (): React.ReactElement => {
-  const { isLoading, message } = useAppSelector((state) => state.uiStore);
   const { getToken } = useLocalStorage();
   const { getTokenData } = useToken();
   const dispatch = useAppDispatch();
@@ -28,13 +25,7 @@ const App = (): React.ReactElement => {
     dispatch(loginUserActionCreator(tokenData));
   }, [dispatch, getToken, getTokenData]);
 
-  return (
-    <>
-      <Layout />
-      {message && <Modal />}
-      {isLoading && <Loader />}
-    </>
-  );
+  return <Layout />;
 };
 
 export default App;

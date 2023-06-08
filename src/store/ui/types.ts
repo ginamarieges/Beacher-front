@@ -1,10 +1,10 @@
 export interface UiStructure {
   isLoading: boolean;
-  isError: boolean;
-  message: string;
+  modal: UiFeedback;
 }
 
 export interface UiFeedback {
   isError: boolean;
   message: string;
+  isVisible: boolean;
 }

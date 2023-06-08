@@ -8,6 +8,8 @@ const ModalStyled = styled.div`
   width: 100vw;
   position: absolute;
   z-index: 1;
+  top: 0;
+  left: 0;
   background-color: #efece5e0;
 
   .feedback {

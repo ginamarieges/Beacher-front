@@ -39,7 +39,7 @@ describe("Given a useUser function", () => {
 
       await getUserToken(userCredentials);
 
-      const message = store.getState().uiStore.message;
+      const message = store.getState().uiStore.modal.message;
 
       expect(message).toBe(responseData.wrongCredentials);
     });

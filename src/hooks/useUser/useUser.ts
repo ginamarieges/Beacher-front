@@ -25,6 +25,7 @@ const useUser = () => {
         showFeedbackActionCreator({
           isError: true,
           message: responseData.wrongCredentials,
+          isVisible: true,
         })
       );
     }

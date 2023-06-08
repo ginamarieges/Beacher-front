@@ -34,6 +34,7 @@ const useBeaches = () => {
         showFeedbackActionCreator({
           isError: true,
           message: error.message,
+          isVisible: true,
         })
       );
     }
@@ -53,6 +54,7 @@ const useBeaches = () => {
         showFeedbackActionCreator({
           isError: false,
           message: responseData.beachDeleted,
+          isVisible: true,
         })
       );
     } catch {
@@ -60,6 +62,7 @@ const useBeaches = () => {
         showFeedbackActionCreator({
           isError: true,
           message: responseData.errorBeachDeleted,
+          isVisible: true,
         })
       );
     }
