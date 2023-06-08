@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import ModalStyled from "./ModalStyled";
 
 const Modal = (): React.ReactElement => {
-  const { isError, message } = useAppSelector((state) => state.uiStore);
+  const { isError, message } = useAppSelector((state) => state.uiStore.modal);
   const dispatch = useAppDispatch();
 
   const closeFeedback = () => {

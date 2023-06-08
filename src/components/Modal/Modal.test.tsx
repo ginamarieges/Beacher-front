@@ -20,10 +20,13 @@ describe("Given a Modal component", () => {
     test("Then it should show an error feedback", () => {
       const uiState: UiStructure = {
         isLoading: false,
-        isError: true,
-        message: "Something went wrong",
+        modal: {
+          isError: true,
+          message: "Something went wrong",
+          isVisible: true,
+        },
       };
-      const expectedText = uiState.message;
+      const expectedText = uiState.modal.message;
 
       renderWithProviders(<Modal />, { uiStore: uiState });
 
