@@ -47,6 +47,7 @@ describe("Given a useBeaches function", () => {
         showFeedbackActionCreator({
           isError: true,
           message: error.message,
+          isVisible: true,
         })
       );
     });
@@ -62,7 +63,7 @@ describe("Given a useBeaches function", () => {
 
       await deleteBeach(mockBeaches[2].id);
 
-      const message = store.getState().uiStore.message;
+      const message = store.getState().uiStore.modal.message;
 
       expect(message).toBe(responseData.beachDeleted);
     });
@@ -79,7 +80,7 @@ describe("Given a useBeaches function", () => {
 
       await deleteBeach(mockBeaches[1].id);
 
-      const message = store.getState().uiStore.message;
+      const message = store.getState().uiStore.modal.message;
 
       expect(message).toBe(responseData.errorBeachDeleted);
     });
