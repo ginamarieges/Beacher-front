@@ -48,15 +48,6 @@ const BeachCardStyled = styled.article`
     padding: 15px;
     text-transform: uppercase;
   }
-
-  .dark-button {
-    background-color: ${(props) => props.theme.color.primary};
-    color: ${(props) => props.theme.color.secondary};
-    border: 1px solid ${(props) => props.theme.color.primary};
-    font-size: ${(props) => props.theme.fontSizes.smallSize};
-    padding: 15px;
-    text-transform: uppercase;
-  }
 `;
 
 export default BeachCardStyled;

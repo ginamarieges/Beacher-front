@@ -7,7 +7,7 @@ const ContainerStyled = styled.div`
   max-width: 600px;
   min-width: 320px;
   background-color: ${(props) => props.theme.color.secondary};
-  padding-bottom: 65px;
+  padding-bottom: 90px;
 `;
 
 export default ContainerStyled;
