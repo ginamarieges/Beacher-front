@@ -1,13 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import Form from "../../components/Form/Form";
 import useBeaches from "../../hooks/useBeaches/useBeaches";
 import { useAppDispatch } from "../../store";
 import { addBeachActionCreator } from "../../store/beaches/beachesSlice";
 import { BeachStructure } from "../../store/beaches/types";
+import { showFeedbackActionCreator } from "../../store/ui/uiSlice";
 import AddBeachPageStyled from "./AddBeachPageStyled";
+import { paths } from "../../routers/paths/paths";
 
 const AddBeachPage = (): React.ReactElement => {
   const { addBeach } = useBeaches();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = async (beachData: BeachStructure) => {
     const newBeach = await addBeach(beachData);
@@ -15,6 +19,15 @@ const AddBeachPage = (): React.ReactElement => {
       return;
     }
     dispatch(addBeachActionCreator(newBeach));
+
+    dispatch(
+      showFeedbackActionCreator({
+        isError: false,
+        isVisible: true,
+        message: "Your beach is added!",
+      })
+    );
+    navigate(paths.home);
   };
 
   return (
