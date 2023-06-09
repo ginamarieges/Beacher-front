@@ -1,6 +1,10 @@
 import { renderHook } from "@testing-library/react";
 import useBeaches from "./useBeaches";
-import { mockBeaches } from "../../mocks/beachesMocks";
+import {
+  mockBeaches,
+  mockedAddBeach,
+  mockedBeachToAdd,
+} from "../../mocks/beachesMocks";
 import { wrapper } from "../../utils/testUtils";
 import { BeachStateStructure, BeachStructure } from "../../store/beaches/types";
 import { server } from "../../mocks/server";
@@ -83,6 +87,41 @@ describe("Given a useBeaches function", () => {
       const message = store.getState().uiStore.modal.message;
 
       expect(message).toBe(responseData.errorBeachDeleted);
+    });
+  });
+
+  describe("When the addBeach function is called and receives Cala Pedrosa beach", () => {
+    test("Then it should return the Cala Pedrosa beach", async () => {
+      const expectedBeach = mockedAddBeach;
+      const {
+        result: {
+          current: { addBeach },
+        },
+      } = renderHook(() => useBeaches(), { wrapper: wrapper });
+
+      const newBeach = await addBeach(mockedBeachToAdd);
+
+      expect(newBeach).toStrictEqual(expectedBeach);
+    });
+  });
+
+  describe("When the addBeach function is called and rejects", () => {
+    test("Then the error 'Couldn't add your beach' should be in the store", async () => {
+      server.resetHandlers(...errorHandlers);
+
+      const expectedMessage = "Couldn't add your beach";
+
+      const {
+        result: {
+          current: { addBeach },
+        },
+      } = renderHook(() => useBeaches(), { wrapper: wrapper });
+
+      await addBeach(mockedBeachToAdd);
+
+      const message = store.getState().uiStore.modal.message;
+
+      expect(message).toBe(expectedMessage);
     });
   });
 });

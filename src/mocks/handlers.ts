@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { tokenMock } from "./userMocks";
-import { mockBeaches } from "./beachesMocks";
+import { mockBeaches, mockedAddBeach } from "./beachesMocks";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -16,6 +16,10 @@ export const handlers = [
   rest.delete(`${apiUrl}/beaches/delete/:id`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ message: "Beach deleted" }));
   }),
+
+  rest.post(`${apiUrl}/beaches`, (_req, res, ctx) => {
+    return res(ctx.status(201), ctx.json({ newBeach: mockedAddBeach }));
+  }),
 ];
 
 export const errorHandlers = [
@@ -29,5 +33,9 @@ export const errorHandlers = [
 
   rest.delete(`${apiUrl}/beaches/delete/:id`, (_req, res, ctx) => {
     return res(ctx.status(404));
+  }),
+
+  rest.post(`${apiUrl}/beaches`, (_req, res, ctx) => {
+    return res(ctx.status(400));
   }),
 ];

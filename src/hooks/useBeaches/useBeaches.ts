@@ -1,5 +1,9 @@
 import axios from "axios";
-import { BeachStateStructure } from "../../store/beaches/types";
+import {
+  BeachDataStructure,
+  BeachStateStructure,
+  BeachStructure,
+} from "../../store/beaches/types";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { useCallback } from "react";
 import {
@@ -70,7 +74,36 @@ const useBeaches = () => {
     }
   };
 
-  return { getBeaches, deleteBeach };
+  const addBeach = async (
+    beachData: BeachDataStructure
+  ): Promise<BeachStructure | undefined> => {
+    try {
+      dispatch(showLoaderActionCreator());
+      const request = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const {
+        data: { newBeach },
+      } = await axios.post<{ newBeach: BeachStructure }>(
+        `${apiUrl}/beaches`,
+        beachData,
+        request
+      );
+      dispatch(hideLoaderActionCreator());
+
+      return newBeach;
+    } catch {
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          isVisible: true,
+          message: "Couldn't add your beach",
+        })
+      );
+    }
+  };
+
+  return { getBeaches, deleteBeach, addBeach };
 };
 
 export default useBeaches;
