@@ -4,6 +4,7 @@ interface ButtonProps {
   text?: string;
   children?: React.ReactElement;
   accessibility?: string;
+  disabled?: boolean;
 }
 const Button = ({
   text,
@@ -11,12 +12,14 @@ const Button = ({
   className: className,
   children,
   accessibility,
+  disabled,
 }: ButtonProps): React.ReactElement => {
   return (
     <button
       aria-label={accessibility}
       onClick={actionOnClick}
       className={className}
+      disabled={disabled}
     >
       {text}
       {children}

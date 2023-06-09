@@ -48,6 +48,10 @@ const FormStyled = styled.form`
     font-size: ${(props) => props.theme.fontSizes.smallSize};
     padding: 15px;
     text-transform: uppercase;
+
+    :disabled {
+      opacity: 0.5;
+    }
   }
 `;
 

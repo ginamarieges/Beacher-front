@@ -45,6 +45,9 @@ const Form = (): React.ReactElement => {
     });
   };
 
+  const isReady =
+    beachData.name !== "" && beachData.region !== "" && beachData.town !== "";
+
   return (
     <FormStyled autoComplete="off" noValidate className="form">
       <label className="form__label" htmlFor="name">
@@ -224,7 +227,7 @@ const Form = (): React.ReactElement => {
         onChange={onChangeData}
       />
 
-      <Button className="dark-button" text="create" />
+      <Button className="dark-button" text="create" disabled={!isReady} />
     </FormStyled>
   );
 };
