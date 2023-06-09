@@ -28,7 +28,8 @@ ul {
 
 button,
 input,
-textarea {
+textarea,
+select {
   font-family: inherit;
 }
 

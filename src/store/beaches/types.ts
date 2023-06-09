@@ -1,7 +1,7 @@
 export interface BeachDataStructure {
   name: string;
   image: string;
-  description: string;
+  description?: string;
   region: string;
   town: string;
   services: {
@@ -14,11 +14,11 @@ export interface BeachDataStructure {
     secretBeach: boolean;
   };
   addServices?: string;
-  users: string;
+  users?: string;
 }
 
 export interface BeachStructure extends BeachDataStructure {
-  id: string;
+  id?: string;
 }
 
 export interface BeachStateStructure {

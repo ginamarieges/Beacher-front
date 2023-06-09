@@ -37,7 +37,7 @@ describe("Given a deleteBeach reducer", () => {
         beaches: [beachList[1]],
       };
 
-      const action = deleteBeachActionCreator(beachList[0].id);
+      const action = deleteBeachActionCreator(beachList[0].id as string);
       const newState = beachesReducer(currentBeachesState, action);
 
       expect(newState).toStrictEqual(expectedNewState);

@@ -40,13 +40,13 @@ const useBeaches = () => {
     }
   }, [apiUrl, dispatch, token]);
 
-  const deleteBeach = async (id: string): Promise<void> => {
+  const deleteBeach = async (id: string): Promise<number> => {
     try {
       dispatch(showLoaderActionCreator());
       const request = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      await axios.delete<void>(`${apiUrl}/beaches/delete/${id}`, request);
+      await axios.delete<number>(`${apiUrl}/beaches/delete/${id}`, request);
 
       dispatch(hideLoaderActionCreator());
 
@@ -57,6 +57,7 @@ const useBeaches = () => {
           isVisible: true,
         })
       );
+      return 200;
     } catch {
       dispatch(
         showFeedbackActionCreator({
@@ -65,6 +66,7 @@ const useBeaches = () => {
           isVisible: true,
         })
       );
+      return 404;
     }
   };
 

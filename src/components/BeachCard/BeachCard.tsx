@@ -17,8 +17,15 @@ const BeachCard = ({
   const dispatch = useAppDispatch();
 
   const handleOnClick = async () => {
-    await deleteBeach(id);
-    dispatch(deleteBeachActionCreator(id));
+    if (!id) {
+      return;
+    }
+
+    const status = await deleteBeach(id);
+
+    if (status === 200) {
+      dispatch(deleteBeachActionCreator(id));
+    }
   };
 
   return (

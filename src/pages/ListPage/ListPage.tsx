@@ -15,6 +15,14 @@ const ListPage = (): React.ReactElement => {
       const beaches = await getBeaches();
 
       if (beaches) {
+        const preconnectElement = await document.createElement("link");
+        preconnectElement.rel = "preload";
+        preconnectElement.as = "image";
+        preconnectElement.href = beaches.beaches[0].image;
+
+        const parent = document.head;
+        const firstChild = document.head.firstChild;
+        parent.insertBefore(preconnectElement, firstChild);
         dispatch(loadBeachesActionCreator(beaches.beaches));
       }
     })();
