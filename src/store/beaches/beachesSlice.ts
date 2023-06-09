@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { BeachStateStructure, BeachStructure } from "./types";
-import { BeachDataStructure } from "./types";
 
 const initialState: BeachStateStructure = {
   beaches: [],
@@ -29,7 +28,7 @@ const beachesSlice = createSlice({
 
     addBeach: (
       currentState: BeachStateStructure,
-      action: PayloadAction<BeachDataStructure>
+      action: PayloadAction<BeachStructure>
     ): BeachStateStructure => ({
       ...currentState,
       beaches: [...currentState.beaches, action.payload],
