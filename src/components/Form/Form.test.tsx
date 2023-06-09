@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../utils/testUtils";
 import Form from "./Form";
@@ -9,8 +10,9 @@ describe("Given a Form component", () => {
       const labelName = /name/i;
       const labelTown = /town/i;
       const labelImage = /image/i;
+      const actionOnClick = vi.fn();
 
-      renderWithProviders(<Form />);
+      renderWithProviders(<Form onSubmit={actionOnClick} />);
 
       const nameInput = screen.getByLabelText(labelName);
       const townInput = screen.getByLabelText(labelTown);
@@ -23,8 +25,9 @@ describe("Given a Form component", () => {
 
     test("Then it should show a button with the text 'CREATE'", () => {
       const textButton = /create/i;
+      const actionOnClick = vi.fn();
 
-      renderWithProviders(<Form />);
+      renderWithProviders(<Form onSubmit={actionOnClick} />);
       const button = screen.getByRole("button", { name: textButton });
 
       expect(button).toBeInTheDocument();
@@ -32,8 +35,9 @@ describe("Given a Form component", () => {
 
     test("Then the button should be disabled", () => {
       const textButton = /create/i;
+      const actionOnClick = vi.fn();
 
-      renderWithProviders(<Form />);
+      renderWithProviders(<Form onSubmit={actionOnClick} />);
       const button = screen.getByRole("button", { name: textButton });
 
       expect(button).toBeDisabled();
@@ -41,7 +45,7 @@ describe("Given a Form component", () => {
   });
 
   describe("When it is rendered and the name, region and town inputs aren't empty", () => {
-    test("Then the butoon should be enabled", async () => {
+    test("Then the button should be enabled", async () => {
       const textButton = /create/i;
       const labelName = /name/i;
       const labelTown = /town/i;
@@ -53,7 +57,9 @@ describe("Given a Form component", () => {
       const textRegion = "Maresme";
       const textImage = "https://ajgbdhsvcnxkl.jpg";
 
-      renderWithProviders(<Form />);
+      const actionOnClick = vi.fn();
+
+      renderWithProviders(<Form onSubmit={actionOnClick} />);
       const button = screen.getByRole("button", { name: textButton });
       const nameInput = screen.getByLabelText(labelName);
       const townInput = screen.getByLabelText(labelTown);
@@ -79,7 +85,9 @@ describe("Given a Form component", () => {
       const familyBeachLabel = "Family beach";
       const dogsAllowedLabel = "Dogs allowed";
 
-      renderWithProviders(<Form />);
+      const actionOnClick = vi.fn();
+
+      renderWithProviders(<Form onSubmit={actionOnClick} />);
       const showersCheckbox = screen.getByLabelText(showersLabel);
       const umbrellasCheckbox = screen.getByLabelText(umbrellasLabel);
       const baywatchCheckbox = screen.getByLabelText(baywatchLabel);
@@ -101,6 +109,38 @@ describe("Given a Form component", () => {
       expect(umbrellasCheckbox).not.toBeChecked();
       expect(restaurantCheckbox).not.toBeChecked();
       expect(secretBeachCheckbox).not.toBeChecked();
+    });
+  });
+
+  describe("When it is rendered, the name, town, image and region inputs are filled and the user click's the button", () => {
+    test("Then the fields should be empty", async () => {
+      const textButton = /create/i;
+      const labelName = /name/i;
+      const labelTown = /town/i;
+      const labelImage = /image/i;
+      const labelRegion = /region/i;
+
+      const textName = "Gina";
+      const textTown = "Sant Pol";
+      const textRegion = "Maresme";
+      const textImage = "https://ajgbdhsvcnxkl.jpg";
+
+      const actionOnClick = vi.fn();
+
+      renderWithProviders(<Form onSubmit={actionOnClick} />);
+      const button = screen.getByRole("button", { name: textButton });
+      const nameInput = screen.getByLabelText(labelName);
+      const townInput = screen.getByLabelText(labelTown);
+      const imageInput = screen.getByLabelText(labelImage);
+      const regionInput = screen.getByLabelText(labelRegion);
+
+      await userEvent.type(nameInput, textName);
+      await userEvent.type(townInput, textTown);
+      await userEvent.type(imageInput, textImage);
+      await userEvent.selectOptions(regionInput, textRegion);
+      await userEvent.click(button);
+
+      expect(button).toBeDisabled();
     });
   });
 });
