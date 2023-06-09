@@ -3,7 +3,11 @@ import Button from "../Button/Button";
 import FormStyled from "./FormStyled";
 import { BeachStructure } from "../../store/beaches/types";
 
-const Form = (): React.ReactElement => {
+interface FormProps {
+  onSubmit: (beachData: BeachStructure) => void;
+}
+
+const Form = ({ onSubmit }: FormProps): React.ReactElement => {
   const initialBeachData: BeachStructure = {
     image: "",
     name: "",
@@ -51,8 +55,18 @@ const Form = (): React.ReactElement => {
     beachData.town !== "" &&
     beachData.image !== "";
 
+  const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onSubmit(beachData);
+    setBeachData(initialBeachData);
+  };
   return (
-    <FormStyled autoComplete="off" noValidate className="form">
+    <FormStyled
+      autoComplete="off"
+      noValidate
+      className="form"
+      onSubmit={handleOnSubmit}
+    >
       <label className="form__label" htmlFor="name">
         name
       </label>
@@ -230,7 +244,12 @@ const Form = (): React.ReactElement => {
         onChange={onChangeData}
       />
 
-      <Button className="dark-button" text="create" disabled={!isReady} />
+      <Button
+        className="dark-button"
+        text="create"
+        disabled={!isReady}
+        actionOnClick={() => onSubmit}
+      />
     </FormStyled>
   );
 };
