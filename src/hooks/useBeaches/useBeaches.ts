@@ -90,13 +90,7 @@ const useBeaches = () => {
         request
       );
       dispatch(hideLoaderActionCreator());
-      dispatch(
-        showFeedbackActionCreator({
-          isError: false,
-          isVisible: true,
-          message: "Your beach has been added!",
-        })
-      );
+
       return newBeach;
     } catch {
       dispatch(
