@@ -46,7 +46,10 @@ const Form = (): React.ReactElement => {
   };
 
   const isReady =
-    beachData.name !== "" && beachData.region !== "" && beachData.town !== "";
+    beachData.name !== "" &&
+    beachData.region !== "" &&
+    beachData.town !== "" &&
+    beachData.image !== "";
 
   return (
     <FormStyled autoComplete="off" noValidate className="form">
