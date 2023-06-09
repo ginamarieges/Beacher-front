@@ -1,5 +1,9 @@
-import { getBeachesMock } from "../../mocks/factories/beach/beachFactory";
 import {
+  getBeachMock,
+  getBeachesMock,
+} from "../../mocks/factories/beach/beachFactory";
+import {
+  addBeachActionCreator,
   beachesReducer,
   deleteBeachActionCreator,
   loadBeachesActionCreator,
@@ -38,6 +42,26 @@ describe("Given a deleteBeach reducer", () => {
       };
 
       const action = deleteBeachActionCreator(beachList[0].id as string);
+      const newState = beachesReducer(currentBeachesState, action);
+
+      expect(newState).toStrictEqual(expectedNewState);
+    });
+  });
+});
+
+describe("Given a addBeach reducer", () => {
+  describe("When it receives Cala Pedrosa beach and a list of 3 beaches", () => {
+    test("Then it should return a list of 4 beaches with Cala Pedrosa in it", () => {
+      const beachList = getBeachesMock(3);
+      const beachToAdd = getBeachMock({ name: "Cala Pedrosa" });
+      const currentBeachesState: BeachStateStructure = {
+        beaches: beachList,
+      };
+      const expectedNewState: BeachStateStructure = {
+        beaches: [...beachList, beachToAdd],
+      };
+
+      const action = addBeachActionCreator(beachToAdd);
       const newState = beachesReducer(currentBeachesState, action);
 
       expect(newState).toStrictEqual(expectedNewState);
