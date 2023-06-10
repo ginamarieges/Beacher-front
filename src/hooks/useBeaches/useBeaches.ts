@@ -18,31 +18,35 @@ const useBeaches = () => {
   const { token } = useAppSelector((state) => state.userStore);
   const dispatch = useAppDispatch();
 
-  const getBeaches = useCallback(async (): Promise<
-    BeachStateStructure | undefined
-  > => {
-    try {
-      dispatch(showLoaderActionCreator());
-      const request = {
-        headers: { Authorization: `Bearer ${token}` },
-      };
-      const { data: beaches } = await axios.get<BeachStateStructure>(
-        `${apiUrl}/beaches`,
-        request
-      );
-      dispatch(hideLoaderActionCreator());
-      return beaches;
-    } catch {
-      const error = new Error(responseData.errorList);
-      dispatch(
-        showFeedbackActionCreator({
-          isError: true,
-          message: error.message,
-          isVisible: true,
-        })
-      );
-    }
-  }, [apiUrl, dispatch, token]);
+  const getBeaches = useCallback(
+    async (
+      limit: number,
+      skip: number
+    ): Promise<BeachStateStructure | undefined> => {
+      try {
+        dispatch(showLoaderActionCreator());
+        const request = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+        const { data: beaches } = await axios.get<BeachStateStructure>(
+          `${apiUrl}/beaches/?limit=${limit}&skip=${skip}`,
+          request
+        );
+        dispatch(hideLoaderActionCreator());
+        return beaches;
+      } catch {
+        const error = new Error(responseData.errorList);
+        dispatch(
+          showFeedbackActionCreator({
+            isError: true,
+            message: error.message,
+            isVisible: true,
+          })
+        );
+      }
+    },
+    [apiUrl, dispatch, token]
+  );
 
   const deleteBeach = async (id: string): Promise<void> => {
     try {
