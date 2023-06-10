@@ -1,25 +1,14 @@
-import { useState } from "react";
 import Button from "../Button/Button";
 import PaginationStyled from "./PaginationStyled";
 
 const Pagination = (): React.ReactElement => {
-  const [page, setPage] = useState(1);
-
+  const page = 1;
   const totalPages = 20;
-
-  const nextPage = () => {
-    setPage(page + 1);
-  };
-
-  const previousPage = () => {
-    setPage(page - 1);
-  };
 
   return (
     <PaginationStyled>
       <Button
         accessibility="previous-button"
-        actionOnClick={previousPage}
         className={`${page <= 1 && "hidden"}`}
       >
         <svg
@@ -40,11 +29,7 @@ const Pagination = (): React.ReactElement => {
       <span>
         {page}/{totalPages}
       </span>
-      <Button
-        accessibility="next-button"
-        actionOnClick={nextPage}
-        className={`${page === totalPages && "hidden"}`}
-      >
+      <Button accessibility="next-button">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="48"
