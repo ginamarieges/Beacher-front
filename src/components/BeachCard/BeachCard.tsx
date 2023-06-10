@@ -8,10 +8,12 @@ import BeachCardStyled from "./BeachCardStyled";
 interface BeachCardProps {
   beach: BeachStructure;
   isLazy: "eager" | "lazy";
+  userId: string;
 }
 const BeachCard = ({
   isLazy,
-  beach: { image, name, town, id },
+  beach: { image, name, town, id, user },
+  userId,
 }: BeachCardProps) => {
   const { deleteBeach } = useBeaches();
   const dispatch = useAppDispatch();
@@ -20,7 +22,6 @@ const BeachCard = ({
     if (!id) {
       return;
     }
-
     const status = await deleteBeach(id);
 
     if (status === 200) {
@@ -40,9 +41,11 @@ const BeachCard = ({
       />
       <h2 className="card__name">{name}</h2>
       <span className="card__town">{town}</span>
-      <Button className="card__button" actionOnClick={handleOnClick}>
-        <img src="/img/delete.svg" alt="delete" width={24} height={24} />
-      </Button>
+      {user === userId && (
+        <Button className="card__button" actionOnClick={handleOnClick}>
+          <img src="/img/delete.svg" alt="delete" width={24} height={24} />
+        </Button>
+      )}
     </BeachCardStyled>
   );
 };
