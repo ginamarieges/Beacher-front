@@ -91,6 +91,7 @@ const useBeaches = () => {
 
       return newBeach;
     } catch {
+      dispatch(hideLoaderActionCreator());
       dispatch(
         showFeedbackActionCreator({
           isError: true,
