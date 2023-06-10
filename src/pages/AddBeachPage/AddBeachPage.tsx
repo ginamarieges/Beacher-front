@@ -7,6 +7,7 @@ import { BeachStructure } from "../../store/beaches/types";
 import { showFeedbackActionCreator } from "../../store/ui/uiSlice";
 import AddBeachPageStyled from "./AddBeachPageStyled";
 import { paths } from "../../routers/paths/paths";
+import { responseData } from "../../utils/responseData";
 
 const AddBeachPage = (): React.ReactElement => {
   const { addBeach } = useBeaches();
@@ -24,7 +25,7 @@ const AddBeachPage = (): React.ReactElement => {
       showFeedbackActionCreator({
         isError: false,
         isVisible: true,
-        message: "Your beach is added!",
+        message: responseData.addedBeach,
       })
     );
     navigate(paths.home);

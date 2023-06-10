@@ -44,7 +44,7 @@ const useBeaches = () => {
     }
   }, [apiUrl, dispatch, token]);
 
-  const deleteBeach = async (id: string): Promise<number> => {
+  const deleteBeach = async (id: string): Promise<void> => {
     try {
       dispatch(showLoaderActionCreator());
       const request = {
@@ -61,8 +61,7 @@ const useBeaches = () => {
           isVisible: true,
         })
       );
-      return 200;
-    } catch {
+    } catch (error) {
       dispatch(
         showFeedbackActionCreator({
           isError: true,
@@ -70,7 +69,6 @@ const useBeaches = () => {
           isVisible: true,
         })
       );
-      return 404;
     }
   };
 
@@ -97,7 +95,7 @@ const useBeaches = () => {
         showFeedbackActionCreator({
           isError: true,
           isVisible: true,
-          message: "Couldn't add your beach",
+          message: responseData.errorBeachAdded,
         })
       );
     }

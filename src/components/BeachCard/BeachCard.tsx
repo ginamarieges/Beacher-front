@@ -22,11 +22,8 @@ const BeachCard = ({
     if (!id) {
       return;
     }
-    const status = await deleteBeach(id);
-
-    if (status === 200) {
-      dispatch(deleteBeachActionCreator(id));
-    }
+    await deleteBeach(id);
+    dispatch(deleteBeachActionCreator(id));
   };
 
   return (
