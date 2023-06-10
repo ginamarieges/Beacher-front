@@ -1,15 +1,36 @@
 import Button from "../Button/Button";
 import PaginationStyled from "./PaginationStyled";
 
-const Pagination = (): React.ReactElement => {
-  const page = 1;
-  const totalPages = 20;
+interface PaginationProps {
+  totalBeaches: number;
+  nextPage: () => void;
+  previousPage: () => void;
+  skip: number;
+}
+
+const Pagination = ({
+  nextPage,
+  previousPage,
+  totalBeaches,
+  skip,
+}: PaginationProps): React.ReactElement => {
+  const actionOnNextButton = () => {
+    nextPage();
+  };
+
+  const actionOnPreviousButton = () => {
+    previousPage();
+  };
+
+  const currentPage = skip / 10 + 1;
+  const totalPages = Math.trunc(totalBeaches / 10 + 1);
 
   return (
     <PaginationStyled>
       <Button
+        actionOnClick={actionOnPreviousButton}
         accessibility="previous-button"
-        className={`${page <= 1 && "hidden"}`}
+        className={`${currentPage === 1 && "hidden"}`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -27,9 +48,15 @@ const Pagination = (): React.ReactElement => {
         </svg>
       </Button>
       <span>
-        {page}/{totalPages}
+        {currentPage}/{totalPages}
       </span>
-      <Button accessibility="next-button">
+      <Button
+        accessibility="next-button"
+        actionOnClick={actionOnNextButton}
+        className={`${
+          currentPage === totalPages && currentPage !== 1 && "hidden"
+        }`}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="48"

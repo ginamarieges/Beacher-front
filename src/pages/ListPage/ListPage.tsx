@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ListPageStyled from "./ListPageStyled";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { loadBeachesActionCreator } from "../../store/beaches/beachesSlice";
@@ -10,24 +10,39 @@ const ListPage = (): React.ReactElement => {
   const { getBeaches } = useBeaches();
   const dispatch = useAppDispatch();
   const { name } = useAppSelector((state) => state.userStore);
+  const [limit] = useState(10);
+  const [skip, setSkip] = useState(0);
+  const [totalBeaches, setTotalBeaches] = useState(0);
 
   useEffect(() => {
     (async () => {
-      const beaches = await getBeaches();
+      const beachesList = await getBeaches(limit, skip);
 
-      if (beaches) {
+      if (beachesList) {
+        const { length, beaches } = beachesList;
+
         const preconnectElement = await document.createElement("link");
         preconnectElement.rel = "preload";
         preconnectElement.as = "image";
-        preconnectElement.href = beaches.beaches[0].image;
+        preconnectElement.href = beaches[0].image;
 
         const parent = document.head;
         const firstChild = document.head.firstChild;
         parent.insertBefore(preconnectElement, firstChild);
-        dispatch(loadBeachesActionCreator(beaches.beaches));
+        dispatch(loadBeachesActionCreator(beaches));
+
+        setTotalBeaches(length);
       }
     })();
-  }, [dispatch, getBeaches]);
+  }, [dispatch, getBeaches, limit, skip, totalBeaches]);
+
+  const nextPage = () => {
+    setSkip(skip + limit);
+  };
+
+  const previousPage = () => {
+    setSkip(skip - limit);
+  };
 
   return (
     <ListPageStyled>
@@ -35,7 +50,12 @@ const ListPage = (): React.ReactElement => {
         Welcome {name}! Find your perfect beach for today
       </span>
       <BeachesList />
-      <Pagination />
+      <Pagination
+        skip={skip}
+        nextPage={nextPage}
+        previousPage={previousPage}
+        totalBeaches={totalBeaches}
+      />
     </ListPageStyled>
   );
 };

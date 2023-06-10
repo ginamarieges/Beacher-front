@@ -24,7 +24,7 @@ describe("Given a useBeaches function", () => {
         },
       } = renderHook(() => useBeaches(), { wrapper: wrapper });
 
-      const beaches = await getBeaches();
+      const beaches = await getBeaches(10, 0);
 
       expect((beaches as BeachStateStructure).beaches).toStrictEqual(
         expectedBeaches
@@ -45,7 +45,7 @@ describe("Given a useBeaches function", () => {
         },
       } = renderHook(() => useBeaches(), { wrapper: wrapper });
 
-      await getBeaches();
+      await getBeaches(10, 0);
 
       expect(dispatch).toHaveBeenCalledWith(
         showFeedbackActionCreator({
