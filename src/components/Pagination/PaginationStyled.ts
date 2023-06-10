@@ -6,7 +6,7 @@ const PaginationStyled = styled.div`
   justify-content: center;
   gap: 20px;
   color: ${(props) => props.theme.color.primary};
-
+  margin-top: 20px;
   .hidden {
     visibility: hidden;
   }
