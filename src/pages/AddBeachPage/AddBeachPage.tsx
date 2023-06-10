@@ -19,7 +19,6 @@ const AddBeachPage = (): React.ReactElement => {
     if (newBeach) {
       dispatch(addBeachActionCreator(newBeach));
     }
-
     dispatch(
       showFeedbackActionCreator({
         isError: false,

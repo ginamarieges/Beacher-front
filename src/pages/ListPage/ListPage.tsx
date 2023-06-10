@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { loadBeachesActionCreator } from "../../store/beaches/beachesSlice";
 import BeachesList from "../../components/BeachesList/BeachesList";
 import useBeaches from "../../hooks/useBeaches/useBeaches";
+import Pagination from "../../components/Pagination/Pagination";
 
 const ListPage = (): React.ReactElement => {
   const { getBeaches } = useBeaches();
@@ -34,6 +35,7 @@ const ListPage = (): React.ReactElement => {
         Welcome {name}! Find your perfect beach for today
       </span>
       <BeachesList />
+      <Pagination />
     </ListPageStyled>
   );
 };
