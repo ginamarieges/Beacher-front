@@ -12,24 +12,29 @@ const ListPage = (): React.ReactElement => {
   const { name } = useAppSelector((state) => state.userStore);
   const [limit] = useState(10);
   const [skip, setSkip] = useState(0);
+  const [totalBeaches, setTotalBeaches] = useState(0);
 
   useEffect(() => {
     (async () => {
-      const beaches = await getBeaches(limit, skip);
+      const beachesList = await getBeaches(limit, skip);
 
-      if (beaches) {
+      if (beachesList) {
+        const { length, beaches } = beachesList;
+
         const preconnectElement = await document.createElement("link");
         preconnectElement.rel = "preload";
         preconnectElement.as = "image";
-        preconnectElement.href = beaches.beaches[0].image;
+        preconnectElement.href = beaches[0].image;
 
         const parent = document.head;
         const firstChild = document.head.firstChild;
         parent.insertBefore(preconnectElement, firstChild);
-        dispatch(loadBeachesActionCreator(beaches.beaches));
+        dispatch(loadBeachesActionCreator(beaches));
+
+        setTotalBeaches(length);
       }
     })();
-  }, [dispatch, getBeaches, limit, skip]);
+  }, [dispatch, getBeaches, limit, skip, totalBeaches]);
 
   const nextPage = () => {
     setSkip(skip + limit);
@@ -45,7 +50,12 @@ const ListPage = (): React.ReactElement => {
         Welcome {name}! Find your perfect beach for today
       </span>
       <BeachesList />
-      <Pagination nextPage={nextPage} previousPage={previousPage} />
+      <Pagination
+        skip={skip}
+        nextPage={nextPage}
+        previousPage={previousPage}
+        totalBeaches={totalBeaches}
+      />
     </ListPageStyled>
   );
 };
