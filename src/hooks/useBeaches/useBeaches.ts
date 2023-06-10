@@ -95,7 +95,7 @@ const useBeaches = () => {
         showFeedbackActionCreator({
           isError: true,
           isVisible: true,
-          message: "Couldn't add your beach",
+          message: responseData.errorBeachAdded,
         })
       );
     }
