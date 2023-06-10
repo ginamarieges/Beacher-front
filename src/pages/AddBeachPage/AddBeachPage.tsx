@@ -16,10 +16,9 @@ const AddBeachPage = (): React.ReactElement => {
 
   const onSubmit = async (beachData: BeachStructure) => {
     const newBeach = await addBeach(beachData);
-    if (!newBeach) {
-      return;
+    if (newBeach) {
+      dispatch(addBeachActionCreator(newBeach));
     }
-    dispatch(addBeachActionCreator(newBeach));
 
     dispatch(
       showFeedbackActionCreator({
