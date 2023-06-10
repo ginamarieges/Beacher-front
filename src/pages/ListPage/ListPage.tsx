@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ListPageStyled from "./ListPageStyled";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { loadBeachesActionCreator } from "../../store/beaches/beachesSlice";
@@ -10,10 +10,12 @@ const ListPage = (): React.ReactElement => {
   const { getBeaches } = useBeaches();
   const dispatch = useAppDispatch();
   const { name } = useAppSelector((state) => state.userStore);
+  const [limit] = useState(10);
+  const [skip, setSkip] = useState(0);
 
   useEffect(() => {
     (async () => {
-      const beaches = await getBeaches();
+      const beaches = await getBeaches(limit, skip);
 
       if (beaches) {
         const preconnectElement = await document.createElement("link");
@@ -27,7 +29,15 @@ const ListPage = (): React.ReactElement => {
         dispatch(loadBeachesActionCreator(beaches.beaches));
       }
     })();
-  }, [dispatch, getBeaches]);
+  }, [dispatch, getBeaches, limit, skip]);
+
+  const nextPage = () => {
+    setSkip(skip + limit);
+  };
+
+  const previousPage = () => {
+    setSkip(skip - limit);
+  };
 
   return (
     <ListPageStyled>
@@ -35,7 +45,7 @@ const ListPage = (): React.ReactElement => {
         Welcome {name}! Find your perfect beach for today
       </span>
       <BeachesList />
-      <Pagination />
+      <Pagination nextPage={nextPage} previousPage={previousPage} />
     </ListPageStyled>
   );
 };
