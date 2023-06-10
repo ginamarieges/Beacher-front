@@ -20,7 +20,7 @@ export const beachFactory = Factory.define<BeachStructure>(() => ({
     showers: faker.datatype.boolean(),
     umbrellas: faker.datatype.boolean(),
   },
-  users: faker.string.alphanumeric(),
+  user: faker.string.alphanumeric(),
   addServices: faker.word.adjective(),
   id: faker.string.alphanumeric(),
 }));
@@ -40,7 +40,7 @@ export const beachesFactory = Factory.define<BeachDataStructure>(() => ({
     showers: faker.datatype.boolean(),
     umbrellas: faker.datatype.boolean(),
   },
-  users: faker.string.alphanumeric(),
+  user: faker.string.alphanumeric(),
   addServices: faker.word.adjective(),
 }));
 

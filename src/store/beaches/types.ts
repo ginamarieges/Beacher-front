@@ -14,7 +14,7 @@ export interface BeachDataStructure {
     secretBeach: boolean;
   };
   addServices?: string;
-  users?: string;
+  user?: string;
 }
 
 export interface BeachStructure extends BeachDataStructure {

@@ -4,13 +4,19 @@ import BeachesListStyled from "./BeachesListStyled";
 
 const BeachesList = (): React.ReactElement => {
   const { beaches } = useAppSelector((state) => state.beachesStore);
+  const { id } = useAppSelector((state) => state.userStore);
+
   return (
     <BeachesListStyled>
       <h1 className="list-title">Beaches</h1>
       <ul className="list">
         {beaches.map((beach, index) => (
           <li key={beach.id}>
-            <BeachCard isLazy={index < 3 ? "eager" : "lazy"} beach={beach} />
+            <BeachCard
+              userId={id}
+              isLazy={index < 3 ? "eager" : "lazy"}
+              beach={beach}
+            />
           </li>
         ))}
       </ul>

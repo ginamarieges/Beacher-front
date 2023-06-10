@@ -19,5 +19,5 @@ export const mockedBeachToAdd = getBeachDataMock({
 export const mockedAddBeach = getBeachMock({
   ...mockedBeachToAdd,
   id: "6482015b26bad9c95da111bf",
-  users: "646f981a0056a93b408c5050",
+  user: "646f981a0056a93b408c5050",
 });
