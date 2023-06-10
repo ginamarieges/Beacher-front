@@ -28,3 +28,8 @@ export interface BeachStateStructure {
 export interface BeachStateDataStructure {
   beaches: BeachDataStructure[];
 }
+
+export interface BeachGetStateStructure {
+  beaches: BeachStructure[];
+  length: number;
+}

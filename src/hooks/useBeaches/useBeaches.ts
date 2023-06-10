@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
   BeachDataStructure,
-  BeachStateStructure,
+  BeachGetStateStructure,
   BeachStructure,
 } from "../../store/beaches/types";
 import { useAppDispatch, useAppSelector } from "../../store";
@@ -22,18 +22,21 @@ const useBeaches = () => {
     async (
       limit: number,
       skip: number
-    ): Promise<BeachStateStructure | undefined> => {
+    ): Promise<BeachGetStateStructure | undefined> => {
       try {
         dispatch(showLoaderActionCreator());
         const request = {
           headers: { Authorization: `Bearer ${token}` },
         };
-        const { data: beaches } = await axios.get<BeachStateStructure>(
-          `${apiUrl}/beaches/?limit=${limit}&skip=${skip}`,
-          request
-        );
+        const {
+          data: { beaches, length },
+        } = await axios.get<{
+          beaches: BeachStructure[];
+          length: number;
+        }>(`${apiUrl}/beaches/?limit=${limit}&skip=${skip}`, request);
         dispatch(hideLoaderActionCreator());
-        return beaches;
+
+        return { beaches, length };
       } catch {
         const error = new Error(responseData.errorList);
         dispatch(
