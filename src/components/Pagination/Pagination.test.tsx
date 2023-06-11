@@ -16,7 +16,7 @@ describe("Given a Pagination component", () => {
       renderWithProviders(
         wrapWithRouter(
           <Pagination
-            skip={0}
+            page={1}
             nextPage={nextPage}
             previousPage={previousPage}
             totalBeaches={totalBeaches}
@@ -32,33 +32,12 @@ describe("Given a Pagination component", () => {
     });
   });
 
-  describe("When it is rendered in the last page", () => {
-    test("Then the next button should not be visible", () => {
-      renderWithProviders(
-        wrapWithRouter(
-          <Pagination
-            skip={20}
-            nextPage={nextPage}
-            previousPage={previousPage}
-            totalBeaches={totalBeaches}
-          />
-        )
-      );
-
-      const previousButton = screen.getByLabelText(previousButtonLabel);
-      const nextButton = screen.getByLabelText(nextButtonLabel);
-
-      expect(previousButton).toBeVisible();
-      expect(nextButton).not.toBeVisible();
-    });
-  });
-
   describe("When it is rendered and the user cliks the next button", () => {
     test("Then it should call the nextPage function", async () => {
       renderWithProviders(
         wrapWithRouter(
           <Pagination
-            skip={3}
+            page={1}
             nextPage={nextPage}
             previousPage={previousPage}
             totalBeaches={totalBeaches}
@@ -79,7 +58,7 @@ describe("Given a Pagination component", () => {
       renderWithProviders(
         wrapWithRouter(
           <Pagination
-            skip={3}
+            page={2}
             nextPage={nextPage}
             previousPage={previousPage}
             totalBeaches={totalBeaches}

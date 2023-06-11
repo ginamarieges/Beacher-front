@@ -5,25 +5,27 @@ interface PaginationProps {
   totalBeaches: number;
   nextPage: () => void;
   previousPage: () => void;
-  skip: number;
+  page: number;
 }
 
 const Pagination = ({
   nextPage,
   previousPage,
   totalBeaches,
-  skip,
+  page,
 }: PaginationProps): React.ReactElement => {
   const actionOnNextButton = () => {
     nextPage();
+    window.scrollTo(0, 0);
   };
 
   const actionOnPreviousButton = () => {
     previousPage();
+    window.scrollTo(0, 0);
   };
 
-  const currentPage = skip / 10 + 1;
-  const totalPages = Math.trunc(totalBeaches / 10 + 1);
+  const currentPage = page;
+  const totalPages = Math.trunc(totalBeaches / 5 + 1);
 
   return (
     <PaginationStyled>
@@ -53,9 +55,7 @@ const Pagination = ({
       <Button
         accessibility="next-button"
         actionOnClick={actionOnNextButton}
-        className={`${
-          currentPage === totalPages && currentPage !== 1 && "hidden"
-        }`}
+        className={`${currentPage === totalPages && "hidden"}`}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

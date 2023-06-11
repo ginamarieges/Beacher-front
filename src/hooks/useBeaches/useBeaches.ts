@@ -19,10 +19,7 @@ const useBeaches = () => {
   const dispatch = useAppDispatch();
 
   const getBeaches = useCallback(
-    async (
-      limit: number,
-      skip: number
-    ): Promise<BeachGetStateStructure | undefined> => {
+    async (page: number): Promise<BeachGetStateStructure | undefined> => {
       try {
         dispatch(showLoaderActionCreator());
         const request = {
@@ -33,7 +30,7 @@ const useBeaches = () => {
         } = await axios.get<{
           beaches: BeachStructure[];
           length: number;
-        }>(`${apiUrl}/beaches/?limit=${limit}&skip=${skip}`, request);
+        }>(`${apiUrl}/beaches/?page=${page}`, request);
         dispatch(hideLoaderActionCreator());
 
         return { beaches, length };

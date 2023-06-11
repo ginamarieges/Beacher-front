@@ -42,4 +42,16 @@ describe("Given a Navbar component", () => {
       expect(logoutButton).not.toBeInTheDocument();
     });
   });
+
+  describe("When it is rendered and the user click's the add beach button", () => {
+    test("Then it should show a heading with the text 'ADD BEACH'", async () => {
+      renderWithProviders(wrapWithRouter(<Navbar />));
+
+      const addBeachLink = screen.getByRole("link", { name: "add-beach" });
+
+      await userEvent.click(addBeachLink);
+
+      expect(location.pathname).toStrictEqual("/");
+    });
+  });
 });

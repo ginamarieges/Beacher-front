@@ -9,6 +9,7 @@ const Modal = (): React.ReactElement => {
 
   const closeFeedback = () => {
     dispatch(hideFeedbackActionCreator());
+    window.location.reload();
   };
 
   return (

@@ -35,6 +35,7 @@ const Navbar = (): React.ReactElement => {
             className="navbar-list__icon"
             aria-label="add-beach"
             title="add beach"
+            onClick={() => window.scrollTo(0, 0)}
           >
             <img
               src="/img/add.svg"
