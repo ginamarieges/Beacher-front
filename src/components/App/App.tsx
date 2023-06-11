@@ -5,7 +5,6 @@ import { useAppDispatch } from "../../store";
 import { loginUserActionCreator } from "../../store/user/userSlice";
 import Layout from "../Layout/Layout";
 import { UserTokenStructure } from "../../store/user/types";
-import ScrollUp from "../../utils/ScrollUp";
 
 const App = (): React.ReactElement => {
   const { getToken } = useLocalStorage();
@@ -26,12 +25,7 @@ const App = (): React.ReactElement => {
     dispatch(loginUserActionCreator(tokenData));
   }, [dispatch, getToken, getTokenData]);
 
-  return (
-    <>
-      <ScrollUp />
-      <Layout />
-    </>
-  );
+  return <Layout />;
 };
 
 export default App;

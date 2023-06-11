@@ -37,11 +37,7 @@ const ListPage = (): React.ReactElement => {
   }, [dispatch, getBeaches, page]);
 
   const nextPage = () => {
-    try {
-      setPage(page + 1);
-    } catch (error) {
-      return;
-    }
+    setPage(page + 1);
   };
 
   const previousPage = () => {
