@@ -20,6 +20,9 @@ const BeachesList = (): React.ReactElement => {
           </li>
         ))}
       </ul>
+      {beaches.length === 0 && (
+        <span className="no-beaches">Sorry, there are no beaches here</span>
+      )}
     </BeachesListStyled>
   );
 };

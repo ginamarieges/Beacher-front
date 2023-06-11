@@ -12,6 +12,10 @@ const BeachesListStyled = styled.div`
     font-size: ${(props) => props.theme.fontSizes.titleSize};
     padding: 13px 0;
   }
+  .no-beaches {
+    color: ${(props) => props.theme.color.primary};
+    font-size: ${(props) => props.theme.fontSizes.smallSize};
+  }
 `;
 
 export default BeachesListStyled;
