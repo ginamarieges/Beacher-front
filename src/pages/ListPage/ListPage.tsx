@@ -10,13 +10,12 @@ const ListPage = (): React.ReactElement => {
   const { getBeaches } = useBeaches();
   const dispatch = useAppDispatch();
   const { name } = useAppSelector((state) => state.userStore);
-  const [limit] = useState(10);
-  const [skip, setSkip] = useState(0);
+  const [page, setPage] = useState(1);
   const [totalBeaches, setTotalBeaches] = useState(0);
 
   useEffect(() => {
     (async () => {
-      const beachesList = await getBeaches(limit, skip);
+      const beachesList = await getBeaches(page);
 
       if (beachesList) {
         const { length, beaches } = beachesList;
@@ -29,19 +28,24 @@ const ListPage = (): React.ReactElement => {
         const parent = document.head;
         const firstChild = document.head.firstChild;
         parent.insertBefore(preconnectElement, firstChild);
+
         dispatch(loadBeachesActionCreator(beaches));
 
         setTotalBeaches(length);
       }
     })();
-  }, [dispatch, getBeaches, limit, skip, totalBeaches]);
+  }, [dispatch, getBeaches, page]);
 
   const nextPage = () => {
-    setSkip(skip + limit);
+    try {
+      setPage(page + 1);
+    } catch (error) {
+      return;
+    }
   };
 
   const previousPage = () => {
-    setSkip(skip - limit);
+    setPage(page - 1);
   };
 
   return (
@@ -51,7 +55,7 @@ const ListPage = (): React.ReactElement => {
       </span>
       <BeachesList />
       <Pagination
-        skip={skip}
+        page={page}
         nextPage={nextPage}
         previousPage={previousPage}
         totalBeaches={totalBeaches}
