@@ -16,10 +16,12 @@ const Pagination = ({
 }: PaginationProps): React.ReactElement => {
   const actionOnNextButton = () => {
     nextPage();
+    window.scrollTo(0, 0);
   };
 
   const actionOnPreviousButton = () => {
     previousPage();
+    window.scrollTo(0, 0);
   };
 
   const currentPage = page;
