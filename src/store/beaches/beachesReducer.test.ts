@@ -6,6 +6,7 @@ import {
   addBeachActionCreator,
   beachesReducer,
   deleteBeachActionCreator,
+  filterActionCreator,
   loadBeachesActionCreator,
 } from "./beachesSlice";
 import { BeachStateStructure } from "./types";
@@ -62,6 +63,27 @@ describe("Given a addBeach reducer", () => {
       };
 
       const action = addBeachActionCreator(beachToAdd);
+      const newState = beachesReducer(currentBeachesState, action);
+
+      expect(newState).toStrictEqual(expectedNewState);
+    });
+  });
+});
+
+describe("Given a loadFilterBeaches reducer", () => {
+  describe("When it receives a list of two beaches and the region 'Maresme'", () => {
+    test("Then it should return the two beaches with the region Maresme", () => {
+      const region = "Maresme";
+      const beachList = getBeachesMock(2);
+      const currentBeachesState: BeachStateStructure = {
+        beaches: beachList,
+      };
+      const expectedNewState: BeachStateStructure = {
+        beaches: beachList,
+        region,
+      };
+
+      const action = filterActionCreator(region);
       const newState = beachesReducer(currentBeachesState, action);
 
       expect(newState).toStrictEqual(expectedNewState);
