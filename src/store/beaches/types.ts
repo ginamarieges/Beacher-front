@@ -23,6 +23,7 @@ export interface BeachStructure extends BeachDataStructure {
 
 export interface BeachStateStructure {
   beaches: BeachStructure[];
+  region?: string;
 }
 
 export interface BeachStateDataStructure {

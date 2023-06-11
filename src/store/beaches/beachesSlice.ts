@@ -3,6 +3,7 @@ import { BeachStateStructure, BeachStructure } from "./types";
 
 const initialState: BeachStateStructure = {
   beaches: [],
+  region: "",
 };
 const beachesSlice = createSlice({
   name: "beaches",
@@ -14,6 +15,14 @@ const beachesSlice = createSlice({
     ): BeachStateStructure => ({
       ...currentState,
       beaches: [...action.payload],
+    }),
+
+    loadFilterBeaches: (
+      currentState: BeachStateStructure,
+      action: PayloadAction<string>
+    ) => ({
+      ...currentState,
+      region: action.payload,
     }),
 
     deleteBeach: (
@@ -40,6 +49,7 @@ export const {
   loadBeaches: loadBeachesActionCreator,
   deleteBeach: deleteBeachActionCreator,
   addBeach: addBeachActionCreator,
+  loadFilterBeaches: filterActionCreator,
 } = beachesSlice.actions;
 export const beachesReducer = beachesSlice.reducer;
 

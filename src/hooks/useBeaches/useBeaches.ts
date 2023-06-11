@@ -16,6 +16,7 @@ import { responseData } from "../../utils/responseData.js";
 const useBeaches = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const { token } = useAppSelector((state) => state.userStore);
+  const { region } = useAppSelector((state) => state.beachesStore);
   const dispatch = useAppDispatch();
 
   const getBeaches = useCallback(
@@ -30,7 +31,7 @@ const useBeaches = () => {
         } = await axios.get<{
           beaches: BeachStructure[];
           length: number;
-        }>(`${apiUrl}/beaches/?page=${page}`, request);
+        }>(`${apiUrl}/beaches/?page=${page}&region=${region}`, request);
         dispatch(hideLoaderActionCreator());
 
         return { beaches, length };
@@ -45,7 +46,7 @@ const useBeaches = () => {
         );
       }
     },
-    [apiUrl, dispatch, token]
+    [apiUrl, dispatch, region, token]
   );
 
   const deleteBeach = async (id: string): Promise<void> => {
