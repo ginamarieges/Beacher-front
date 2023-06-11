@@ -5,6 +5,7 @@ import { loadBeachesActionCreator } from "../../store/beaches/beachesSlice";
 import BeachesList from "../../components/BeachesList/BeachesList";
 import useBeaches from "../../hooks/useBeaches/useBeaches";
 import Pagination from "../../components/Pagination/Pagination";
+import Filter from "../../components/Filter/Filter";
 
 const ListPage = (): React.ReactElement => {
   const { getBeaches } = useBeaches();
@@ -49,6 +50,7 @@ const ListPage = (): React.ReactElement => {
       <span className="home-title">
         Welcome {name}! Find your perfect beach for today
       </span>
+      <Filter />
       <BeachesList />
       <Pagination
         page={page}
