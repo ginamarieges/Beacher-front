@@ -1,6 +1,15 @@
+import { useAppDispatch } from "../../store";
+import { filterActionCreator } from "../../store/beaches/beachesSlice";
 import FilterStyled from "./FilterStyled";
 
 const Filter = (): React.ReactElement => {
+  const dispatch = useAppDispatch();
+
+  const onChangeData = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const region = event.target.value;
+    dispatch(filterActionCreator(region));
+  };
+
   return (
     <FilterStyled className="select">
       <select
@@ -8,6 +17,7 @@ const Filter = (): React.ReactElement => {
         id="region"
         name="region"
         aria-label="region-selector"
+        onChange={onChangeData}
       >
         <option value="">Where do you want to go?</option>
         <option value="Alt Empordà">Alt Empordà</option>
