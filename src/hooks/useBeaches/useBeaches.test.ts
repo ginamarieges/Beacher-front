@@ -124,4 +124,39 @@ describe("Given a useBeaches function", () => {
       expect(message).toBe(expectedMessage);
     });
   });
+
+  describe("When the getBeach function is called and receives the id '6482015b26bad9c95da111bf'", () => {
+    test("Then it should return the beach with id '6482015b26bad9c95da111bf'", async () => {
+      const expectedBeach = mockedAddBeach;
+      const id = "6482015b26bad9c95da111bf";
+
+      const {
+        result: {
+          current: { getBeach },
+        },
+      } = renderHook(() => useBeaches(), { wrapper: wrapper });
+
+      const newBeach = await getBeach(id);
+
+      expect(newBeach).toStrictEqual([expectedBeach]);
+    });
+  });
+
+  describe("When the getBeach function is called and receives an id of a beach that doesn't exist", () => {
+    test("Then the error 'Beach not found' should be in the store", async () => {
+      server.resetHandlers(...errorHandlers);
+      const id = "6482015b26bad9c95da511bf";
+      const {
+        result: {
+          current: { getBeach },
+        },
+      } = renderHook(() => useBeaches(), { wrapper: wrapper });
+
+      await getBeach(id);
+
+      const message = store.getState().uiStore.modal.message;
+
+      expect(message).toBe(responseData.beachNotFound);
+    });
+  });
 });
