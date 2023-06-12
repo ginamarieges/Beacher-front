@@ -51,7 +51,7 @@ const ListPage = (): React.ReactElement => {
       <span className="home-title">
         Welcome {name}! Find your perfect beach for today
       </span>
-      <Filter />
+      <Filter setPage={setPage} />
       <BeachesList />
       <Pagination
         page={page}

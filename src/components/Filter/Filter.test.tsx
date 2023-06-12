@@ -2,12 +2,14 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../utils/testUtils";
 import Filter from "./Filter";
+import { vi } from "vitest";
 
 describe("Given a Filter component", () => {
   describe("When it is rendered", () => {
     test("Then it should show a select field", () => {
       const labelText = /region-selector/i;
-      renderWithProviders(<Filter />);
+      const setPage = vi.fn();
+      renderWithProviders(<Filter setPage={setPage} />);
 
       const selector = screen.getByLabelText(labelText);
 
@@ -19,7 +21,8 @@ describe("Given a Filter component", () => {
     test("Then it should show the value 'Baix Empordà'", async () => {
       const labelText = /region-selector/i;
       const regionSelected = "Baix Empordà";
-      renderWithProviders(<Filter />);
+      const setPage = vi.fn();
+      renderWithProviders(<Filter setPage={setPage} />);
 
       const selector = screen.getByLabelText(labelText);
       await userEvent.selectOptions(selector, regionSelected);

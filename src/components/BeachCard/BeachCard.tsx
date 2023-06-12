@@ -1,6 +1,9 @@
 import useBeaches from "../../hooks/useBeaches/useBeaches";
 import { useAppDispatch } from "../../store";
-import { deleteBeachActionCreator } from "../../store/beaches/beachesSlice";
+import {
+  deleteBeachActionCreator,
+  loadBeachesActionCreator,
+} from "../../store/beaches/beachesSlice";
 import { BeachStructure } from "../../store/beaches/types";
 import Button from "../Button/Button";
 import BeachCardStyled from "./BeachCardStyled";
@@ -15,13 +18,18 @@ const BeachCard = ({
   beach: { image, name, town, id, user },
   userId,
 }: BeachCardProps) => {
-  const { deleteBeach } = useBeaches();
+  const { deleteBeach, getBeaches } = useBeaches();
   const dispatch = useAppDispatch();
 
   const handleOnClick = async () => {
     if (id) {
       await deleteBeach(id);
       dispatch(deleteBeachActionCreator(id));
+    }
+
+    const beachesData = await getBeaches(1);
+    if (beachesData) {
+      dispatch(loadBeachesActionCreator(beachesData.beaches));
     }
   };
 
