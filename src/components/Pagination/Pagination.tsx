@@ -53,7 +53,7 @@ const Pagination = ({
           />
         </svg>
       </Button>
-      <span>
+      <span className={`${currentPage === 1 && totalPages === 1 && "hidden"}`}>
         {currentPage}/{totalPages}
       </span>
       <Button
