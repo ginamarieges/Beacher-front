@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { tokenMock } from "./userMocks";
-import { mockBeaches, mockedAddBeach } from "./beachesMocks";
+import { mockBeaches, mockedAddBeach, twentyBeaches } from "./beachesMocks";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -45,5 +45,17 @@ export const errorHandlers = [
 
   rest.get(`${apiUrl}/beaches/:id`, (_req, res, ctx) => {
     return res(ctx.status(404));
+  }),
+];
+
+export const buttonsHandlers = [
+  rest.get(`${apiUrl}/beaches`, (req, res, ctx) => {
+    const searchParams = req.url.searchParams;
+    searchParams.set("page", "3");
+
+    return res(
+      ctx.status(200),
+      ctx.json({ beaches: twentyBeaches, length: twentyBeaches.length })
+    );
   }),
 ];
