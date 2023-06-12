@@ -109,7 +109,39 @@ const useBeaches = () => {
     }
   };
 
-  return { getBeaches, deleteBeach, addBeach };
+  const getBeach = async (
+    id: string
+  ): Promise<BeachStructure[] | undefined> => {
+    try {
+      dispatch(showLoaderActionCreator());
+      const request = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const {
+        data: { beach },
+      } = await axios.get<{ beach: BeachStructure[] }>(
+        `${apiUrl}/beaches/${id}`,
+        request
+      );
+
+      if (beach.length === 0) {
+        throw new Error(responseData.beachNotFound);
+      }
+      dispatch(hideLoaderActionCreator());
+      return beach;
+    } catch (error) {
+      dispatch(hideLoaderActionCreator());
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          isVisible: true,
+          message: responseData.beachNotFound,
+        })
+      );
+    }
+  };
+
+  return { getBeaches, deleteBeach, addBeach, getBeach };
 };
 
 export default useBeaches;
