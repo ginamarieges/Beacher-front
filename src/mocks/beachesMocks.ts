@@ -21,3 +21,5 @@ export const mockedAddBeach = getBeachMock({
   id: "6482015b26bad9c95da111bf",
   user: "646f981a0056a93b408c5050",
 });
+
+export const twentyBeaches = getBeachesMock(20);

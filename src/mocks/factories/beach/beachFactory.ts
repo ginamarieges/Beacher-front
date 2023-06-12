@@ -1,4 +1,5 @@
 import { Factory } from "fishery";
+import { Types } from "mongoose";
 import { faker } from "@faker-js/faker";
 import {
   BeachDataStructure,
@@ -22,7 +23,7 @@ export const beachFactory = Factory.define<BeachStructure>(() => ({
   },
   user: faker.string.alphanumeric(),
   addServices: faker.word.adjective(),
-  id: faker.string.alphanumeric(),
+  id: new Types.ObjectId().toString(),
 }));
 
 export const beachesFactory = Factory.define<BeachDataStructure>(() => ({
