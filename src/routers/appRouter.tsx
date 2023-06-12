@@ -4,6 +4,7 @@ import { paths } from "./paths/paths.js";
 import { AddBeachPageLazy, ListPageLazy, LoginPageLazy } from "./lazyPages.js";
 import { Suspense } from "react";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage.js";
+import DetailsPage from "../pages/DetailsPage/DetailsPage.js";
 
 const routes: RouteObject[] = [
   {
@@ -38,7 +39,8 @@ const routes: RouteObject[] = [
           </Suspense>
         ),
       },
-      { path: "/*", element: <NotFoundPage /> },
+      { path: paths.details, element: <DetailsPage /> },
+      { path: "*", element: <NotFoundPage /> },
     ],
   },
 ];

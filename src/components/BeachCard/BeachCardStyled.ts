@@ -39,15 +39,6 @@ const BeachCardStyled = styled.article`
       right: 15px;
     }
   }
-
-  .light-button {
-    background-color: ${(props) => props.theme.color.secondary};
-    color: ${(props) => props.theme.color.primary};
-    border: 1px solid ${(props) => props.theme.color.primary};
-    font-size: ${(props) => props.theme.fontSizes.smallSize};
-    padding: 15px;
-    text-transform: uppercase;
-  }
 `;
 
 export default BeachCardStyled;
