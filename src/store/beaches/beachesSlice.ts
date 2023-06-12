@@ -42,6 +42,13 @@ const beachesSlice = createSlice({
       ...currentState,
       beaches: [...currentState.beaches, action.payload],
     }),
+
+    loadBeachById: (
+      _currentState: BeachStateStructure,
+      action: PayloadAction<BeachStructure>
+    ): BeachStateStructure => ({
+      beaches: [action.payload],
+    }),
   },
 });
 
@@ -50,6 +57,7 @@ export const {
   deleteBeach: deleteBeachActionCreator,
   addBeach: addBeachActionCreator,
   loadFilterBeaches: filterActionCreator,
+  loadBeachById: loadBeachByIdActionCreator,
 } = beachesSlice.actions;
 export const beachesReducer = beachesSlice.reducer;
 
