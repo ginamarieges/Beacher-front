@@ -7,6 +7,7 @@ import {
   beachesReducer,
   deleteBeachActionCreator,
   filterActionCreator,
+  loadBeachByIdActionCreator,
   loadBeachesActionCreator,
 } from "./beachesSlice";
 import { BeachStateStructure } from "./types";
@@ -84,6 +85,28 @@ describe("Given a loadFilterBeaches reducer", () => {
       };
 
       const action = filterActionCreator(region);
+      const newState = beachesReducer(currentBeachesState, action);
+
+      expect(newState).toStrictEqual(expectedNewState);
+    });
+  });
+});
+
+describe("Given loadBeachById reducer", () => {
+  describe("When it receives a Cala Pedrosa beach", () => {
+    test("Then it should return the new state with Cala Pedrosa beach", () => {
+      const beachList = getBeachesMock(3);
+      const beachToFind = getBeachMock({ name: "Cala Pedrosa" });
+      beachList.push(beachToFind);
+
+      const currentBeachesState: BeachStateStructure = {
+        beaches: beachList,
+      };
+      const expectedNewState: BeachStateStructure = {
+        beaches: [beachToFind],
+      };
+
+      const action = loadBeachByIdActionCreator(beachToFind);
       const newState = beachesReducer(currentBeachesState, action);
 
       expect(newState).toStrictEqual(expectedNewState);

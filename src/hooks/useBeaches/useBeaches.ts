@@ -67,6 +67,8 @@ const useBeaches = () => {
         })
       );
     } catch (error) {
+      dispatch(hideLoaderActionCreator());
+
       dispatch(
         showFeedbackActionCreator({
           isError: true,
