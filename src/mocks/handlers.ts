@@ -20,6 +20,10 @@ export const handlers = [
   rest.post(`${apiUrl}/beaches`, (_req, res, ctx) => {
     return res(ctx.status(201), ctx.json({ newBeach: mockedAddBeach }));
   }),
+
+  rest.get(`${apiUrl}/beaches/:id`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ beach: [mockedAddBeach] }));
+  }),
 ];
 
 export const errorHandlers = [
@@ -37,5 +41,9 @@ export const errorHandlers = [
 
   rest.post(`${apiUrl}/beaches`, (_req, res, ctx) => {
     return res(ctx.status(400));
+  }),
+
+  rest.get(`${apiUrl}/beaches/:id`, (_req, res, ctx) => {
+    return res(ctx.status(404));
   }),
 ];
