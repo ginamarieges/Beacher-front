@@ -22,7 +22,7 @@ export const handlers = [
   }),
 
   rest.get(`${apiUrl}/beaches/:id`, (_req, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ beach: [mockedAddBeach] }));
+    return res(ctx.status(200), ctx.json({ beach: mockedAddBeach }));
   }),
 ];
 

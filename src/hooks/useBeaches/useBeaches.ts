@@ -109,9 +109,7 @@ const useBeaches = () => {
     }
   };
 
-  const getBeach = async (
-    id: string
-  ): Promise<BeachStructure[] | undefined> => {
+  const getBeach = async (id: string): Promise<BeachStructure | undefined> => {
     try {
       dispatch(showLoaderActionCreator());
       const request = {
@@ -119,7 +117,7 @@ const useBeaches = () => {
       };
       const {
         data: { beach },
-      } = await axios.get<{ beach: BeachStructure[] }>(
+      } = await axios.get<{ beach: BeachStructure }>(
         `${apiUrl}/beaches/${id}`,
         request
       );

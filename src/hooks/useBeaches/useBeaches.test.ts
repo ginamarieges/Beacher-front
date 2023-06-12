@@ -138,7 +138,7 @@ describe("Given a useBeaches function", () => {
 
       const newBeach = await getBeach(id);
 
-      expect(newBeach).toStrictEqual([expectedBeach]);
+      expect(newBeach).toStrictEqual(expectedBeach);
     });
   });
 
