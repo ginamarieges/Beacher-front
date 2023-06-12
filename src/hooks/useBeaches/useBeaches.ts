@@ -124,10 +124,8 @@ const useBeaches = () => {
         request
       );
 
-      if (beach.length === 0) {
-        throw new Error(responseData.beachNotFound);
-      }
       dispatch(hideLoaderActionCreator());
+
       return beach;
     } catch (error) {
       dispatch(hideLoaderActionCreator());
