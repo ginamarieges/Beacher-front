@@ -41,15 +41,19 @@ const Pagination = ({
           viewBox="0 0 48 48"
           fill="none"
         >
-          <rect x="0.5" y="0.5" width="47" height="47" fill="#EFECE4" />
-          <path
-            d="M18.1211 23.9999L32.121 9.99998L29.9998 7.87866L13.8784 23.9999L29.9998 40.1213L32.1212 37.9999L18.1211 23.9999Z"
-            fill="#564137"
+          <rect
+            width="48"
+            height="48"
+            transform="matrix(-1 0 0 -1 48 48)"
+            fill="#564138"
           />
-          <rect x="0.5" y="0.5" width="47" height="47" stroke="#564137" />
+          <path
+            d="M30.0003 40.1213L32.1216 38L18.1216 24.0001L32.1216 10.0001L30.0003 7.87866L13.879 24.0001L30.0003 40.1213Z"
+            fill="#EFECE4"
+          />
         </svg>
       </Button>
-      <span>
+      <span className={`${currentPage === 1 && totalPages === 1 && "hidden"}`}>
         {currentPage}/{totalPages}
       </span>
       <Button
