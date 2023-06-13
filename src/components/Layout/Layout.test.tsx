@@ -25,6 +25,7 @@ describe("Given a Layout component", () => {
           isError: false,
           message: "",
         },
+        page: 1,
       };
 
       renderWithProviders(wrapWithRouter(<Layout />), { uiStore: uiState });

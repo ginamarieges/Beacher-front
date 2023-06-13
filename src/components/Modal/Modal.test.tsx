@@ -25,6 +25,7 @@ describe("Given a Modal component", () => {
           message: "Something went wrong",
           isVisible: true,
         },
+        page: 1,
       };
       const expectedText = uiState.modal.message;
 

@@ -4,6 +4,7 @@ import { UiFeedback, UiStructure } from "./types";
 const initialState: UiStructure = {
   isLoading: false,
   modal: { isVisible: false, isError: false, message: "" },
+  page: 1,
 };
 
 const uiSlice = createSlice({

@@ -14,6 +14,7 @@ describe("Given a Modal component", () => {
           isError: true,
           message: "Something went wrong",
         },
+        page: 1,
       };
       const buttonText = "close button";
 

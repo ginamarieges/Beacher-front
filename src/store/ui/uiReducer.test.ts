@@ -17,6 +17,7 @@ describe("Given a showLoader reducer", () => {
           isError: false,
           message: "",
         },
+        page: 1,
       };
       const expectedNewState: UiStructure = {
         isLoading: true,
@@ -25,6 +26,7 @@ describe("Given a showLoader reducer", () => {
           isError: false,
           message: "",
         },
+        page: 1,
       };
       const action = showLoaderActionCreator();
 
@@ -45,6 +47,7 @@ describe("Given a hideLoader reducer", () => {
           isError: false,
           message: "",
         },
+        page: 1,
       };
       const expectedNewState: UiStructure = {
         isLoading: false,
@@ -53,6 +56,7 @@ describe("Given a hideLoader reducer", () => {
           isError: false,
           message: "",
         },
+        page: 1,
       };
       const action = hideLoaderActionCreator();
 
@@ -73,6 +77,7 @@ describe("Given a showFeedback reducer", () => {
           isError: false,
           message: "",
         },
+        page: 1,
       };
       const errorMessage = "Wrong";
       const error: UiFeedback = {
@@ -108,6 +113,7 @@ describe("Given a hideFeedback reducer", () => {
           message: "Wrong",
           isVisible: true,
         },
+        page: 1,
       };
       const expectedNewState: UiStructure = {
         modal: {
@@ -115,6 +121,7 @@ describe("Given a hideFeedback reducer", () => {
           message: "",
           isVisible: false,
         },
+        page: 1,
         isLoading: false,
       };
       const newState = uiReducer(currentState, hideFeedbackActionCreator());
