@@ -22,6 +22,7 @@ const initialState: BeachStateStructure = {
       showers: false,
       umbrellas: false,
     },
+    user: "",
   },
 };
 const beachesSlice = createSlice({

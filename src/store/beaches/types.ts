@@ -1,4 +1,10 @@
-export interface BeachDataStructure {
+export interface BeachStateStructure {
+  beaches: BeachStructure[];
+  region?: string;
+  beach: BeachStructure;
+  length: number;
+}
+export interface BeachStructure {
   name: string;
   image: string;
   description?: string;
@@ -14,20 +20,24 @@ export interface BeachDataStructure {
     secretBeach: boolean;
   };
   addServices?: string;
-  user?: string;
+  user: string;
+  id: string;
 }
 
-export interface BeachStructure extends BeachDataStructure {
-  id?: string;
-}
-
-export interface BeachStateStructure {
-  beaches: BeachStructure[];
-  region?: string;
-  beach: BeachStructure;
-  length: number;
-}
-
-export interface BeachStateDataStructure {
-  beaches: BeachDataStructure[];
+export interface BeachAddStructure {
+  name: string;
+  image: string;
+  description?: string;
+  region: string;
+  town: string;
+  services: {
+    showers: boolean;
+    baywatch: boolean;
+    umbrellas: boolean;
+    dogsAllowed: boolean;
+    restaurant: boolean;
+    familyBeach: boolean;
+    secretBeach: boolean;
+  };
+  addServices?: string;
 }
