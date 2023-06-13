@@ -25,13 +25,9 @@ export interface BeachStateStructure {
   beaches: BeachStructure[];
   region?: string;
   beach: BeachStructure;
+  length: number;
 }
 
 export interface BeachStateDataStructure {
   beaches: BeachDataStructure[];
-}
-
-export interface BeachGetStateStructure {
-  beaches: BeachStructure[];
-  length: number;
 }
