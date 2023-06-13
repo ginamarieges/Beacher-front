@@ -40,7 +40,7 @@ describe("Given a loadBeaches reducer", () => {
       };
       const expectedNewState: BeachStateStructure = {
         beaches: beachList,
-        length: 0,
+        length: 2,
         beach: {
           image: "",
           name: "",
@@ -60,8 +60,11 @@ describe("Given a loadBeaches reducer", () => {
           },
         },
       };
-
-      const action = loadBeachesActionCreator(beachList);
+      const payload = {
+        beaches: beachList,
+        length: 2,
+      };
+      const action = loadBeachesActionCreator(payload);
 
       const newBeachesState = beachesReducer(currentBeachesState, action);
 

@@ -29,8 +29,8 @@ const BeachCard = ({
     }
 
     const beachesData = await getBeaches(1);
-    if (beachesData?.beaches) {
-      dispatch(loadBeachesActionCreator(beachesData?.beaches));
+    if (beachesData) {
+      dispatch(loadBeachesActionCreator(beachesData));
     }
   };
 

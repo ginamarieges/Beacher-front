@@ -12,27 +12,22 @@ const ListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { name } = useAppSelector((state) => state.userStore);
   const [page, setPage] = useState(1);
-  const [totalBeaches, setTotalBeaches] = useState(0);
 
   useEffect(() => {
     (async () => {
       const beachesList = await getBeaches(page);
 
       if (beachesList) {
-        const { length, beaches } = beachesList;
+        dispatch(loadBeachesActionCreator(beachesList));
 
         const preconnectElement = await document.createElement("link");
         preconnectElement.rel = "preload";
         preconnectElement.as = "image";
-        preconnectElement.href = beaches[0].image;
+        preconnectElement.href = beachesList.beaches[0].image;
 
         const parent = document.head;
         const firstChild = document.head.firstChild;
         parent.insertBefore(preconnectElement, firstChild);
-
-        dispatch(loadBeachesActionCreator(beaches));
-
-        setTotalBeaches(length);
       }
     })();
   }, [dispatch, getBeaches, page]);
@@ -52,12 +47,7 @@ const ListPage = (): React.ReactElement => {
       </span>
       <Filter setPage={setPage} />
       <BeachesList />
-      <Pagination
-        page={page}
-        nextPage={nextPage}
-        previousPage={previousPage}
-        totalBeaches={totalBeaches}
-      />
+      <Pagination page={page} nextPage={nextPage} previousPage={previousPage} />
     </ListPageStyled>
   );
 };
