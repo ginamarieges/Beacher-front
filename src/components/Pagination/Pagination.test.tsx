@@ -30,6 +30,7 @@ describe("Given a Pagination component", () => {
         showers: false,
         umbrellas: false,
       },
+      user: "",
     },
   };
 

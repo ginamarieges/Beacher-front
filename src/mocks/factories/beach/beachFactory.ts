@@ -2,7 +2,7 @@ import { Factory } from "fishery";
 import { Types } from "mongoose";
 import { faker } from "@faker-js/faker";
 import {
-  BeachDataStructure,
+  BeachAddStructure,
   BeachStructure,
 } from "../../../store/beaches/types";
 
@@ -26,7 +26,7 @@ export const beachFactory = Factory.define<BeachStructure>(() => ({
   id: new Types.ObjectId().toString(),
 }));
 
-export const beachesFactory = Factory.define<BeachDataStructure>(() => ({
+export const beachesFactory = Factory.define<BeachAddStructure>(() => ({
   name: faker.commerce.productName(),
   description: faker.commerce.productDescription(),
   image: faker.image.dataUri(),
@@ -41,7 +41,6 @@ export const beachesFactory = Factory.define<BeachDataStructure>(() => ({
     showers: faker.datatype.boolean(),
     umbrellas: faker.datatype.boolean(),
   },
-  user: faker.string.alphanumeric(),
   addServices: faker.word.adjective(),
 }));
 
@@ -55,8 +54,8 @@ export const getBeachMock = (data?: Partial<BeachStructure>) =>
 
 export const getBeachesDataMock = (
   number: number,
-  data?: Partial<BeachDataStructure>
+  data?: Partial<BeachAddStructure>
 ) => beachesFactory.buildList(number, data);
 
-export const getBeachDataMock = (data?: Partial<BeachDataStructure>) =>
+export const getBeachDataMock = (data?: Partial<BeachAddStructure>) =>
   beachesFactory.build(data);

@@ -23,10 +23,8 @@ const BeachCard = ({
   const dispatch = useAppDispatch();
 
   const handleOnClick = async () => {
-    if (id) {
-      await deleteBeach(id);
-      dispatch(deleteBeachActionCreator(id));
-    }
+    await deleteBeach(id);
+    dispatch(deleteBeachActionCreator(id));
 
     const beachesData = await getBeaches();
     if (beachesData) {

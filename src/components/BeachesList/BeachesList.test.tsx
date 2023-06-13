@@ -34,6 +34,7 @@ describe("Given a BeachList component", () => {
             showers: false,
             umbrellas: false,
           },
+          user: "",
         },
       };
 

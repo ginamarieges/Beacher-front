@@ -63,7 +63,7 @@ describe("Given a useBeaches function", () => {
         },
       } = renderHook(() => useBeaches(), { wrapper: wrapper });
 
-      await deleteBeach(mockBeaches[2].id as string);
+      await deleteBeach(mockBeaches[2].id);
 
       const message = store.getState().uiStore.modal.message;
 
@@ -80,7 +80,7 @@ describe("Given a useBeaches function", () => {
         },
       } = renderHook(() => useBeaches(), { wrapper: wrapper });
 
-      await deleteBeach(mockBeaches[1].id as string);
+      await deleteBeach(mockBeaches[1].id);
 
       const message = store.getState().uiStore.modal.message;
 
