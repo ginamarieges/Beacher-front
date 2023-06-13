@@ -31,7 +31,11 @@ const uiSlice = createSlice({
 
     hideFeedback: (currentState: UiStructure) => ({
       ...currentState,
-      isLoading: false,
+      modal: {
+        isError: false,
+        isVisible: false,
+        message: "",
+      },
     }),
 
     pagination: (currentState: UiStructure, action: PayloadAction<number>) => ({
