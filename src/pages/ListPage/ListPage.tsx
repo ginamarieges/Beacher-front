@@ -16,7 +16,7 @@ const ListPage = (): React.ReactElement => {
 
   useEffect(() => {
     (async () => {
-      const beachesList = await getBeaches(page);
+      const beachesList = await getBeaches();
 
       if (beachesList) {
         dispatch(loadBeachesActionCreator(beachesList));
@@ -31,7 +31,7 @@ const ListPage = (): React.ReactElement => {
         parent.insertBefore(preconnectElement, firstChild);
       }
     })();
-  }, [dispatch, getBeaches, page]);
+  }, [dispatch, getBeaches]);
 
   const nextPage = () => {
     dispatch(paginationActionCreator(page + 1));

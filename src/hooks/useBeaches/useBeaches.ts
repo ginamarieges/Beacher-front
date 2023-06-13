@@ -17,39 +17,38 @@ const useBeaches = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const { token } = useAppSelector((state) => state.userStore);
   const { region } = useAppSelector((state) => state.beachesStore);
+  const page = useAppSelector((state) => state.uiStore.page);
+
   const dispatch = useAppDispatch();
 
-  const getBeaches = useCallback(
-    async (
-      page: number
-    ): Promise<Pick<BeachStateStructure, "beaches" | "length"> | undefined> => {
-      try {
-        dispatch(showLoaderActionCreator());
-        const request = {
-          headers: { Authorization: `Bearer ${token}` },
-        };
-        const {
-          data: { beaches, length },
-        } = await axios.get<{
-          beaches: BeachStructure[];
-          length: number;
-        }>(`${apiUrl}/beaches/?page=${page}&region=${region}`, request);
+  const getBeaches = useCallback(async (): Promise<
+    Pick<BeachStateStructure, "beaches" | "length"> | undefined
+  > => {
+    try {
+      dispatch(showLoaderActionCreator());
+      const request = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const {
+        data: { beaches, length },
+      } = await axios.get<{
+        beaches: BeachStructure[];
+        length: number;
+      }>(`${apiUrl}/beaches/?page=${page}&region=${region}`, request);
 
-        dispatch(hideLoaderActionCreator());
+      dispatch(hideLoaderActionCreator());
 
-        return { beaches, length };
-      } catch (error) {
-        dispatch(
-          showFeedbackActionCreator({
-            isError: true,
-            message: responseData.errorList,
-            isVisible: true,
-          })
-        );
-      }
-    },
-    [apiUrl, dispatch, region, token]
-  );
+      return { beaches, length };
+    } catch (error) {
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          message: responseData.errorList,
+          isVisible: true,
+        })
+      );
+    }
+  }, [apiUrl, dispatch, page, region, token]);
 
   const deleteBeach = async (id: string): Promise<void> => {
     try {

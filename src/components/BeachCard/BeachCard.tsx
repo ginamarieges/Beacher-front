@@ -28,7 +28,7 @@ const BeachCard = ({
       dispatch(deleteBeachActionCreator(id));
     }
 
-    const beachesData = await getBeaches(1);
+    const beachesData = await getBeaches();
     if (beachesData) {
       dispatch(loadBeachesActionCreator(beachesData));
     }
