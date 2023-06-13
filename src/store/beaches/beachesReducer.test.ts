@@ -18,6 +18,7 @@ describe("Given a loadBeaches reducer", () => {
       const beachList = getBeachesMock(2);
       const currentBeachesState: BeachStateStructure = {
         beaches: [],
+        length: 0,
         beach: {
           image: "",
           name: "",
@@ -39,6 +40,7 @@ describe("Given a loadBeaches reducer", () => {
       };
       const expectedNewState: BeachStateStructure = {
         beaches: beachList,
+        length: 0,
         beach: {
           image: "",
           name: "",
@@ -74,6 +76,7 @@ describe("Given a deleteBeach reducer", () => {
       const beachList = getBeachesMock(2);
       const currentBeachesState: BeachStateStructure = {
         beaches: beachList,
+        length: 0,
         beach: {
           image: "",
           name: "",
@@ -95,6 +98,7 @@ describe("Given a deleteBeach reducer", () => {
       };
       const expectedNewState: BeachStateStructure = {
         beaches: [beachList[1]],
+        length: 0,
         beach: {
           image: "",
           name: "",
@@ -129,6 +133,7 @@ describe("Given a addBeach reducer", () => {
       const beachList = getBeachesMock(3);
       const beachToAdd = getBeachMock({ name: "Cala Pedrosa" });
       const currentBeachesState: BeachStateStructure = {
+        length: 3,
         beaches: beachList,
         beach: {
           image: "",
@@ -151,6 +156,7 @@ describe("Given a addBeach reducer", () => {
       };
       const expectedNewState: BeachStateStructure = {
         beaches: [...beachList, beachToAdd],
+        length: 3,
         beach: {
           image: "",
           name: "",
@@ -185,6 +191,7 @@ describe("Given a loadFilterBeaches reducer", () => {
       const region = "Maresme";
       const beachList = getBeachesMock(2);
       const currentBeachesState: BeachStateStructure = {
+        length: 2,
         beaches: beachList,
         beach: {
           image: "",
@@ -206,6 +213,7 @@ describe("Given a loadFilterBeaches reducer", () => {
         },
       };
       const expectedNewState: BeachStateStructure = {
+        length: 2,
         beaches: beachList,
         beach: {
           image: "",
@@ -244,6 +252,7 @@ describe("Given loadBeachById reducer", () => {
       beachList.push(beachToFind);
 
       const currentBeachesState: BeachStateStructure = {
+        length: 3,
         beaches: beachList,
         beach: {
           image: "",

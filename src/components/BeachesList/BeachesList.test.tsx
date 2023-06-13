@@ -15,6 +15,7 @@ describe("Given a BeachList component", () => {
       beaches.push(pedrosaBeach);
 
       const beachMock = {
+        length: 6,
         beaches: beaches,
         beach: {
           image: "",

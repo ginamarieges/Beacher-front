@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { BeachStateStructure, BeachStructure } from "./types";
 
 const initialState: BeachStateStructure = {
+  length: 0,
   beaches: [],
   region: "",
   beach: {
