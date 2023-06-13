@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-  BeachDataStructure,
+  BeachAddStructure,
   BeachStateStructure,
   BeachStructure,
 } from "../../store/beaches/types";
@@ -81,7 +81,7 @@ const useBeaches = () => {
   };
 
   const addBeach = async (
-    beachData: BeachDataStructure
+    beachData: BeachAddStructure
   ): Promise<BeachStructure | undefined> => {
     try {
       dispatch(showLoaderActionCreator());

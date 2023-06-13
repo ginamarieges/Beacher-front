@@ -23,10 +23,8 @@ const BeachCard = ({
   const dispatch = useAppDispatch();
 
   const handleOnClick = async () => {
-    if (id) {
-      await deleteBeach(id);
-      dispatch(deleteBeachActionCreator(id));
-    }
+    await deleteBeach(id);
+    dispatch(deleteBeachActionCreator(id));
 
     const beachesData = await getBeaches();
     if (beachesData) {
@@ -47,16 +45,16 @@ const BeachCard = ({
         />
         <h2 className="card__name">{name}</h2>
         <span className="card__town">{town}</span>
-        {user === userId && (
-          <Button
-            accessibility="close-button"
-            className="card__button"
-            actionOnClick={handleOnClick}
-          >
-            <img src="/img/delete.svg" alt="delete" width={24} height={24} />
-          </Button>
-        )}
       </Link>
+      {user === userId && (
+        <Button
+          accessibility="close-button"
+          className="card__button"
+          actionOnClick={handleOnClick}
+        >
+          <img src="/img/delete.svg" alt="delete" width={24} height={24} />
+        </Button>
+      )}
     </BeachCardStyled>
   );
 };

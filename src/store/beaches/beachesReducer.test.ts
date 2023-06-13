@@ -36,6 +36,7 @@ describe("Given a loadBeaches reducer", () => {
             showers: false,
             umbrellas: false,
           },
+          user: "",
         },
       };
       const expectedNewState: BeachStateStructure = {
@@ -58,6 +59,7 @@ describe("Given a loadBeaches reducer", () => {
             showers: false,
             umbrellas: false,
           },
+          user: "",
         },
       };
       const payload = {
@@ -97,6 +99,7 @@ describe("Given a deleteBeach reducer", () => {
             showers: false,
             umbrellas: false,
           },
+          user: "",
         },
       };
       const expectedNewState: BeachStateStructure = {
@@ -119,10 +122,11 @@ describe("Given a deleteBeach reducer", () => {
             showers: false,
             umbrellas: false,
           },
+          user: "",
         },
       };
 
-      const action = deleteBeachActionCreator(beachList[0].id as string);
+      const action = deleteBeachActionCreator(beachList[0].id);
       const newState = beachesReducer(currentBeachesState, action);
 
       expect(newState).toStrictEqual(expectedNewState);
@@ -155,6 +159,7 @@ describe("Given a addBeach reducer", () => {
             showers: false,
             umbrellas: false,
           },
+          user: "",
         },
       };
       const expectedNewState: BeachStateStructure = {
@@ -177,6 +182,7 @@ describe("Given a addBeach reducer", () => {
             showers: false,
             umbrellas: false,
           },
+          user: "",
         },
       };
 
@@ -213,6 +219,7 @@ describe("Given a loadFilterBeaches reducer", () => {
             showers: false,
             umbrellas: false,
           },
+          user: "",
         },
       };
       const expectedNewState: BeachStateStructure = {
@@ -235,6 +242,7 @@ describe("Given a loadFilterBeaches reducer", () => {
             showers: false,
             umbrellas: false,
           },
+          user: "",
         },
         region,
       };
@@ -274,6 +282,7 @@ describe("Given loadBeachById reducer", () => {
             showers: false,
             umbrellas: false,
           },
+          user: "",
         },
       };
 

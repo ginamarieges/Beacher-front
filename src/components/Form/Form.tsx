@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
 import FormStyled from "./FormStyled";
-import { BeachDataStructure, BeachStructure } from "../../store/beaches/types";
+import { BeachAddStructure } from "../../store/beaches/types";
 
 interface FormProps {
-  onSubmit: (beachData: BeachStructure) => void;
+  onSubmit: (beachData: BeachAddStructure) => void;
 }
 
 const Form = ({ onSubmit }: FormProps): React.ReactElement => {
-  const initialBeachData: BeachDataStructure = {
+  const initialBeachData: BeachAddStructure = {
     image: "",
     name: "",
     region: "",

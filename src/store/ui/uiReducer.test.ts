@@ -117,11 +117,11 @@ describe("Given a hideFeedback reducer", () => {
         page: 1,
       };
       const expectedNewState: UiStructure = {
-        isLoading: false,
+        isLoading: true,
         modal: {
-          isError: true,
-          message: "Wrong",
-          isVisible: true,
+          isError: false,
+          message: "",
+          isVisible: false,
         },
         page: 1,
       };
