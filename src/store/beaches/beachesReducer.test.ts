@@ -18,9 +18,45 @@ describe("Given a loadBeaches reducer", () => {
       const beachList = getBeachesMock(2);
       const currentBeachesState: BeachStateStructure = {
         beaches: [],
+        beach: {
+          image: "",
+          name: "",
+          region: "",
+          town: "",
+          id: "",
+          description: "",
+          addServices: "",
+          services: {
+            baywatch: false,
+            dogsAllowed: false,
+            familyBeach: false,
+            restaurant: false,
+            secretBeach: false,
+            showers: false,
+            umbrellas: false,
+          },
+        },
       };
       const expectedNewState: BeachStateStructure = {
         beaches: beachList,
+        beach: {
+          image: "",
+          name: "",
+          region: "",
+          town: "",
+          id: "",
+          description: "",
+          addServices: "",
+          services: {
+            baywatch: false,
+            dogsAllowed: false,
+            familyBeach: false,
+            restaurant: false,
+            secretBeach: false,
+            showers: false,
+            umbrellas: false,
+          },
+        },
       };
 
       const action = loadBeachesActionCreator(beachList);
@@ -38,9 +74,45 @@ describe("Given a deleteBeach reducer", () => {
       const beachList = getBeachesMock(2);
       const currentBeachesState: BeachStateStructure = {
         beaches: beachList,
+        beach: {
+          image: "",
+          name: "",
+          region: "",
+          town: "",
+          id: "",
+          description: "",
+          addServices: "",
+          services: {
+            baywatch: false,
+            dogsAllowed: false,
+            familyBeach: false,
+            restaurant: false,
+            secretBeach: false,
+            showers: false,
+            umbrellas: false,
+          },
+        },
       };
       const expectedNewState: BeachStateStructure = {
         beaches: [beachList[1]],
+        beach: {
+          image: "",
+          name: "",
+          region: "",
+          town: "",
+          id: "",
+          description: "",
+          addServices: "",
+          services: {
+            baywatch: false,
+            dogsAllowed: false,
+            familyBeach: false,
+            restaurant: false,
+            secretBeach: false,
+            showers: false,
+            umbrellas: false,
+          },
+        },
       };
 
       const action = deleteBeachActionCreator(beachList[0].id as string);
@@ -58,9 +130,45 @@ describe("Given a addBeach reducer", () => {
       const beachToAdd = getBeachMock({ name: "Cala Pedrosa" });
       const currentBeachesState: BeachStateStructure = {
         beaches: beachList,
+        beach: {
+          image: "",
+          name: "",
+          region: "",
+          town: "",
+          id: "",
+          description: "",
+          addServices: "",
+          services: {
+            baywatch: false,
+            dogsAllowed: false,
+            familyBeach: false,
+            restaurant: false,
+            secretBeach: false,
+            showers: false,
+            umbrellas: false,
+          },
+        },
       };
       const expectedNewState: BeachStateStructure = {
         beaches: [...beachList, beachToAdd],
+        beach: {
+          image: "",
+          name: "",
+          region: "",
+          town: "",
+          id: "",
+          description: "",
+          addServices: "",
+          services: {
+            baywatch: false,
+            dogsAllowed: false,
+            familyBeach: false,
+            restaurant: false,
+            secretBeach: false,
+            showers: false,
+            umbrellas: false,
+          },
+        },
       };
 
       const action = addBeachActionCreator(beachToAdd);
@@ -78,9 +186,45 @@ describe("Given a loadFilterBeaches reducer", () => {
       const beachList = getBeachesMock(2);
       const currentBeachesState: BeachStateStructure = {
         beaches: beachList,
+        beach: {
+          image: "",
+          name: "",
+          region: "",
+          town: "",
+          id: "",
+          description: "",
+          addServices: "",
+          services: {
+            baywatch: false,
+            dogsAllowed: false,
+            familyBeach: false,
+            restaurant: false,
+            secretBeach: false,
+            showers: false,
+            umbrellas: false,
+          },
+        },
       };
       const expectedNewState: BeachStateStructure = {
         beaches: beachList,
+        beach: {
+          image: "",
+          name: "",
+          region: "",
+          town: "",
+          id: "",
+          description: "",
+          addServices: "",
+          services: {
+            baywatch: false,
+            dogsAllowed: false,
+            familyBeach: false,
+            restaurant: false,
+            secretBeach: false,
+            showers: false,
+            umbrellas: false,
+          },
+        },
         region,
       };
 
@@ -101,9 +245,29 @@ describe("Given loadBeachById reducer", () => {
 
       const currentBeachesState: BeachStateStructure = {
         beaches: beachList,
+        beach: {
+          image: "",
+          name: "",
+          region: "",
+          town: "",
+          id: "",
+          description: "",
+          addServices: "",
+          services: {
+            baywatch: false,
+            dogsAllowed: false,
+            familyBeach: false,
+            restaurant: false,
+            secretBeach: false,
+            showers: false,
+            umbrellas: false,
+          },
+        },
       };
+
       const expectedNewState: BeachStateStructure = {
-        beaches: [beachToFind],
+        ...currentBeachesState,
+        beach: beachToFind,
       };
 
       const action = loadBeachByIdActionCreator(beachToFind);

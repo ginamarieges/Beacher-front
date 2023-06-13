@@ -16,6 +16,24 @@ describe("Given a BeachList component", () => {
 
       const beachMock = {
         beaches: beaches,
+        beach: {
+          image: "",
+          name: "",
+          region: "",
+          town: "",
+          id: "",
+          description: "",
+          addServices: "",
+          services: {
+            baywatch: false,
+            dogsAllowed: false,
+            familyBeach: false,
+            restaurant: false,
+            secretBeach: false,
+            showers: false,
+            umbrellas: false,
+          },
+        },
       };
 
       const expectedHeading = "Cala Pedrosa";
