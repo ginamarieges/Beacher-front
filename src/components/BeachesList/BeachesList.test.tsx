@@ -15,7 +15,26 @@ describe("Given a BeachList component", () => {
       beaches.push(pedrosaBeach);
 
       const beachMock = {
+        length: 6,
         beaches: beaches,
+        beach: {
+          image: "",
+          name: "",
+          region: "",
+          town: "",
+          id: "",
+          description: "",
+          addServices: "",
+          services: {
+            baywatch: false,
+            dogsAllowed: false,
+            familyBeach: false,
+            restaurant: false,
+            secretBeach: false,
+            showers: false,
+            umbrellas: false,
+          },
+        },
       };
 
       const expectedHeading = "Cala Pedrosa";

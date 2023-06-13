@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
   BeachDataStructure,
-  BeachGetStateStructure,
+  BeachStateStructure,
   BeachStructure,
 } from "../../store/beaches/types";
 import { useAppDispatch, useAppSelector } from "../../store";
@@ -20,7 +20,9 @@ const useBeaches = () => {
   const dispatch = useAppDispatch();
 
   const getBeaches = useCallback(
-    async (page: number): Promise<BeachGetStateStructure | undefined> => {
+    async (
+      page: number
+    ): Promise<Pick<BeachStateStructure, "beaches" | "length"> | undefined> => {
       try {
         dispatch(showLoaderActionCreator());
         const request = {
@@ -32,15 +34,19 @@ const useBeaches = () => {
           beaches: BeachStructure[];
           length: number;
         }>(`${apiUrl}/beaches/?page=${page}&region=${region}`, request);
+
         dispatch(hideLoaderActionCreator());
 
+        if (!beaches) {
+          throw new Error(responseData.errorList);
+        }
+
         return { beaches, length };
-      } catch {
-        const error = new Error(responseData.errorList);
+      } catch (error) {
         dispatch(
           showFeedbackActionCreator({
             isError: true,
-            message: error.message,
+            message: responseData.errorList,
             isVisible: true,
           })
         );
