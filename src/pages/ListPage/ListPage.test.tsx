@@ -1,6 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { renderWithProviders } from "../../utils/testUtils";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import ListPage from "./ListPage";
 import { loginUser } from "../../mocks/userMocks";
 import { server } from "../../mocks/server";
@@ -27,7 +27,7 @@ describe("Given a LisPage page", () => {
       server.resetHandlers(...buttonsHandlers);
       const nextButtonLabel = /next-button/i;
 
-      renderWithProviders(<ListPage />);
+      renderWithProviders(wrapWithRouter(<ListPage />));
 
       const nextButton = screen.getByLabelText(nextButtonLabel);
 
@@ -44,7 +44,7 @@ describe("Given a LisPage page", () => {
       server.resetHandlers(...buttonsHandlers);
       const previousButtonLabel = /previous-button/i;
 
-      renderWithProviders(<ListPage />);
+      renderWithProviders(wrapWithRouter(<ListPage />));
 
       const previousButton = screen.getByLabelText(previousButtonLabel);
 
