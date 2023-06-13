@@ -9,7 +9,29 @@ describe("Given a Pagination component", () => {
   const nextButtonLabel = /next-button/i;
   const nextPage = vi.fn();
   const previousPage = vi.fn();
-  const totalBeaches = 25;
+  const beachStore = {
+    length: 25,
+    beaches: [],
+    region: "",
+    beach: {
+      image: "",
+      name: "",
+      region: "",
+      town: "",
+      id: "",
+      description: "",
+      addServices: "",
+      services: {
+        baywatch: false,
+        dogsAllowed: false,
+        familyBeach: false,
+        restaurant: false,
+        secretBeach: false,
+        showers: false,
+        umbrellas: false,
+      },
+    },
+  };
 
   describe("When it is rendered in th first page", () => {
     test("Then the previous button should be hidden and the next button should be visible", () => {
@@ -19,9 +41,9 @@ describe("Given a Pagination component", () => {
             page={1}
             nextPage={nextPage}
             previousPage={previousPage}
-            totalBeaches={totalBeaches}
           />
-        )
+        ),
+        { beachesStore: beachStore }
       );
 
       const previousButton = screen.getByLabelText(previousButtonLabel);
@@ -40,9 +62,9 @@ describe("Given a Pagination component", () => {
             page={1}
             nextPage={nextPage}
             previousPage={previousPage}
-            totalBeaches={totalBeaches}
           />
-        )
+        ),
+        { beachesStore: beachStore }
       );
 
       const nextButton = screen.getByLabelText(nextButtonLabel);
@@ -61,9 +83,9 @@ describe("Given a Pagination component", () => {
             page={2}
             nextPage={nextPage}
             previousPage={previousPage}
-            totalBeaches={totalBeaches}
           />
-        )
+        ),
+        { beachesStore: beachStore }
       );
 
       const previousButton = screen.getByLabelText(previousButtonLabel);
