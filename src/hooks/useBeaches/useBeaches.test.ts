@@ -6,7 +6,7 @@ import {
   mockedBeachToAdd,
 } from "../../mocks/beachesMocks";
 import { wrapper } from "../../utils/testUtils";
-import { BeachStateStructure, BeachStructure } from "../../store/beaches/types";
+import { BeachStructure } from "../../store/beaches/types";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
 import { vi } from "vitest";
@@ -26,9 +26,7 @@ describe("Given a useBeaches function", () => {
 
       const beaches = await getBeaches(1);
 
-      expect((beaches as BeachStateStructure).beaches).toStrictEqual(
-        expectedBeaches
-      );
+      expect(beaches?.beaches).toStrictEqual(expectedBeaches);
     });
   });
 
