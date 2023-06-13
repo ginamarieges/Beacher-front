@@ -36,6 +36,7 @@ const DetailsPageStyled = styled.section`
 
   .beach {
     &__container {
+      max-width: 280px;
       border: 0.5px solid #000000;
       display: flex;
       flex-direction: column;
