@@ -37,10 +37,6 @@ const useBeaches = () => {
 
         dispatch(hideLoaderActionCreator());
 
-        if (!beaches) {
-          throw new Error(responseData.errorList);
-        }
-
         return { beaches, length };
       } catch (error) {
         dispatch(

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ListPageStyled from "./ListPageStyled";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { loadBeachesActionCreator } from "../../store/beaches/beachesSlice";
@@ -6,12 +6,13 @@ import BeachesList from "../../components/BeachesList/BeachesList";
 import useBeaches from "../../hooks/useBeaches/useBeaches";
 import Pagination from "../../components/Pagination/Pagination";
 import Filter from "../../components/Filter/Filter";
+import { paginationActionCreator } from "../../store/ui/uiSlice";
 
 const ListPage = (): React.ReactElement => {
   const { getBeaches } = useBeaches();
   const dispatch = useAppDispatch();
   const { name } = useAppSelector((state) => state.userStore);
-  const [page, setPage] = useState(1);
+  const { page } = useAppSelector((state) => state.uiStore);
 
   useEffect(() => {
     (async () => {
@@ -33,11 +34,11 @@ const ListPage = (): React.ReactElement => {
   }, [dispatch, getBeaches, page]);
 
   const nextPage = () => {
-    setPage(page + 1);
+    dispatch(paginationActionCreator(page + 1));
   };
 
   const previousPage = () => {
-    setPage(page - 1);
+    dispatch(paginationActionCreator(page - 1));
   };
 
   return (
@@ -45,7 +46,7 @@ const ListPage = (): React.ReactElement => {
       <span className="home-title">
         Welcome {name}! Find your perfect beach for today
       </span>
-      <Filter setPage={setPage} />
+      <Filter />
       <BeachesList />
       <Pagination page={page} nextPage={nextPage} previousPage={previousPage} />
     </ListPageStyled>
