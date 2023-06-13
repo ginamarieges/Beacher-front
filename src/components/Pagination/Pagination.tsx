@@ -1,8 +1,8 @@
+import { useAppSelector } from "../../store";
 import Button from "../Button/Button";
 import PaginationStyled from "./PaginationStyled";
 
 interface PaginationProps {
-  totalBeaches: number;
   nextPage: () => void;
   previousPage: () => void;
   page: number;
@@ -11,9 +11,10 @@ interface PaginationProps {
 const Pagination = ({
   nextPage,
   previousPage,
-  totalBeaches,
   page,
 }: PaginationProps): React.ReactElement => {
+  const totalBeaches = useAppSelector((state) => state.beachesStore.length);
+
   const actionOnNextButton = () => {
     nextPage();
     window.scrollTo(0, 0);

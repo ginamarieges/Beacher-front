@@ -30,10 +30,11 @@ const beachesSlice = createSlice({
   reducers: {
     loadBeaches: (
       currentState: BeachStateStructure,
-      action: PayloadAction<BeachStructure[]>
+      action: PayloadAction<Pick<BeachStateStructure, "beaches" | "length">>
     ): BeachStateStructure => ({
       ...currentState,
-      beaches: [...action.payload],
+      beaches: action.payload.beaches,
+      length: action.payload.length,
     }),
 
     loadFilterBeaches: (
