@@ -4,6 +4,24 @@ import { BeachStateStructure, BeachStructure } from "./types";
 const initialState: BeachStateStructure = {
   beaches: [],
   region: "",
+  beach: {
+    image: "",
+    name: "",
+    region: "",
+    town: "",
+    id: "",
+    description: "",
+    addServices: "",
+    services: {
+      baywatch: false,
+      dogsAllowed: false,
+      familyBeach: false,
+      restaurant: false,
+      secretBeach: false,
+      showers: false,
+      umbrellas: false,
+    },
+  },
 };
 const beachesSlice = createSlice({
   name: "beaches",
@@ -44,10 +62,11 @@ const beachesSlice = createSlice({
     }),
 
     loadBeachById: (
-      _currentState: BeachStateStructure,
+      currentState: BeachStateStructure,
       action: PayloadAction<BeachStructure>
     ): BeachStateStructure => ({
-      beaches: [action.payload],
+      ...currentState,
+      beach: action.payload,
     }),
   },
 });
