@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useBeaches from "../../hooks/useBeaches/useBeaches";
 import { useAppDispatch } from "../../store";
 import {
@@ -28,32 +29,34 @@ const BeachCard = ({
     }
 
     const beachesData = await getBeaches(1);
-    if (beachesData) {
-      dispatch(loadBeachesActionCreator(beachesData.beaches));
+    if (beachesData?.beaches) {
+      dispatch(loadBeachesActionCreator(beachesData?.beaches));
     }
   };
 
   return (
     <BeachCardStyled className="card">
-      <img
-        className="card__image"
-        loading={isLazy}
-        src={image}
-        alt={name}
-        width={258}
-        height={85}
-      />
-      <h2 className="card__name">{name}</h2>
-      <span className="card__town">{town}</span>
-      {user === userId && (
-        <Button
-          accessibility="close-button"
-          className="card__button"
-          actionOnClick={handleOnClick}
-        >
-          <img src="/img/delete.svg" alt="delete" width={24} height={24} />
-        </Button>
-      )}
+      <Link to={`/beaches/${id}`} aria-label="navigate-to-details-page">
+        <img
+          className="card__image"
+          loading={isLazy}
+          src={image}
+          alt={name}
+          width={258}
+          height={85}
+        />
+        <h2 className="card__name">{name}</h2>
+        <span className="card__town">{town}</span>
+        {user === userId && (
+          <Button
+            accessibility="close-button"
+            className="card__button"
+            actionOnClick={handleOnClick}
+          >
+            <img src="/img/delete.svg" alt="delete" width={24} height={24} />
+          </Button>
+        )}
+      </Link>
     </BeachCardStyled>
   );
 };
