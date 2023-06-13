@@ -1,57 +1,151 @@
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import DetailsPageStyled from "./DetailsPageStyled";
+import useBeaches from "../../hooks/useBeaches/useBeaches";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../store";
+import {
+  deleteBeachActionCreator,
+  loadBeachByIdActionCreator,
+} from "../../store/beaches/beachesSlice";
+import { paths } from "../../routers/paths/paths";
 
 const DetailsPage = (): React.ReactElement => {
+  const { id } = useParams();
+  const { getBeach, deleteBeach } = useBeaches();
+  const dispatch = useAppDispatch();
+  const beach = useAppSelector((state) => state.beachesStore.beach);
+  const navigate = useNavigate();
+  const userId = useAppSelector((state) => state.userStore.id);
+
+  useEffect(() => {
+    (async () => {
+      if (id) {
+        const beach = await getBeach(id);
+        if (beach) {
+          dispatch(loadBeachByIdActionCreator(beach));
+        }
+      }
+    })();
+  }, [dispatch, getBeach, id]);
+
+  const {
+    user,
+    name,
+    image,
+    region,
+    town,
+    addServices,
+    description,
+    services: {
+      baywatch,
+      dogsAllowed,
+      familyBeach,
+      restaurant,
+      secretBeach,
+      showers,
+      umbrellas,
+    },
+  } = beach;
+
+  const handleOnDelete = async () => {
+    if (id) {
+      await deleteBeach(id);
+      dispatch(deleteBeachActionCreator(id));
+    }
+    navigate(paths.home);
+  };
+
   return (
     <DetailsPageStyled className="beach">
       <h1 className="details-title">Details</h1>
       <div className="beach__container">
-        <img
-          src="https://cdn.discordapp.com/attachments/1100447017337094238/1117532232366694481/aiguafreda-06.webp"
-          alt="aiguafreda landscape"
-          width={250}
-          height={200}
-        />
-        <h2 className="beach__name">Aiguafreda</h2>
-        <span className="beach__region">Baix Empordà</span>
-        <span className="town">Begur</span>
+        <img src={image} alt={`${name} landscape`} width={250} height={200} />
+        <h2 className="beach__name">{name}</h2>
+        <span className="beach__region">{region}</span>
+        <span className="town">{town}</span>
         <div className="services-container">
           <h3 className="services-title">Services</h3>
-          <span>
-            <img
-              src="/img/baywatch.svg"
-              alt="baywatch icon"
-              width={15}
-              height={15}
-            />
-            Baywatch
-          </span>
-          <span>
-            <img
-              src="/img/parasol.svg"
-              alt="parasol icon"
-              width={15}
-              height={15}
-            />
-            Umbrellas
-          </span>
-          <span>
-            <img
-              src="/img/cutlery.svg"
-              alt="cutlery icon"
-              width={15}
-              height={15}
-            />
-            Restaurant
-          </span>
+          {baywatch && (
+            <span>
+              <img
+                src="/img/baywatch.svg"
+                alt="baywatch icon"
+                width={15}
+                height={15}
+              />
+              Baywatch
+            </span>
+          )}
+          {umbrellas && (
+            <span>
+              <img
+                src="/img/parasol.svg"
+                alt="parasol icon"
+                width={15}
+                height={15}
+              />
+              Umbrellas
+            </span>
+          )}
+          {restaurant && (
+            <span>
+              <img
+                src="/img/cutlery.svg"
+                alt="cutlery icon"
+                width={15}
+                height={15}
+              />
+              Restaurant
+            </span>
+          )}
+          {dogsAllowed && (
+            <span>
+              <img src="/img/paw.svg" alt="paw icon" width={15} height={15} />
+              Dogs allowed
+            </span>
+          )}
+          {secretBeach && (
+            <span>
+              <img src="/img/spy.svg" alt="spy icon" width={15} height={15} />
+              Secret beach
+            </span>
+          )}
+          {familyBeach && (
+            <span>
+              <img
+                src="/img/family.svg"
+                alt="family icon"
+                width={15}
+                height={15}
+              />
+              Family beach
+            </span>
+          )}
+          {showers && (
+            <span>
+              <img
+                src="/img/shower.svg"
+                alt="shower icon"
+                width={15}
+                height={15}
+              />
+              Showers
+            </span>
+          )}
         </div>
-        <p className="beach__description">
-          Aiguafreda Beach is a beautiful coastal spot located in the town of
-          Begur, in the region of Costa Brava. It offers a picturesque setting
-          with clear turquoise waters and rocky cliffs.
-        </p>
-        <Button className="light-button" text="modify" />
-        <Button className="light-button" text="delete" />
+        <p className="beach__description">{description}</p>
+        {addServices && <p>{addServices}</p>}
+        {userId === user && (
+          <>
+            <Button className="light-button" text="modify" />
+            <Button
+              className="light-button"
+              text="delete"
+              actionOnClick={handleOnDelete}
+            />
+          </>
+        )}
       </div>
     </DetailsPageStyled>
   );

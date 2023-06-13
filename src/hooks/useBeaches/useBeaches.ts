@@ -115,33 +115,36 @@ const useBeaches = () => {
     }
   };
 
-  const getBeach = async (id: string): Promise<BeachStructure | undefined> => {
-    try {
-      dispatch(showLoaderActionCreator());
-      const request = {
-        headers: { Authorization: `Bearer ${token}` },
-      };
-      const {
-        data: { beach },
-      } = await axios.get<{ beach: BeachStructure }>(
-        `${apiUrl}/beaches/${id}`,
-        request
-      );
+  const getBeach = useCallback(
+    async (id: string): Promise<BeachStructure | undefined> => {
+      try {
+        dispatch(showLoaderActionCreator());
+        const request = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
+        const {
+          data: { beach },
+        } = await axios.get<{ beach: BeachStructure }>(
+          `${apiUrl}/beaches/${id}`,
+          request
+        );
 
-      dispatch(hideLoaderActionCreator());
+        dispatch(hideLoaderActionCreator());
 
-      return beach;
-    } catch (error) {
-      dispatch(hideLoaderActionCreator());
-      dispatch(
-        showFeedbackActionCreator({
-          isError: true,
-          isVisible: true,
-          message: responseData.beachNotFound,
-        })
-      );
-    }
-  };
+        return beach;
+      } catch (error) {
+        dispatch(hideLoaderActionCreator());
+        dispatch(
+          showFeedbackActionCreator({
+            isError: true,
+            isVisible: true,
+            message: responseData.beachNotFound,
+          })
+        );
+      }
+    },
+    [apiUrl, dispatch, token]
+  );
 
   return { getBeaches, deleteBeach, addBeach, getBeach };
 };
