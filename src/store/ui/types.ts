@@ -1,6 +1,7 @@
 export interface UiStructure {
   isLoading: boolean;
   modal: UiFeedback;
+  page: number;
 }
 
 export interface UiFeedback {

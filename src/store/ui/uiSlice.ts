@@ -4,6 +4,7 @@ import { UiFeedback, UiStructure } from "./types";
 const initialState: UiStructure = {
   isLoading: false,
   modal: { isVisible: false, isError: false, message: "" },
+  page: 1,
 };
 
 const uiSlice = createSlice({
@@ -28,8 +29,14 @@ const uiSlice = createSlice({
       modal: action.payload,
     }),
 
-    hideFeedback: () => ({
-      ...initialState,
+    hideFeedback: (currentState: UiStructure) => ({
+      ...currentState,
+      isLoading: false,
+    }),
+
+    pagination: (currentState: UiStructure, action: PayloadAction<number>) => ({
+      ...currentState,
+      page: action.payload,
     }),
   },
 });
@@ -39,5 +46,6 @@ export const {
   hideLoader: hideLoaderActionCreator,
   showFeedback: showFeedbackActionCreator,
   hideFeedback: hideFeedbackActionCreator,
+  pagination: paginationActionCreator,
 } = uiSlice.actions;
 export const uiReducer = uiSlice.reducer;

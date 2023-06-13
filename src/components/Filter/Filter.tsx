@@ -1,17 +1,14 @@
 import { useAppDispatch } from "../../store";
 import { filterActionCreator } from "../../store/beaches/beachesSlice";
+import { paginationActionCreator } from "../../store/ui/uiSlice";
 import FilterStyled from "./FilterStyled";
 
-interface FilterProps {
-  setPage: (page: number) => void;
-}
-
-const Filter = ({ setPage }: FilterProps): React.ReactElement => {
+const Filter = (): React.ReactElement => {
   const dispatch = useAppDispatch();
 
   const onChangeData = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const region = event.target.value;
-    setPage(1);
+    dispatch(paginationActionCreator(1));
     dispatch(filterActionCreator(region));
   };
 
