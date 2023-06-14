@@ -1,11 +1,10 @@
 # BEACHER
 
-This repository contains a Single Page Application built with React and Redux, wich allows users to search and share there favorite beaches and there details. It's a CRUD application.
+This repository contains a Single Page Application built with React and Redux, wich allows users to search and share there favorite beaches and there details.
 
 - Search for beaches by location.
 - View detailed information about each beach.
 - Add new beaches to the database
-- Update existing beach information
 - Delete beaches from the database
 
 ## Tecnologies used

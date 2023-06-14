@@ -1,0 +1,348 @@
+[
+  {
+    "name": "Platja del Trabucador",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1118560765830512670/trabucador.webp",
+    "region": "Montsià",
+    "town": "Sant Carles de la Ràpita",
+    "description": "Trabucador Beach is a stunning sandy beach located in Sant Carles de la Ràpita. It is known for its long stretch of shoreline and crystal-clear waters. The beach is backed by dunes and offers a peaceful and natural environment for visitors.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": true,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "",
+    "user": "6470de574da09294395a6eaa"
+  },
+  {
+    "name": "Platja de la Barceloneta",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1118558242751127654/barceloneta_1.webp",
+    "region": "Barcelonès",
+    "town": "Barcelona",
+    "description": "A popular urban beach in Barcelona with a vibrant atmosphere.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": false,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "Beach volleyball courts available.",
+    "user": "6470de574da09294395a6eaa"
+  },
+  {
+    "name": "Platja de Tossa",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1118559221689094184/tossa_1.webp",
+    "region": "Baix Empordà",
+    "town": "Tossa de Mar",
+    "description": "A picturesque beach in Tossa de Mar with crystal-clear waters.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": true,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "Boat rental services available.",
+    "user": "646f981a0056a93b408c5050"
+  },
+  {
+    "name": "Platja de la Nova Icaria",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1118558701947715655/nova_icaria_platja_1.webp",
+    "region": "Barcelonès",
+    "town": "Barcelona",
+    "description": "A peaceful beach in Barcelona, perfect for relaxation.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": false,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "Beachside bars available.",
+    "user": "6470de574da09294395a6eaa"
+  },
+  {
+    "name": "Platja de Tovacor",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1118560954393829398/tovacor_1.webp",
+    "region": "Tarragonès",
+    "town": "Tarragona",
+    "description": "Platja de Tovacor is a charming beach located in the coastal town of Tarragona. With its golden sand and calm waters, it provides a tranquil setting for beachgoers to relax and enjoy the Mediterranean sunshine.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": false,
+      "dogsAllowed": true,
+      "showers": false,
+      "restaurant": false,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "",
+    "user": "6470de574da09294395a6eaa"
+  },
+  {
+    "name": "Platja d'Aro",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1118558898044022985/platje-aro_1.webp",
+    "region": "Baix Empordà",
+    "town": "Platja d'Aro",
+    "description": "A lively beach with a wide range of water sports activities.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": true,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "Jet ski rental services available.",
+    "user": "646f981a0056a93b408c5050"
+  },
+  {
+    "name": "Platja del Bogatell",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1115611361901281350/bogatell_platja.webp",
+    "region": "Barcelonès",
+    "town": "Barcelona",
+    "description": "A spacious and clean beach in Barcelona, ideal for long walks.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": false,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "Beachside bike rental available.",
+    "user": "6470de574da09294395a6eaa"
+  },
+  {
+    "name": "Aiguafreda",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1118562800793550878/aiguafreda-05-2.webp",
+    "region": "Baix Empordà",
+    "town": "Begur",
+    "description": "Aiguafreda Beach is a beautiful coastal spot located in the town of Begur, in the region of Costa Brava. It offers a picturesque setting with clear turquoise waters and rocky cliffs.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": false,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "",
+    "user": "6470de574da09294395a6eaa"
+  },
+
+  {
+    "name": "Platja de la Mar Bella",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1115903599826972753/mar-bella.webp",
+    "region": "Barcelonès",
+    "town": "Barcelona",
+    "description": "A popular beach in Barcelona known for its vibrant beach clubs.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": false,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "",
+    "user": "646f981a0056a93b408c5050"
+  },
+  {
+    "name": "Cala Sa Boadella",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1117533089996996628/sa-boadella_02.webp",
+    "region": "Baix Empordà",
+    "town": "Lloret de Mar",
+    "description": "Cala Sa Boadella is a pristine beach nestled in the coastal town of Lloret de Mar. Surrounded by lush greenery and rocky cliffs, it offers a tranquil and secluded atmosphere for beach lovers.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": true,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "",
+    "user": "646f981a0056a93b408c5050"
+  },
+  {
+    "name": "Platja de Lloret",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1115902330546688022/lloret.webp",
+    "region": "Baix Empordà",
+    "town": "Lloret de Mar",
+    "description": "One of the most popular beaches in Costa Brava, known for its lively atmosphere and nightlife.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": true,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "Water sports rental available.",
+    "user": "646f981a0056a93b408c5050"
+  },
+
+  {
+    "name": "Platja de Castelldefels",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1115902330768998440/platja_de_castelldefels.webp",
+    "region": "Barcelonès",
+    "town": "Castelldefels",
+    "description": "A long sandy beach with beautiful dunes, ideal for beach sports and kiteboarding.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": true,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "Beachside cafes available.",
+    "user": "646f981a0056a93b408c5050"
+  },
+  {
+    "name": "Platja de Sant Sebastià",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1115902331016445972/sansebastia.webp",
+    "region": "Garraf",
+    "town": "Sitges",
+    "description": "A picturesque beach with a charming promenade and views of the Sitges old town.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": true,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "",
+    "user": "6470de574da09294395a6eaa"
+  },
+
+  {
+    "name": "Marjal Beach",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1118561205930430524/el-marjal_1.webp",
+    "region": "Tarragonès",
+    "town": "Torredembarra",
+    "description": "Marjal Beach is a pristine sandy beach located in the town of Torredembarra. It is known for its natural dunes and calm waters, providing a peaceful atmosphere for visitors to enjoy the beach and engage in water activities.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": true,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "",
+    "user": "6470de574da09294395a6eaa"
+  },
+  {
+    "name": "Platja de L'Ametlla de Mar",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1115902329481347215/ametlla.webp",
+    "region": "Baix Ebre",
+    "town": "L'Ametlla de Mar",
+    "description": "A quiet and unspoiled beach in L'Ametlla de Mar, perfect for nature lovers.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": false,
+      "dogsAllowed": true,
+      "showers": false,
+      "restaurant": false,
+      "familyBeach": true,
+      "secretBeach": true
+    },
+    "addServices": "No additional services available.",
+    "user": "646f981a0056a93b408c5050"
+  },
+  {
+    "name": "Platja de la Fragata",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1115902330064355358/fragata.webp",
+    "region": "Garraf",
+    "town": "Sitges",
+    "description": "A lively beach in Sitges, popular for its beach bars and vibrant nightlife.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": true,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "",
+    "user": "646f981a0056a93b408c5050"
+  },
+
+  {
+    "name": "Platja de Garbet",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1115902330295025774/garbet.webp",
+    "region": "Baix Empordà",
+    "town": "Cadaqués",
+    "description": "A remote and hidden beach located near Cadaqués, offering a peaceful and serene environment.",
+    "services": {
+      "baywatch": false,
+      "umbrellas": false,
+      "dogsAllowed": true,
+      "showers": false,
+      "restaurant": false,
+      "familyBeach": false,
+      "secretBeach": true
+    },
+    "addServices": "No additional services available.",
+    "user": "646f981a0056a93b408c5050"
+  },
+  {
+    "name": "Platja de Sant Jordi",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1115902331263914044/santjordi.webp",
+    "region": "Tarragonès",
+    "town": "L'Ampolla",
+    "description": "A sandy beach in L'Ampolla, known for its calm waters and family-friendly atmosphere.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": true,
+      "dogsAllowed": true,
+      "showers": true,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "",
+    "user": "646f981a0056a93b408c5050"
+  },
+  {
+    "name": "Platja del Port",
+    "image": "https://cdn.discordapp.com/attachments/1100447017337094238/1115903600091222176/port.webp",
+    "region": "Alt Empordà",
+    "town": "Llançà",
+    "description": "A small and picturesque beach in the fishing village of Llançà.",
+    "services": {
+      "baywatch": true,
+      "umbrellas": false,
+      "dogsAllowed": true,
+      "showers": false,
+      "restaurant": true,
+      "familyBeach": true,
+      "secretBeach": false
+    },
+    "addServices": "",
+    "user": "6470de574da09294395a6eaa"
+  }
+]
