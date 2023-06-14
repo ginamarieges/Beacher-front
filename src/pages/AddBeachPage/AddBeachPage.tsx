@@ -14,6 +14,8 @@ const AddBeachPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  scrollTo(0, 0);
+
   const onSubmit = async (beachData: BeachAddStructure) => {
     const newBeach = await addBeach(beachData);
     if (newBeach) {

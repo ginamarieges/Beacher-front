@@ -18,6 +18,7 @@ const DetailsPage = (): React.ReactElement => {
   const navigate = useNavigate();
   const userId = useAppSelector((state) => state.userStore.id);
 
+  scrollTo(0, 0);
   useEffect(() => {
     (async () => {
       if (id) {
@@ -65,7 +66,7 @@ const DetailsPage = (): React.ReactElement => {
           src={image}
           alt={`${name} landscape`}
           width={250}
-          height={200}
+          height={150}
         />
         <h2 className="beach__name">{name}</h2>
         <span className="beach__region">{region}</span>
