@@ -1,11 +1,23 @@
-import { screen } from "@testing-library/react";
-import useEvent from "@testing-library/user-event";
-import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
+import { renderHook, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import {
+  renderWithProviders,
+  wrapWithRouter,
+  wrapper,
+} from "../../utils/testUtils";
 import DetailsPage from "./DetailsPage";
+import {
+  RouteObject,
+  RouterProvider,
+  createMemoryRouter,
+} from "react-router-dom";
+import { store } from "../../store";
+import { tokenMock } from "../../mocks/userMocks";
+import useBeaches from "../../hooks/useBeaches/useBeaches";
+import { responseData } from "../../utils/responseData";
 
 describe("Given a DetailsPage page", () => {
   const deleteText = /delete/i;
-  const modifyText = /modify/i;
   const beachStore = {
     beaches: [],
     length: 0,
@@ -43,10 +55,8 @@ describe("Given a DetailsPage page", () => {
       });
 
       const deleteButton = screen.getByRole("button", { name: deleteText });
-      const modifyButton = screen.getByRole("button", { name: modifyText });
 
       expect(deleteButton).toBeInTheDocument();
-      expect(modifyButton).toBeInTheDocument();
     });
 
     test("Then it should show the shower, umbrellas, restaurant, secret beach, family beach, dogs allowed and baywatch icons", () => {
@@ -102,9 +112,65 @@ describe("Given a DetailsPage page", () => {
 
       const deleteButton = screen.getByRole("button", { name: deleteText });
 
-      await useEvent.click(deleteButton);
+      await userEvent.click(deleteButton);
 
       expect(deleteButton).not.toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered with the beach id", () => {
+    test("Then it should show the beach name in a heading", async () => {
+      const route: RouteObject[] = [{ path: `/:id`, element: <DetailsPage /> }];
+
+      const id = store.getState().beachesStore.beach.id;
+
+      const router = createMemoryRouter(route, {
+        initialEntries: ["/", `/beaches/${id}`],
+      });
+
+      renderWithProviders(<RouterProvider router={router} />);
+
+      const beachName = store.getState().beachesStore.beach.name;
+
+      const heading = await screen.getByRole("heading", { name: beachName });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered with the beach id and the user clicks the delete button", () => {
+    test("Then the heading should not be in the document", async () => {
+      const route: RouteObject[] = [{ path: `/:id`, element: <DetailsPage /> }];
+
+      const buttonText = /delete/i;
+      const id = store.getState().beachesStore.beach.id;
+      const user = store.getState().beachesStore.beach.user as string;
+
+      const router = createMemoryRouter(route, {
+        initialEntries: ["/", `/${id}`],
+      });
+
+      renderWithProviders(<RouterProvider router={router} />, {
+        userStore: { id: user, isLogged: true, name: "", token: tokenMock },
+      });
+
+      const {
+        result: {
+          current: { deleteBeach },
+        },
+      } = renderHook(() => useBeaches(), { wrapper: wrapper });
+
+      const button = await waitFor(() =>
+        screen.getByRole("button", { name: buttonText })
+      );
+
+      await deleteBeach(id as string);
+
+      await userEvent.click(button);
+
+      const message = store.getState().uiStore.modal.message;
+
+      await expect(message).toBe(responseData.beachDeleted);
     });
   });
 });
