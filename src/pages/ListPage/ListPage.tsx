@@ -21,19 +21,20 @@ const ListPage = (): React.ReactElement => {
       if (beachesList) {
         dispatch(loadBeachesActionCreator(beachesList));
 
-        if (beachesList.beaches.length < 0) {
-          const parent = document.head;
-          const firstChild = document.head.firstChild;
+        const parent = document.head;
+        const firstChild = document.head.firstChild;
 
-          for (let i = 0; i < 5; i++) {
-            const preconnectElement = document.createElement("link");
-            preconnectElement.rel = "preload";
-            preconnectElement.as = "image";
-            preconnectElement.href = beachesList.beaches[i].image;
+        const linksToPreload = beachesList.beaches.slice(0, 5).map((beach) => {
+          const preconnectElement = document.createElement("link");
+          preconnectElement.rel = "preload";
+          preconnectElement.as = "image";
+          preconnectElement.href = beach.image;
+          return preconnectElement;
+        });
 
-            parent.insertBefore(preconnectElement, firstChild);
-          }
-        }
+        linksToPreload.forEach((link) => {
+          parent.insertBefore(link, firstChild);
+        });
       }
     })();
   }, [dispatch, getBeaches]);

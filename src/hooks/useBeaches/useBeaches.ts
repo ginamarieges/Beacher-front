@@ -40,6 +40,7 @@ const useBeaches = () => {
 
       return { beaches, length };
     } catch (error) {
+      dispatch(hideLoaderActionCreator());
       dispatch(
         showFeedbackActionCreator({
           isError: true,

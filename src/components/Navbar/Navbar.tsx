@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
 import { paths } from "../../routers/paths/paths";
-import { useAppDispatch } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 import { logoutUserActionCreator } from "../../store/user/userSlice";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 
@@ -9,6 +9,7 @@ const Navbar = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { removeToken } = useLocalStorage();
   const navigate = useNavigate();
+  const isLogged = useAppSelector((state) => state.userStore.isLogged);
 
   const logout = () => {
     dispatch(logoutUserActionCreator());
@@ -35,7 +36,6 @@ const Navbar = (): React.ReactElement => {
             className="navbar-list__icon"
             aria-label="add-beach"
             title="add beach"
-            onClick={() => window.scrollTo(0, 0)}
           >
             <img
               src="/img/add.svg"
@@ -45,6 +45,7 @@ const Navbar = (): React.ReactElement => {
             />
           </NavLink>
         </li>
+
         <li>
           <button
             onClick={logout}
@@ -53,7 +54,7 @@ const Navbar = (): React.ReactElement => {
             title="logout"
           >
             <img
-              src="/img/logout.svg"
+              src={`/img/${isLogged ? `logout` : `login`}.svg`}
               alt="logout icon"
               width={48}
               height={48}
