@@ -3,12 +3,10 @@ import { renderWithProviders } from "../utils/testUtils";
 import appRouter from "./appRouter";
 import { screen } from "@testing-library/react";
 
-localStorage.removeItem("token");
-
 describe("Given an appRouter", () => {
-  describe("When it is rendered and exists a token in the local storage", () => {
-    test("Then it should show beacher logo", () => {
-      const logoAlternativeText = /welcome/i;
+  describe("When it is rendered and the modal property isVisible is true", () => {
+    test("Then it should show the modal text", () => {
+      const modalText = /welcome/i;
       const uiStore = {
         isLoading: false,
         modal: { isVisible: true, isError: false, message: "Welcome" },
@@ -17,9 +15,9 @@ describe("Given an appRouter", () => {
 
       renderWithProviders(<RouterProvider router={appRouter} />, { uiStore });
 
-      const logo = screen.getByText(logoAlternativeText);
+      const modal = screen.getByText(modalText);
 
-      expect(logo).toBeInTheDocument();
+      expect(modal).toBeInTheDocument();
     });
   });
 });
