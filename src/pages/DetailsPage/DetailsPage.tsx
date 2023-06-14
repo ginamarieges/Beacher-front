@@ -60,85 +60,105 @@ const DetailsPage = (): React.ReactElement => {
     <DetailsPageStyled className="beach">
       <h1 className="details-title">Details</h1>
       <div className="beach__container">
-        <img src={image} alt={`${name} landscape`} width={250} height={200} />
+        <img
+          className="beach__image"
+          src={image}
+          alt={`${name} landscape`}
+          width={250}
+          height={200}
+        />
         <h2 className="beach__name">{name}</h2>
         <span className="beach__region">{region}</span>
         <span className="town">{town}</span>
-        <div className="services-container">
-          <h3 className="services-title">Services</h3>
-          {baywatch && (
-            <span>
-              <img
-                src="/img/baywatch.svg"
-                alt="baywatch icon"
-                width={15}
-                height={15}
-              />
-              Baywatch
-            </span>
-          )}
-          {umbrellas && (
-            <span>
-              <img
-                src="/img/parasol.svg"
-                alt="parasol icon"
-                width={15}
-                height={15}
-              />
-              Umbrellas
-            </span>
-          )}
-          {restaurant && (
-            <span>
-              <img
-                src="/img/cutlery.svg"
-                alt="cutlery icon"
-                width={15}
-                height={15}
-              />
-              Restaurant
-            </span>
-          )}
-          {dogsAllowed && (
-            <span>
-              <img src="/img/paw.svg" alt="paw icon" width={15} height={15} />
-              Dogs allowed
-            </span>
-          )}
-          {secretBeach && (
-            <span>
-              <img src="/img/spy.svg" alt="spy icon" width={15} height={15} />
-              Secret beach
-            </span>
-          )}
-          {familyBeach && (
-            <span>
-              <img
-                src="/img/family.svg"
-                alt="family icon"
-                width={15}
-                height={15}
-              />
-              Family beach
-            </span>
-          )}
-          {showers && (
-            <span>
-              <img
-                src="/img/shower.svg"
-                alt="shower icon"
-                width={15}
-                height={15}
-              />
-              Showers
-            </span>
-          )}
-        </div>
+
+        {(!umbrellas &&
+          !showers &&
+          !baywatch &&
+          !restaurant &&
+          !familyBeach &&
+          !secretBeach &&
+          !dogsAllowed) || (
+          <div className="services-container">
+            <h3 className="services-title">Services</h3>
+            {baywatch && (
+              <span>
+                <img
+                  src="/img/baywatch.svg"
+                  alt="baywatch icon"
+                  width={15}
+                  height={15}
+                />
+                Baywatch
+              </span>
+            )}
+            {umbrellas && (
+              <span>
+                <img
+                  src="/img/parasol.svg"
+                  alt="parasol icon"
+                  width={15}
+                  height={15}
+                />
+                Umbrellas
+              </span>
+            )}
+            {restaurant && (
+              <span>
+                <img
+                  src="/img/cutlery.svg"
+                  alt="cutlery icon"
+                  width={15}
+                  height={15}
+                />
+                Restaurant
+              </span>
+            )}
+            {dogsAllowed && (
+              <span>
+                <img src="/img/paw.svg" alt="paw icon" width={15} height={15} />
+                Dogs allowed
+              </span>
+            )}
+            {secretBeach && (
+              <span>
+                <img src="/img/spy.svg" alt="spy icon" width={15} height={15} />
+                Secret beach
+              </span>
+            )}
+            {familyBeach && (
+              <span>
+                <img
+                  src="/img/family.svg"
+                  alt="family icon"
+                  width={15}
+                  height={15}
+                />
+                Family beach
+              </span>
+            )}
+            {showers && (
+              <span>
+                <img
+                  src="/img/shower.svg"
+                  alt="shower icon"
+                  width={15}
+                  height={15}
+                />
+                Showers
+              </span>
+            )}
+          </div>
+        )}
+
         <p className="beach__description">{description}</p>
-        {addServices && <p>{addServices}</p>}
+        {addServices && (
+          <>
+            <h3>Other services</h3>
+            <p>{addServices}</p>
+          </>
+        )}
         {userId === user && (
           <>
-            <Button className="light-button" text="modify" />
             <Button
               className="light-button"
               text="delete"
