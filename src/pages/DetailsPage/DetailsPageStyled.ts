@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 const DetailsPageStyled = styled.section`
+  span > img {
+    margin-right: 10px;
+  }
+
   .details-title {
     line-height: 40px;
     padding-top: 18px;
@@ -23,20 +27,22 @@ const DetailsPageStyled = styled.section`
 
   .services-container {
     background-color: ${(props) => props.theme.color.secondary};
-    width: 250px;
+    min-width: 250px;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 15px;
     margin: 15px 0;
     font-size: ${(props) => props.theme.fontSizes.smallSize};
   }
+
   .services-title {
     text-transform: uppercase;
+    padding-bottom: 8px;
   }
 
   .beach {
     &__container {
-      max-width: 280px;
+      max-width: 360px;
       border: 0.5px solid #000000;
       display: flex;
       flex-direction: column;
@@ -46,8 +52,11 @@ const DetailsPageStyled = styled.section`
         #bca38a 0%,
         rgba(105, 78, 67, 0) 100%
       );
-
       padding: 15px;
+    }
+
+    &__image {
+      margin: 0 auto;
     }
 
     &__name {
