@@ -1,17 +1,23 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../utils/testUtils";
 import Form from "./Form";
 
+beforeEach(() => {
+  vi.clearAllMocks();
+});
+
 describe("Given a Form component", () => {
+  const actionOnClick = vi.fn();
+  const labelName = /name/i;
+  const labelTown = /town/i;
+  const labelImage = /image/i;
+  const labelRegion = /region/i;
+  const textButton = /create/i;
+
   describe("When it is rendered", () => {
     test("Then it should show the name, town and image input", () => {
-      const labelName = /name/i;
-      const labelTown = /town/i;
-      const labelImage = /image/i;
-      const actionOnClick = vi.fn();
-
       renderWithProviders(<Form onSubmit={actionOnClick} />);
 
       const nameInput = screen.getByLabelText(labelName);
@@ -24,9 +30,6 @@ describe("Given a Form component", () => {
     });
 
     test("Then it should show a button with the text 'CREATE'", () => {
-      const textButton = /create/i;
-      const actionOnClick = vi.fn();
-
       renderWithProviders(<Form onSubmit={actionOnClick} />);
       const button = screen.getByRole("button", { name: textButton });
 
@@ -34,9 +37,6 @@ describe("Given a Form component", () => {
     });
 
     test("Then the button should be disabled", () => {
-      const textButton = /create/i;
-      const actionOnClick = vi.fn();
-
       renderWithProviders(<Form onSubmit={actionOnClick} />);
       const button = screen.getByRole("button", { name: textButton });
 
@@ -46,18 +46,10 @@ describe("Given a Form component", () => {
 
   describe("When it is rendered and the name, region and town inputs aren't empty", () => {
     test("Then the button should be enabled", async () => {
-      const textButton = /create/i;
-      const labelName = /name/i;
-      const labelTown = /town/i;
-      const labelImage = /image/i;
-      const labelRegion = /region/i;
-
       const textName = "Gina";
       const textTown = "Sant Pol";
       const textRegion = "Maresme";
       const textImage = "https://ajgbdhsvcnxkl.jpg";
-
-      const actionOnClick = vi.fn();
 
       renderWithProviders(<Form onSubmit={actionOnClick} />);
       const button = screen.getByRole("button", { name: textButton });
@@ -84,8 +76,6 @@ describe("Given a Form component", () => {
       const secretBeachLabel = "Secret beach";
       const familyBeachLabel = "Family beach";
       const dogsAllowedLabel = "Dogs allowed";
-
-      const actionOnClick = vi.fn();
 
       renderWithProviders(<Form onSubmit={actionOnClick} />);
       const showersCheckbox = screen.getByLabelText(showersLabel);
@@ -114,20 +104,13 @@ describe("Given a Form component", () => {
 
   describe("When it is rendered, the name, town, image and region inputs are filled and the user click's the button", () => {
     test("Then the fields should be empty", async () => {
-      const textButton = /create/i;
-      const labelName = /name/i;
-      const labelTown = /town/i;
-      const labelImage = /image/i;
-      const labelRegion = /region/i;
-
       const textName = "Gina";
       const textTown = "Sant Pol";
       const textRegion = "Maresme";
       const textImage = "https://ajgbdhsvcnxkl.jpg";
 
-      const actionOnClick = vi.fn();
-
       renderWithProviders(<Form onSubmit={actionOnClick} />);
+
       const button = screen.getByRole("button", { name: textButton });
       const nameInput = screen.getByLabelText(labelName);
       const townInput = screen.getByLabelText(labelTown);
@@ -141,6 +124,25 @@ describe("Given a Form component", () => {
       await userEvent.click(button);
 
       expect(button).toBeDisabled();
+    });
+  });
+
+  describe("When it is rendered and the user add's an invalid url image", () => {
+    test("Then it should show an the not found image", async () => {
+      const alternativeText = /Landscape beach/i;
+      const textImage = "invalid url";
+
+      renderWithProviders(<Form onSubmit={actionOnClick} />);
+
+      const imageInput = screen.getByLabelText(labelImage);
+      await userEvent.type(imageInput, textImage);
+      const image = screen.getByAltText(alternativeText);
+
+      expect(image).toBeInTheDocument();
+
+      fireEvent.error(image);
+
+      expect(image).toHaveAttribute("src", "/img/no-image.svg");
     });
   });
 });
