@@ -137,6 +137,18 @@ const Form = ({ onSubmit }: FormProps): React.ReactElement => {
         value={beachData.image}
         onChange={onChangeData}
       />
+      {beachData.image && (
+        <img
+          className="form__image-preview"
+          alt="Landscape beach"
+          src={beachData.image}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src = "/img/no-image.svg";
+            currentTarget.alt = "not found image";
+          }}
+        />
+      )}
 
       <span className="form__label">services</span>
       <div className="form__checkbox-controls">
