@@ -19,6 +19,13 @@ const FormStyled = styled.form`
       text-transform: uppercase;
     }
 
+    &__image-preview {
+      margin-top: 10px;
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
     &__checkbox {
       width: 25px;
       height: 25px;
