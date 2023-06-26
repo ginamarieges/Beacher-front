@@ -3,4 +3,5 @@ export interface PathsStructure {
   home: string;
   addBeach: string;
   beaches: string;
+  updateBeach: string;
 }

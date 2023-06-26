@@ -5,4 +5,5 @@ export const paths: PathsStructure = {
   addBeach: "/add-beach",
   home: "/home",
   beaches: "/beaches",
+  updateBeach: "/modify-beach",
 };
