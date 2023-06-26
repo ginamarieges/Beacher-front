@@ -142,7 +142,37 @@ const useBeaches = () => {
     [apiUrl, dispatch, token]
   );
 
-  return { getBeaches, deleteBeach, addBeach, getBeach };
+  const updateBeach = async (
+    beachData: BeachStructure
+  ): Promise<BeachStructure | undefined> => {
+    try {
+      dispatch(showLoaderActionCreator());
+
+      const request = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+      const {
+        data: { newBeach },
+      } = await axios.put<{ newBeach: BeachStructure }>(
+        `${apiUrl}/beaches`,
+        beachData,
+        request
+      );
+      dispatch(hideLoaderActionCreator());
+      return newBeach;
+    } catch {
+      dispatch(hideLoaderActionCreator());
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          isVisible: true,
+          message: responseData.errorBeachUpdate,
+        })
+      );
+    }
+  };
+
+  return { getBeaches, deleteBeach, addBeach, getBeach, updateBeach };
 };
 
 export default useBeaches;

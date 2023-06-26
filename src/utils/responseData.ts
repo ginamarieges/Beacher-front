@@ -4,6 +4,7 @@ export const responseData = {
   beachDeleted: "Your beach has been deleted!",
   errorBeachDeleted: "Couldn't delete the beach",
   errorBeachAdded: "Couldn't add your beach",
+  errorBeachUpdate: "Couldn't update your beach",
   addedBeach: "Your beach is added!",
   beachNotFound: "Beach not found",
 };
