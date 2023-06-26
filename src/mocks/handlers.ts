@@ -24,6 +24,10 @@ export const handlers = [
   rest.get(`${apiUrl}/beaches/:id`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ beach: mockedAddBeach }));
   }),
+
+  rest.put(`${apiUrl}/beaches`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ message: "Beach updated" }));
+  }),
 ];
 
 export const errorHandlers = [
@@ -44,6 +48,10 @@ export const errorHandlers = [
   }),
 
   rest.get(`${apiUrl}/beaches/:id`, (_req, res, ctx) => {
+    return res(ctx.status(404));
+  }),
+
+  rest.put(`${apiUrl}/beaches`, (_req, res, ctx) => {
     return res(ctx.status(404));
   }),
 ];

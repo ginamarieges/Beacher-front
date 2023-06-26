@@ -157,4 +157,39 @@ describe("Given a useBeaches function", () => {
       expect(message).toBe(responseData.beachNotFound);
     });
   });
+
+  describe("When the updateBeach function is called with Cala Pedrosa beach data to update", () => {
+    test("Then it should show the message 'Beach updated' in the modal", async () => {
+      const beachData = mockedAddBeach;
+      const {
+        result: {
+          current: { updateBeach },
+        },
+      } = renderHook(() => useBeaches(), { wrapper: wrapper });
+
+      await updateBeach(beachData);
+
+      const message = store.getState().uiStore.modal.message;
+
+      expect(message).toBe(responseData.beachUpdated);
+    });
+  });
+
+  describe("When the updateBeach function is calledwith an invalid beach data", () => {
+    test("Then the error 'Beach not found' should be in the store", async () => {
+      server.resetHandlers(...errorHandlers);
+      const beachData = mockedAddBeach;
+      const {
+        result: {
+          current: { updateBeach },
+        },
+      } = renderHook(() => useBeaches(), { wrapper: wrapper });
+
+      await updateBeach(beachData);
+
+      const message = store.getState().uiStore.modal.message;
+
+      expect(message).toBe(responseData.errorBeachUpdate);
+    });
+  });
 });

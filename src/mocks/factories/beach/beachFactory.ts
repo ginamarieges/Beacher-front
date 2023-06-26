@@ -21,7 +21,7 @@ export const beachFactory = Factory.define<BeachStructure>(() => ({
     showers: faker.datatype.boolean(),
     umbrellas: faker.datatype.boolean(),
   },
-  user: faker.string.alphanumeric(),
+  user: new Types.ObjectId().toString(),
   addServices: faker.word.adjective(),
   id: new Types.ObjectId().toString(),
 }));

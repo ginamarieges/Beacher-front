@@ -142,24 +142,26 @@ const useBeaches = () => {
     [apiUrl, dispatch, token]
   );
 
-  const updateBeach = async (
-    beachData: BeachStructure
-  ): Promise<BeachStructure | undefined> => {
+  const updateBeach = async (beachData: BeachStructure): Promise<void> => {
     try {
       dispatch(showLoaderActionCreator());
 
       const request = {
         headers: { Authorization: `Bearer ${token}` },
       };
-      const {
-        data: { newBeach },
-      } = await axios.put<{ newBeach: BeachStructure }>(
+      await axios.put<{ newBeach: BeachStructure }>(
         `${apiUrl}/beaches`,
         beachData,
         request
       );
       dispatch(hideLoaderActionCreator());
-      return newBeach;
+      dispatch(
+        showFeedbackActionCreator({
+          isError: false,
+          isVisible: true,
+          message: responseData.beachUpdated,
+        })
+      );
     } catch {
       dispatch(hideLoaderActionCreator());
       dispatch(
