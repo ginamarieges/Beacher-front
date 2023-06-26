@@ -104,7 +104,7 @@ describe("Given a DetailsPage page", () => {
   });
 
   describe("When it is rendered and the user clicks the delete button", () => {
-    test("Then it should show the message beach deleted", async () => {
+    test("Then the delete button should not be in the document", async () => {
       renderWithProviders(wrapWithRouter(<DetailsPage />), {
         beachesStore: beachStore,
         userStore,
@@ -171,6 +171,22 @@ describe("Given a DetailsPage page", () => {
       const message = store.getState().uiStore.modal.message;
 
       await expect(message).toBe(responseData.beachDeleted);
+    });
+  });
+
+  describe("When it is rendered and the user clicks the modify button", () => {
+    test("Then it should show a heading with the text 'Modify beach'", async () => {
+      const buttonText = /modify/i;
+      renderWithProviders(wrapWithRouter(<DetailsPage />), {
+        beachesStore: beachStore,
+        userStore,
+      });
+
+      const button = screen.getByRole("button", { name: buttonText });
+
+      await userEvent.click(button);
+
+      expect(button).not.toBeInTheDocument();
     });
   });
 });

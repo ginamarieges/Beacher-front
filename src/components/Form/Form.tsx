@@ -1,28 +1,29 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
 import FormStyled from "./FormStyled";
-import { BeachAddStructure } from "../../store/beaches/types";
+import { BeachAddStructure, BeachStructure } from "../../store/beaches/types";
 
 interface FormProps {
   onSubmit: (beachData: BeachAddStructure) => void;
+  beach?: BeachStructure;
 }
 
-const Form = ({ onSubmit }: FormProps): React.ReactElement => {
+const Form = ({ onSubmit, beach }: FormProps): React.ReactElement => {
   const initialBeachData: BeachAddStructure = {
-    image: "",
-    name: "",
-    region: "",
-    town: "",
-    addServices: "",
-    description: "",
+    image: beach ? beach.image : "",
+    name: beach ? beach.name : "",
+    region: beach ? beach.region : "",
+    town: beach ? beach.town : "",
+    addServices: beach ? beach.addServices : "",
+    description: beach ? beach.description : "",
     services: {
-      baywatch: false,
-      dogsAllowed: false,
-      familyBeach: false,
-      restaurant: false,
-      secretBeach: false,
-      showers: false,
-      umbrellas: false,
+      baywatch: beach ? beach.services.baywatch : false,
+      dogsAllowed: beach ? beach.services.dogsAllowed : false,
+      familyBeach: beach ? beach.services.familyBeach : false,
+      restaurant: beach ? beach.services.restaurant : false,
+      secretBeach: beach ? beach.services.secretBeach : false,
+      showers: beach ? beach.services.showers : false,
+      umbrellas: beach ? beach.services.umbrellas : false,
     },
   };
   const [beachData, setBeachData] = useState(initialBeachData);

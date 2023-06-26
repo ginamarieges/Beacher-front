@@ -9,6 +9,7 @@ import {
 } from "./lazyPages.js";
 import { Suspense } from "react";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage.js";
+import UpdateBeachPage from "../pages/UpdateBeachPage/UpdateBeachPage.js";
 
 const routes: RouteObject[] = [
   {
@@ -51,6 +52,7 @@ const routes: RouteObject[] = [
           </Suspense>
         ),
       },
+      { path: paths.updateBeach, element: <UpdateBeachPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

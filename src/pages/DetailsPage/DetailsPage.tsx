@@ -57,6 +57,10 @@ const DetailsPage = (): React.ReactElement => {
     navigate(paths.home);
   };
 
+  const handleOnModify = () => {
+    navigate(paths.updateBeach);
+  };
+
   return (
     <DetailsPageStyled className="beach">
       <h1 className="details-title">Details</h1>
@@ -160,6 +164,11 @@ const DetailsPage = (): React.ReactElement => {
         )}
         {userId === user && (
           <>
+            <Button
+              className="light-button"
+              text="modify"
+              actionOnClick={handleOnModify}
+            />
             <Button
               className="light-button"
               text="delete"
