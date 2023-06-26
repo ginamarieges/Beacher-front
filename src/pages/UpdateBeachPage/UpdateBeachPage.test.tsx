@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { renderWithProviders } from "../../utils/testUtils";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import UpdateBeachPage from "./UpdateBeachPage";
 
 describe("Given an UpdateBeachPage page", () => {
@@ -7,7 +7,7 @@ describe("Given an UpdateBeachPage page", () => {
     test("Then it should show a heading with the text 'Modify beach'", () => {
       const expectedText = "Modify beach";
 
-      renderWithProviders(<UpdateBeachPage />);
+      renderWithProviders(wrapWithRouter(<UpdateBeachPage />));
 
       const heading = screen.getByRole("heading", { name: expectedText });
 

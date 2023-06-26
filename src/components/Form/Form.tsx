@@ -4,7 +4,7 @@ import FormStyled from "./FormStyled";
 import { BeachAddStructure, BeachStructure } from "../../store/beaches/types";
 
 interface FormProps {
-  onSubmit: (beachData: BeachAddStructure) => void;
+  onSubmit: (beachData: Partial<BeachStructure>) => void;
   beach?: BeachStructure;
 }
 
@@ -58,7 +58,11 @@ const Form = ({ onSubmit, beach }: FormProps): React.ReactElement => {
 
   const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit(beachData);
+    onSubmit(
+      beach
+        ? { ...beachData, id: beach.id, user: beach.user }
+        : { ...beachData }
+    );
     setBeachData(initialBeachData);
   };
   return (
@@ -259,7 +263,7 @@ const Form = ({ onSubmit, beach }: FormProps): React.ReactElement => {
 
       <Button
         className="dark-button"
-        text="create"
+        text={`${beach ? "modify" : "create"}`}
         disabled={!isReady}
         actionOnClick={() => onSubmit}
       />
