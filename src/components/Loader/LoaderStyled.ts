@@ -11,6 +11,9 @@ const LoaderStyled = styled.div`
   top: 0;
   left: 0;
   background-color: #efece5e0;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 
   .loader {
     width: 12px;

@@ -47,6 +47,10 @@ button {
 img {
   max-width: 100%;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  animation: none;
+}
 `;
 
 export default GlobalStyle;
