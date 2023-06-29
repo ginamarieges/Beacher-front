@@ -3,6 +3,7 @@ import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../utils/testUtils";
 import Form from "./Form";
+import { getBeachMock } from "../../mocks/factories/beach/beachFactory";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -15,6 +16,14 @@ describe("Given a Form component", () => {
   const labelImage = /image/i;
   const labelRegion = /region/i;
   const textButton = /create/i;
+  const textModifyButton = /modify/i;
+  const labelDescription = /description/i;
+
+  const beach = getBeachMock({
+    name: "Cala Pedrosa",
+    town: "Barcelona",
+    description: "Nude beach",
+  });
 
   describe("When it is rendered", () => {
     test("Then it should show the name, town and image input", () => {
@@ -103,7 +112,7 @@ describe("Given a Form component", () => {
   });
 
   describe("When it is rendered, the name, town, image and region inputs are filled and the user click's the button", () => {
-    test("Then the fields should be empty", async () => {
+    test("Then the button should be disabled", async () => {
       const textName = "Gina";
       const textTown = "Sant Pol";
       const textRegion = "Maresme";
@@ -143,6 +152,22 @@ describe("Given a Form component", () => {
       fireEvent.error(image);
 
       expect(image).toHaveAttribute("src", "/img/no-image.svg");
+    });
+  });
+
+  describe("When it is rendered and receives Cala Pedrosa beach data", () => {
+    test("Then it should show Cala Pedrosa in name input and the button with the text 'MODIFY'", () => {
+      renderWithProviders(<Form beach={beach} onSubmit={actionOnClick} />);
+
+      const inputName = screen.getByLabelText(labelName);
+      const inputTown = screen.getByLabelText(labelTown);
+      const inputDescription = screen.getByLabelText(labelDescription);
+      const button = screen.getByRole("button", { name: textModifyButton });
+
+      expect(inputName).toHaveValue(beach.name);
+      expect(inputTown).toHaveValue(beach.town);
+      expect(inputDescription).toHaveValue(beach.description);
+      expect(button).toBeInTheDocument();
     });
   });
 });
