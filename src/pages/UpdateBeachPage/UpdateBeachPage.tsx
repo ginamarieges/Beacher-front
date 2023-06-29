@@ -11,6 +11,8 @@ const UpdateBeachPage = (): React.ReactElement => {
   const { updateBeach } = useBeaches();
   const navigate = useNavigate();
 
+  scrollTo(0, 0);
+
   const actionOnSubmit = async (
     beachData: BeachStructure | Partial<BeachStructure>
   ) => {

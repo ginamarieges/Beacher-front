@@ -92,7 +92,11 @@ const Form = ({ onSubmit, beach }: FormProps): React.ReactElement => {
           name="region"
           onChange={onChangeData}
         >
-          <option value="">Select...</option>
+          {beach ? (
+            <option value="">{beach.region}</option>
+          ) : (
+            <option value="">Select...</option>
+          )}
           <option value="Alt Empordà">Alt Empordà</option>
           <option value="Baix Empordà">Baix Empordà</option>
           <option value="Selva">Selva</option>

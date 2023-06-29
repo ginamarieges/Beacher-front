@@ -3,7 +3,7 @@ import Form from "../../components/Form/Form";
 import useBeaches from "../../hooks/useBeaches/useBeaches";
 import { useAppDispatch } from "../../store";
 import { addBeachActionCreator } from "../../store/beaches/beachesSlice";
-import { BeachAddStructure } from "../../store/beaches/types";
+import { BeachAddStructure, BeachStructure } from "../../store/beaches/types";
 import { showFeedbackActionCreator } from "../../store/ui/uiSlice";
 import AddBeachPageStyled from "./AddBeachPageStyled";
 import { paths } from "../../routers/paths/paths";
@@ -16,8 +16,10 @@ const AddBeachPage = (): React.ReactElement => {
 
   scrollTo(0, 0);
 
-  const onSubmit = async (beachData: BeachAddStructure) => {
-    const newBeach = await addBeach(beachData);
+  const onSubmit = async (
+    beachData: BeachAddStructure | Partial<BeachStructure>
+  ) => {
+    const newBeach = await addBeach(beachData as BeachAddStructure);
     if (newBeach) {
       dispatch(addBeachActionCreator(newBeach));
     }
