@@ -57,6 +57,9 @@ const DetailsPageStyled = styled.section`
 
     &__image {
       margin: 0 auto;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
     }
 
     &__name {

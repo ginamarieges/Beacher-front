@@ -44,7 +44,9 @@ describe("Given an UpdateBeachPage page", () => {
       const textName = "Gina";
       const textTown = "Sant Pol";
       const textRegion = "Maresme";
-      const textImage = "https://ajgbdhsvcnxkl.jpg";
+      const file = new File(["beach"], "beach.png", {
+        type: "image/jpeg",
+      });
 
       const nameInput = screen.getByLabelText(labelName);
       const townInput = screen.getByLabelText(labelTown);
@@ -53,7 +55,7 @@ describe("Given an UpdateBeachPage page", () => {
 
       await userEvent.type(nameInput, textName);
       await userEvent.type(townInput, textTown);
-      await userEvent.type(imageInput, textImage);
+      await userEvent.upload(imageInput, file);
       await userEvent.selectOptions(regionInput, textRegion);
 
       await userEvent.click(button);

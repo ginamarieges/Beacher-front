@@ -18,7 +18,7 @@ describe("Given a AddBeachPage page", () => {
   });
 
   describe("When it is rendered and the user add a new beach", () => {
-    test("Then it should show the heading 'BEACHES'", async () => {
+    test("Then it should show the message 'Your beach is added!'", async () => {
       const textButton = /create/i;
       const labelName = /name/i;
       const labelTown = /town/i;
@@ -28,7 +28,7 @@ describe("Given a AddBeachPage page", () => {
       const textName = "Gina";
       const textTown = "Sant Pol";
       const textRegion = "Maresme";
-      const textImage = "https://ajgbdhsvcnxkl.jpg";
+      const file = new File(["beach"], "beach.png", { type: "image/jpeg" });
 
       renderWithProviders(wrapWithRouter(<AddBeachPage />));
 
@@ -40,7 +40,7 @@ describe("Given a AddBeachPage page", () => {
 
       await userEvent.type(nameInput, textName);
       await userEvent.type(townInput, textTown);
-      await userEvent.type(imageInput, textImage);
+      await userEvent.upload(imageInput, file);
       await userEvent.selectOptions(regionInput, textRegion);
       await userEvent.click(button);
 

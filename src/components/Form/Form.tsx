@@ -40,6 +40,22 @@ const Form = ({ onSubmit, beach }: FormProps): React.ReactElement => {
     });
   };
 
+  const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      const imageFile = event.target.files[0];
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imagePath = reader.result as string;
+        setBeachData((beachData) => ({
+          ...beachData,
+          image: imagePath,
+        }));
+      };
+      reader.readAsDataURL(imageFile);
+    }
+  };
+
   const handleCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBeachData({
       ...beachData,
@@ -65,12 +81,16 @@ const Form = ({ onSubmit, beach }: FormProps): React.ReactElement => {
     );
     setBeachData(initialBeachData);
   };
+
   return (
     <FormStyled
       autoComplete="off"
       noValidate
       className="form"
       onSubmit={handleOnSubmit}
+      encType="multipart/form-data"
+      action="/api/upload"
+      method="post"
     >
       <label className="form__label" htmlFor="name">
         name
@@ -140,24 +160,14 @@ const Form = ({ onSubmit, beach }: FormProps): React.ReactElement => {
         image
       </label>
       <input
-        className="form__input"
-        type="text"
+        className="file-input"
         id="image"
-        value={beachData.image}
-        onChange={onChangeData}
+        type="file"
+        onChange={handleChange}
+        accept="image/*"
+        name="image"
       />
-      {beachData.image && (
-        <img
-          className="form__image-preview"
-          alt="Landscape beach"
-          src={beachData.image}
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null;
-            currentTarget.src = "/img/no-image.svg";
-            currentTarget.alt = "not found image";
-          }}
-        />
-      )}
+      <img src={beachData.image} alt={beachData.name} />
 
       <span className="form__label">services</span>
       <div className="form__checkbox-controls">
