@@ -1,4 +1,4 @@
-export interface messageStructure {
+export interface MessageStructure {
   wrongCredentials: string;
   errorList: string;
   beachDeleted: string;
