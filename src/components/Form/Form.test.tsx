@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../utils/testUtils";
@@ -58,7 +58,9 @@ describe("Given a Form component", () => {
       const textName = "Gina";
       const textTown = "Sant Pol";
       const textRegion = "Maresme";
-      const textImage = "https://ajgbdhsvcnxkl.jpg";
+      const file = new File(["beach"], "beach.png", {
+        type: "image/jpeg",
+      });
 
       renderWithProviders(<Form onSubmit={actionOnClick} />);
       const button = screen.getByRole("button", { name: textButton });
@@ -69,7 +71,7 @@ describe("Given a Form component", () => {
 
       await userEvent.type(nameInput, textName);
       await userEvent.type(townInput, textTown);
-      await userEvent.type(imageInput, textImage);
+      await userEvent.upload(imageInput, file);
       await userEvent.selectOptions(regionInput, textRegion);
 
       expect(button).not.toBeDisabled();
@@ -133,25 +135,6 @@ describe("Given a Form component", () => {
       await userEvent.click(button);
 
       expect(button).toBeDisabled();
-    });
-  });
-
-  describe("When it is rendered and the user add's an invalid url image", () => {
-    test("Then it should show an the not found image", async () => {
-      const alternativeText = /Landscape beach/i;
-      const textImage = "invalid url";
-
-      renderWithProviders(<Form onSubmit={actionOnClick} />);
-
-      const imageInput = screen.getByLabelText(labelImage);
-      await userEvent.type(imageInput, textImage);
-      const image = screen.getByAltText(alternativeText);
-
-      expect(image).toBeInTheDocument();
-
-      fireEvent.error(image);
-
-      expect(image).toHaveAttribute("src", "/img/no-image.svg");
     });
   });
 
