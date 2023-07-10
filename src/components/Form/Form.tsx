@@ -160,7 +160,7 @@ const Form = ({ onSubmit, beach }: FormProps): React.ReactElement => {
         image
       </label>
       <input
-        className="form__input"
+        className="file-input"
         id="image"
         type="file"
         onChange={handleChange}
