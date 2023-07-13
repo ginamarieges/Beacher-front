@@ -80,11 +80,18 @@ describe("Given a useBeaches function", () => {
         },
       } = renderHook(() => useBeaches(), { wrapper: wrapper });
 
-      await deleteBeach(mockBeaches[1].id);
+      let hasError = false;
+
+      try {
+        await deleteBeach(mockBeaches[1].id);
+      } catch (error) {
+        hasError = true;
+      }
 
       const message = store.getState().uiStore.modal.message;
 
       expect(message).toBe(responseData.errorBeachDeleted);
+      expect(hasError).toBe(true);
     });
   });
 
@@ -108,6 +115,7 @@ describe("Given a useBeaches function", () => {
       server.resetHandlers(...errorHandlers);
 
       const expectedMessage = "Couldn't add your beach";
+      let hasError = false;
 
       const {
         result: {
@@ -115,11 +123,16 @@ describe("Given a useBeaches function", () => {
         },
       } = renderHook(() => useBeaches(), { wrapper: wrapper });
 
-      await addBeach(mockedBeachToAdd);
+      try {
+        await addBeach(mockedBeachToAdd);
+      } catch (error) {
+        hasError = true;
+      }
 
       const message = store.getState().uiStore.modal.message;
 
       expect(message).toBe(expectedMessage);
+      expect(hasError).toBe(true);
     });
   });
 
@@ -150,11 +163,18 @@ describe("Given a useBeaches function", () => {
         },
       } = renderHook(() => useBeaches(), { wrapper: wrapper });
 
-      await getBeach(id);
+      let hasError = false;
+
+      try {
+        await getBeach(id);
+      } catch (error) {
+        hasError = true;
+      }
 
       const message = store.getState().uiStore.modal.message;
 
       expect(message).toBe(responseData.beachNotFound);
+      expect(hasError).toBe(true);
     });
   });
 
@@ -184,12 +204,18 @@ describe("Given a useBeaches function", () => {
           current: { updateBeach },
         },
       } = renderHook(() => useBeaches(), { wrapper: wrapper });
+      let hasError = false;
 
-      await updateBeach(beachData);
+      try {
+        await updateBeach(beachData);
+      } catch (error) {
+        hasError = true;
+      }
 
       const message = store.getState().uiStore.modal.message;
 
       expect(message).toBe(responseData.errorBeachUpdate);
+      expect(hasError).toBe(true);
     });
   });
 });

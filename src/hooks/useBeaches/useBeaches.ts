@@ -78,6 +78,8 @@ const useBeaches = () => {
           isVisible: true,
         })
       );
+
+      throw error;
     }
   };
 
@@ -99,7 +101,7 @@ const useBeaches = () => {
       dispatch(hideLoaderActionCreator());
 
       return newBeach;
-    } catch {
+    } catch (error) {
       dispatch(hideLoaderActionCreator());
       dispatch(
         showFeedbackActionCreator({
@@ -108,6 +110,8 @@ const useBeaches = () => {
           message: responseData.errorBeachAdded,
         })
       );
+
+      throw (error as Error).message;
     }
   };
 
@@ -137,6 +141,8 @@ const useBeaches = () => {
             message: responseData.beachNotFound,
           })
         );
+
+        throw error;
       }
     },
     [apiUrl, dispatch, token]
@@ -162,7 +168,7 @@ const useBeaches = () => {
           message: responseData.beachUpdated,
         })
       );
-    } catch {
+    } catch (error) {
       dispatch(hideLoaderActionCreator());
       dispatch(
         showFeedbackActionCreator({
@@ -171,6 +177,8 @@ const useBeaches = () => {
           message: responseData.errorBeachUpdate,
         })
       );
+
+      throw error;
     }
   };
 
