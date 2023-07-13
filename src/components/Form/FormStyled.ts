@@ -5,10 +5,19 @@ const FormStyled = styled.form`
   flex-direction: column;
   color: ${(props) => props.theme.color.primary};
 
-  .file-input {
-    background-color: ${(props) => props.theme.color.secondary};
-    font-size: ${(props) => props.theme.fontSizes.smallSize};
-    padding: 10px 0;
+  .file {
+    &__input {
+      display: none;
+    }
+
+    &__label {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__icon {
+      cursor: pointer;
+    }
   }
 
   .form {
