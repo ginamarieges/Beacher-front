@@ -155,18 +155,26 @@ const Form = ({ onSubmit, beach }: FormProps): React.ReactElement => {
         value={beachData.description}
         onChange={onChangeData}
       />
-
-      <label className="form__label" htmlFor="image">
-        image
-      </label>
-      <input
-        className="file-input"
-        id="image"
-        type="file"
-        onChange={handleChange}
-        accept="image/*"
-        name="image"
-      />
+      <div className="file">
+        <label className="form__label file__label" htmlFor="image">
+          image
+          <img
+            src="/img/add-image.png"
+            alt="icon to add a file"
+            className="file__icon"
+            width={48}
+            height={35}
+          />
+        </label>
+        <input
+          className="file__input"
+          id="image"
+          type="file"
+          onChange={handleChange}
+          accept="image/*"
+          name="image"
+        />
+      </div>
       <img src={beachData.image} alt={beachData.name} />
 
       <span className="form__label">services</span>
