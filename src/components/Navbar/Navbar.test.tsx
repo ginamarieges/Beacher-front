@@ -4,6 +4,7 @@ import Navbar from "./Navbar.js";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils.js";
 import { loginUser } from "../../mocks/userMocks.js";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import { store } from "../../store/index.js";
 
 describe("Given a Navbar component", () => {
   describe("When it is rendered", () => {
@@ -52,6 +53,21 @@ describe("Given a Navbar component", () => {
       await userEvent.click(addBeachLink);
 
       expect(location.pathname).toStrictEqual("/");
+    });
+  });
+
+  describe("When it is rendered and the user clicks the home icon", () => {
+    test("Then it should go to page 1", async () => {
+      const expectedPage = 1;
+      renderWithProviders(wrapWithRouter(<Navbar />));
+
+      const homeLink = screen.getByRole("link", { name: "home" });
+
+      await userEvent.click(homeLink);
+
+      const page = store.getState().uiStore.page;
+
+      expect(page).toBe(expectedPage);
     });
   });
 });
