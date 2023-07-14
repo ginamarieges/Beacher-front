@@ -3,12 +3,13 @@ import BeachCard from "../BeachCard/BeachCard";
 import BeachesListStyled from "./BeachesListStyled";
 
 const BeachesList = (): React.ReactElement => {
-  const { beaches } = useAppSelector((state) => state.beachesStore);
+  const { beaches, region } = useAppSelector((state) => state.beachesStore);
   const { id } = useAppSelector((state) => state.userStore);
 
   return (
     <BeachesListStyled>
       <h1 className="list-title">Beaches</h1>
+      <h2 className="list-region"> {region ? region : "all beaches"}</h2>
       <ul className="list">
         {beaches.map((beach, index) => (
           <li key={beach.id}>

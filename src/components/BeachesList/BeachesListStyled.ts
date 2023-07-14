@@ -6,12 +6,21 @@ const BeachesListStyled = styled.div`
     flex-direction: column;
     gap: 20px;
   }
+
   .list-title {
     text-transform: uppercase;
     color: ${(props) => props.theme.color.primary};
     font-size: ${(props) => props.theme.fontSizes.titleSize};
     padding: 13px 0;
   }
+
+  .list-region {
+    text-transform: uppercase;
+    color: ${(props) => props.theme.color.primary};
+    font-size: ${(props) => props.theme.fontSizes.smallSize};
+    padding: 13px 0;
+  }
+
   .no-beaches {
     color: ${(props) => props.theme.color.primary};
     font-size: ${(props) => props.theme.fontSizes.smallSize};
