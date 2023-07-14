@@ -3,9 +3,11 @@ import {
   getBeachMock,
   getBeachesMock,
 } from "../../mocks/factories/beach/beachFactory";
-import { renderWithProviders } from "../../utils/testUtils";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import BeachesList from "./BeachesList";
 import { screen } from "@testing-library/react";
+import { BeachStateStructure } from "../../store/beaches/types";
+import { mockedAddBeach } from "../../mocks/beachesMocks";
 
 describe("Given a BeachList component", () => {
   describe("When it is rendered", () => {
@@ -52,6 +54,25 @@ describe("Given a BeachList component", () => {
       });
 
       const heading = screen.getByRole("heading", { name: expectedHeading });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
+  describe("When it is rendered and the filter has the option 'Baix Empordà'", () => {
+    test("Then it should show the heading 'GARRAF'", () => {
+      const headingText = /garraf/i;
+      const beachesStore: BeachStateStructure = {
+        region: "garraf",
+        beach: mockedAddBeach,
+        beaches: [mockedAddBeach],
+        length: 0,
+      };
+
+      renderWithProviders(wrapWithRouter(<BeachesList />), {
+        beachesStore: beachesStore,
+      });
+
+      const heading = screen.getByRole("heading", { name: headingText });
 
       expect(heading).toBeInTheDocument();
     });
