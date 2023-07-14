@@ -4,6 +4,7 @@ import { paths } from "../../routers/paths/paths";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { logoutUserActionCreator } from "../../store/user/userSlice";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
+import { paginationActionCreator } from "../../store/ui/uiSlice";
 
 const Navbar = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -17,6 +18,11 @@ const Navbar = (): React.ReactElement => {
     navigate(paths.login);
   };
 
+  const actionOnClick = () => {
+    dispatch(paginationActionCreator(1));
+    scrollTo(0, 0);
+  };
+
   return (
     <NavbarStyled>
       <ul className="navbar-list">
@@ -26,6 +32,7 @@ const Navbar = (): React.ReactElement => {
             className="navbar-list__icon"
             aria-label="home"
             title="home"
+            onClick={actionOnClick}
           >
             <img src="/img/home.svg" alt="home icon" width={48} height={48} />
           </NavLink>
