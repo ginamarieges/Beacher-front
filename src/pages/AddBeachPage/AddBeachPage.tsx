@@ -2,9 +2,15 @@ import { useNavigate } from "react-router-dom";
 import Form from "../../components/Form/Form";
 import useBeaches from "../../hooks/useBeaches/useBeaches";
 import { useAppDispatch } from "../../store";
-import { addBeachActionCreator } from "../../store/beaches/beachesSlice";
+import {
+  addBeachActionCreator,
+  filterActionCreator,
+} from "../../store/beaches/beachesSlice";
 import { BeachAddStructure, BeachStructure } from "../../store/beaches/types";
-import { showFeedbackActionCreator } from "../../store/ui/uiSlice";
+import {
+  paginationActionCreator,
+  showFeedbackActionCreator,
+} from "../../store/ui/uiSlice";
 import AddBeachPageStyled from "./AddBeachPageStyled";
 import { paths } from "../../routers/paths/paths";
 import { responseData } from "../../utils/responseData";
@@ -30,6 +36,9 @@ const AddBeachPage = (): React.ReactElement => {
         message: responseData.addedBeach,
       })
     );
+
+    dispatch(filterActionCreator(""));
+    dispatch(paginationActionCreator(1));
     navigate(paths.home);
   };
 
