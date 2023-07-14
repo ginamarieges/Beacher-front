@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { logoutUserActionCreator } from "../../store/user/userSlice";
 import useLocalStorage from "../../hooks/useLocalStorage/useLocalStorage";
 import { paginationActionCreator } from "../../store/ui/uiSlice";
+import { filterActionCreator } from "../../store/beaches/beachesSlice";
 
 const Navbar = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -19,6 +20,7 @@ const Navbar = (): React.ReactElement => {
   };
 
   const actionOnClick = () => {
+    dispatch(filterActionCreator(""));
     dispatch(paginationActionCreator(1));
     scrollTo(0, 0);
   };
