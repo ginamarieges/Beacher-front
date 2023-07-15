@@ -1,13 +1,13 @@
 import { renderHook } from "@testing-library/react";
 import useToken from "./useToken";
 import { tokenMock } from "../../mocks/userMocks";
-import { UserDataStructure } from "../../store/user/types";
+import { UserTokenDataStructure } from "../../store/user/types";
 
 describe("Given a getTokenData function", () => {
   describe("When it receives a token", () => {
     test("Then it should return the decoded token", () => {
       const token = tokenMock;
-      const expectedUserData: UserDataStructure = {
+      const expectedUserData: UserTokenDataStructure = {
         id: "6470de574da09294395a6eaa",
         name: "gina",
       };

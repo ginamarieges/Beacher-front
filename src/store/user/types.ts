@@ -1,9 +1,9 @@
-export interface UserDataStructure {
+export interface UserTokenDataStructure {
   id: string;
   name: string;
 }
 
-export interface UserTokenStructure extends UserDataStructure {
+export interface UserTokenStructure extends UserTokenDataStructure {
   token: string | undefined;
 }
 
@@ -14,4 +14,10 @@ export interface UserTokenData extends UserTokenStructure {
 export interface UserCredentials {
   username: string;
   password: string;
+}
+
+export interface UserDataStructure extends UserCredentials {
+  name: string;
+  surname: string;
+  email: string;
 }
