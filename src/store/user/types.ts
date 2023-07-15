@@ -16,8 +16,9 @@ export interface UserCredentials {
   password: string;
 }
 
-export interface UserDataStructure extends UserCredentials {
+export interface RegisterUserStructure extends UserCredentials {
   name: string;
   surname: string;
   email: string;
+  repeatPassword: string;
 }

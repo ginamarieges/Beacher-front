@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { UserDataStructure } from "../../store/user/types";
+import { RegisterUserStructure } from "../../store/user/types";
+import RegisterFormStyled from "./RegisterFormStyled";
 
 const RegisterForm = (): React.ReactElement => {
-  const initialUserData: UserDataStructure = {
+  const initialUserData: RegisterUserStructure = {
     email: "",
     name: "",
     password: "",
     username: "",
     surname: "",
+    repeatPassword: "",
   };
 
   const [userData, setUserData] = useState(initialUserData);
@@ -23,16 +25,20 @@ const RegisterForm = (): React.ReactElement => {
     event.preventDefault();
     setUserData(initialUserData);
   };
+  const isSamePassword =
+    userData.repeatPassword !== "" &&
+    userData.repeatPassword === userData.password;
 
   const isReady =
     userData.name !== "" &&
     userData.surname !== "" &&
     userData.email !== "" &&
     userData.password !== "" &&
-    userData.username !== "";
+    userData.username !== "" &&
+    isSamePassword;
 
   return (
-    <form
+    <RegisterFormStyled
       className="form"
       autoComplete="off"
       noValidate
@@ -78,12 +84,20 @@ const RegisterForm = (): React.ReactElement => {
         value={userData.password}
         onChange={onChangeData}
       />
+
       <input
         type="password"
         id="repeatPassword"
         placeholder="REPEAT PASSWORD"
-        className="form__controls"
+        className={`form__controls form__controls${
+          !isSamePassword ? `--wrong` : ""
+        }`}
+        value={userData.repeatPassword}
+        onChange={onChangeData}
       />
+      <span className="message" hidden={isSamePassword}>
+        The passwords do not match
+      </span>
       <button
         type="submit"
         className="form__button"
@@ -92,7 +106,7 @@ const RegisterForm = (): React.ReactElement => {
       >
         register
       </button>
-    </form>
+    </RegisterFormStyled>
   );
 };
 
