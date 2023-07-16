@@ -6,11 +6,11 @@ import {
   DetailsPageLazy,
   ListPageLazy,
   LoginPageLazy,
+  RegisterPageLazy,
 } from "./lazyPages.js";
 import { Suspense } from "react";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage.js";
 import UpdateBeachPage from "../pages/UpdateBeachPage/UpdateBeachPage.js";
-import RegisterPage from "../pages/RegisterPage/RegisterPage.js";
 
 const routes: RouteObject[] = [
   {
@@ -29,7 +29,14 @@ const routes: RouteObject[] = [
           </Suspense>
         ),
       },
-      { path: paths.register, element: <RegisterPage /> },
+      {
+        path: paths.register,
+        element: (
+          <Suspense>
+            <RegisterPageLazy />
+          </Suspense>
+        ),
+      },
       {
         path: paths.home,
         element: (

@@ -43,6 +43,10 @@ const LoginPage = (): React.ReactElement => {
       />
       <h1 className="app-title">Beacher</h1>
       <LoginForm handleOnSubmit={onSubmit} />
+
+      <a className="register" href={paths.register}>
+        Create an account!
+      </a>
     </LoginPageStyled>
   );
 };
