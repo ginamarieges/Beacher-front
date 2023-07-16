@@ -4,9 +4,8 @@ const RegisterFormStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 31px;
-  padding-top: 65px;
+  padding-top: 35px;
   width: 224px;
-  margin: 0 auto;
 
   .message {
     font-size: ${(props) => props.theme.fontSizes.smallSize};
