@@ -5,10 +5,14 @@ const LoginPageStyled = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 52px;
+  color: ${(props) => props.theme.color.primary};
+
+  .register {
+    text-decoration: underline;
+  }
 
   .app-title {
     text-transform: uppercase;
-    color: ${(props) => props.theme.color.primary};
     font-size: 2.125rem;
     padding-top: 29px;
     font-weight: 100;

@@ -4,8 +4,9 @@ const LoginFormStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 31px;
-  padding-top: 65px;
+  padding-top: 45px;
   width: 224px;
+  padding-bottom: 20px;
 
   .form {
     &__controls {
