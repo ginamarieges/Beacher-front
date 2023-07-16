@@ -4,4 +4,5 @@ export interface PathsStructure {
   addBeach: string;
   beaches: string;
   updateBeach: string;
+  register: string;
 }
