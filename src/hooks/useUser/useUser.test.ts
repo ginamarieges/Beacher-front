@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import useUser from "./useUser";
-import { UserCredentials } from "../../store/user/types";
-import { userCredentialsMock } from "../../mocks/userMocks";
+import { RegisterUserStructure, UserCredentials } from "../../store/user/types";
+import { registerUserMock, userCredentialsMock } from "../../mocks/userMocks";
 import { tokenMock } from "../../mocks/userMocks";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
@@ -42,6 +42,65 @@ describe("Given a useUser function", () => {
       const message = store.getState().uiStore.modal.message;
 
       expect(message).toBe(responseData.wrongCredentials);
+    });
+  });
+
+  describe("When the registerUser function is called with joana's data", () => {
+    test("Then it should return joana's data with an id", async () => {
+      const userData: RegisterUserStructure = {
+        email: "joana@gmail.com",
+        name: "Joana",
+        password: "aloha",
+        repeatPassword: "aloha",
+        surname: "Garcia",
+        username: "esealoha",
+      };
+
+      const {
+        result: {
+          current: { registerUser },
+        },
+      } = renderHook(() => useUser(), { wrapper: wrapper });
+
+      const newUser = await registerUser(userData);
+
+      const expectedUser = registerUserMock;
+
+      expect(newUser).toStrictEqual({ newUser: expectedUser });
+    });
+  });
+
+  describe("When the registerUser function is called with joana's invalid data", () => {
+    test("Then it should show the message 'Couldn't create an account'", async () => {
+      server.resetHandlers(...errorHandlers);
+
+      const userData: RegisterUserStructure = {
+        email: "joana@gmail.com",
+        name: "Joana",
+        password: "aloha",
+        repeatPassword: "aloha",
+        surname: "Garcia",
+        username: "esealoha",
+      };
+
+      const {
+        result: {
+          current: { registerUser },
+        },
+      } = renderHook(() => useUser(), { wrapper: wrapper });
+
+      let hasError = false;
+
+      try {
+        await registerUser(userData);
+      } catch (error) {
+        hasError = true;
+      }
+
+      const message = store.getState().uiStore.modal.message;
+
+      expect(message).toBe(responseData.errorRegister);
+      expect(hasError).toBe(true);
     });
   });
 });

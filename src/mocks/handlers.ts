@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import { tokenMock } from "./userMocks";
+import { registerUserMock, tokenMock } from "./userMocks";
 import { mockBeaches, mockedAddBeach, twentyBeaches } from "./beachesMocks";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -7,6 +7,10 @@ const apiUrl = import.meta.env.VITE_API_URL;
 export const handlers = [
   rest.post(`${apiUrl}/user/login`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ token: tokenMock }));
+  }),
+
+  rest.post(`${apiUrl}/user/register`, (_req, res, ctx) => {
+    return res(ctx.status(201), ctx.json({ newUser: registerUserMock }));
   }),
 
   rest.get(`${apiUrl}/beaches`, (_req, res, ctx) => {
@@ -33,6 +37,10 @@ export const handlers = [
 export const errorHandlers = [
   rest.post(`${apiUrl}/user/login`, (_req, res, ctx) => {
     return res(ctx.status(401));
+  }),
+
+  rest.post(`${apiUrl}/user/register`, (_req, res, ctx) => {
+    return res(ctx.status(404));
   }),
 
   rest.get(`${apiUrl}/beaches`, (_req, res, ctx) => {
