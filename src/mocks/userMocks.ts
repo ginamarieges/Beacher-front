@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { UserCredentials, UserTokenStructure } from "../store/user/types";
 import {
   getUserCredentialsMock,
@@ -13,3 +14,12 @@ export const tokenMock =
 export const userCredentialsMock: UserCredentials = getUserCredentialsMock();
 
 export const loginUser = getUserMock({ isLogged: true, name: "Berta" });
+
+export const registerUserMock = {
+  email: "joana@gmail.com",
+  name: "Joana",
+  password: "$2y$10$qx1AooXPXZaYrmGDio0O/eHL8n1TAnD/0466o5WUqoA5Ho5sIsjcW",
+  surname: "Garcia",
+  username: "esealoha",
+  id: new Types.ObjectId().toString(),
+};

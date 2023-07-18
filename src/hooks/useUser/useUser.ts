@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UserCredentials } from "../../store/user/types";
+import { RegisterUserStructure, UserCredentials } from "../../store/user/types";
 import { useAppDispatch } from "../../store";
 import {
   hideLoaderActionCreator,
@@ -38,7 +38,32 @@ const useUser = () => {
     }
   };
 
-  return { getUserToken };
+  const registerUser = async (
+    userData: RegisterUserStructure
+  ): Promise<void> => {
+    try {
+      dispatch(showLoaderActionCreator());
+
+      const { data } = await axios.post(`${apiUrl}/user/register`, userData);
+
+      dispatch(hideLoaderActionCreator());
+
+      return data;
+    } catch (error) {
+      dispatch(hideLoaderActionCreator());
+      dispatch(
+        showFeedbackActionCreator({
+          isError: true,
+          isVisible: true,
+          message: responseData.errorRegister,
+        })
+      );
+
+      throw (error as Error).message;
+    }
+  };
+
+  return { getUserToken, registerUser };
 };
 
 export default useUser;

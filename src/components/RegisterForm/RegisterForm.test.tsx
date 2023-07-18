@@ -2,8 +2,10 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../utils/testUtils";
 import RegisterForm from "./RegisterForm";
+import { vi } from "vitest";
 
 describe("Given a RegisterForm component", () => {
+  const actionOnClick = vi.fn();
   const usernamePlaceholder = "USERNAME";
   const passwordPlaceholder = "PASSWORD";
   const namePlaceholder = "NAME";
@@ -14,7 +16,7 @@ describe("Given a RegisterForm component", () => {
 
   describe("When it is rendered", () => {
     test("Then it should show the name, surname, email, password, repeat password, and username fields", () => {
-      renderWithProviders(<RegisterForm />);
+      renderWithProviders(<RegisterForm handleSubmit={actionOnClick} />);
 
       const usernameInput = screen.getByPlaceholderText(usernamePlaceholder);
       const passwordInput = screen.getByPlaceholderText(passwordPlaceholder);
@@ -34,7 +36,7 @@ describe("Given a RegisterForm component", () => {
     });
 
     test("Then it should show the register button", () => {
-      renderWithProviders(<RegisterForm />);
+      renderWithProviders(<RegisterForm handleSubmit={actionOnClick} />);
 
       const button = screen.getByRole("button", { name: textButton });
 
@@ -42,7 +44,7 @@ describe("Given a RegisterForm component", () => {
     });
 
     test("Then the button should be disabled", () => {
-      renderWithProviders(<RegisterForm />);
+      renderWithProviders(<RegisterForm handleSubmit={actionOnClick} />);
 
       const button = screen.getByRole("button", { name: textButton });
 
@@ -52,7 +54,7 @@ describe("Given a RegisterForm component", () => {
 
   describe("When it is rendered and the user types all fields and the password matches and the user clicks the button", () => {
     test("Then the button should be disabled", async () => {
-      renderWithProviders(<RegisterForm />);
+      renderWithProviders(<RegisterForm handleSubmit={actionOnClick} />);
 
       const usernameInput = screen.getByPlaceholderText(usernamePlaceholder);
       const passwordInput = screen.getByPlaceholderText(passwordPlaceholder);

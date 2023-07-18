@@ -8,4 +8,6 @@ export const responseData = {
   beachUpdated: "Your beach has been updated!",
   addedBeach: "Your beach is added!",
   beachNotFound: "Beach not found",
+  errorRegister: "Couldn't create an account",
+  userRegistered: "Congrats! You are a BEACHER!",
 };

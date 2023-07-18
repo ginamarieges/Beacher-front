@@ -2,7 +2,11 @@ import { useState } from "react";
 import { RegisterUserStructure } from "../../store/user/types";
 import RegisterFormStyled from "./RegisterFormStyled";
 
-const RegisterForm = (): React.ReactElement => {
+interface RegisterProps {
+  handleSubmit: (userData: RegisterUserStructure) => void;
+}
+
+const RegisterForm = ({ handleSubmit }: RegisterProps): React.ReactElement => {
   const initialUserData: RegisterUserStructure = {
     email: "",
     name: "",
@@ -23,6 +27,7 @@ const RegisterForm = (): React.ReactElement => {
 
   const handleOnClick = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    handleSubmit(userData);
     setUserData(initialUserData);
   };
   const isSamePassword =
